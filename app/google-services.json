@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "159210800433",
+    "project_id": "jobhunt-b3c44",
+    "storage_bucket": "jobhunt-b3c44.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159210800433:android:bb01cd23c1354de61edc10",
+        "android_client_info": {
+          "package_name": "com.bits.jobhunt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159210800433-3ru2525f9a0b9u59j3dvdiv2qsvjd4l1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvsGcmDXohrBoKm6WA3egO7o6eGZBR38k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159210800433-3ru2525f9a0b9u59j3dvdiv2qsvjd4l1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159210800433:android:35f478700f9a62f21edc10",
+        "android_client_info": {
+          "package_name": "com.example.jobhunt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159210800433-3ru2525f9a0b9u59j3dvdiv2qsvjd4l1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvsGcmDXohrBoKm6WA3egO7o6eGZBR38k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159210800433-3ru2525f9a0b9u59j3dvdiv2qsvjd4l1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
