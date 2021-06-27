@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JobHunt"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Splash"></activity>
+        <activity android:name=".UserActivity"></activity>
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".Splash" />
         <activity android:name=".LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
