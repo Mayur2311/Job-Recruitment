@@ -1,66 +1,244 @@
 package com.bits.jobhunt.fragments;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.bits.jobhunt.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SignupFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
+
 public class SignupFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    EditText et_firstname, et_lastname, et_email, et_mobile, et_password, et_cpassword, et_dob, et_city;
+    DatePickerDialog.OnDateSetListener setListener;
+    Button btn_login, btn_signup;
+    FirebaseAuth firebaseAuth;
+    String fuser;
+    FirebaseFirestore db;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    NavController navController;
 
-    public SignupFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SignupFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SignupFragment newInstance(String param1, String param2) {
-        SignupFragment fragment = new SignupFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    String fname, dateofbirth, city, lname, eml, mobilenumber;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_signup, container, false);
     }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        et_firstname =view.findViewById(R.id.firstName);
+        et_lastname =view.findViewById(R.id.lastName);
+        et_email =view.findViewById(R.id.edt_email);
+        et_mobile =view.findViewById(R.id.mobile);
+        et_password =view.findViewById(R.id.edt_password);
+        et_cpassword =view.findViewById(R.id.Cpassword);
+        et_city =view.findViewById(R.id.City);
+        et_dob =view.findViewById(R.id.dob);
+        btn_login =view.findViewById(R.id.btn_login_txt);
+        btn_signup =view.findViewById(R.id.signup);
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        navController = Navigation.findNavController(view);
+
+        Calendar calendar= Calendar.getInstance();
+        final int year= calendar.get(Calendar.YEAR);
+        final int month= calendar.get(Calendar.MONTH);
+        final int day= calendar.get(Calendar.DAY_OF_MONTH);
+
+
+
+        setListener= new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month=month+1;
+                String date= day+"/"+month+"/"+year;
+                et_dob.setText(date);
+
+            }
+        };
+
+        et_dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month = month + 1;
+                        String date = day + "/" + month + "/" + year;
+                        et_dob.setText(date);
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+            }
+        });
+
+
+
+
+
+        btn_signup.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                String Email= et_email.getText().toString().trim();
+                String Password= et_password.getText().toString().trim();
+                String conpassword= et_cpassword.getText().toString().trim();
+                String Mobile= et_mobile.getText().toString().trim();
+                String C= et_city.getText().toString().trim();
+                String date= et_dob.getText().toString().trim();
+
+                if(TextUtils.isEmpty(Email)){
+                    et_email.setError("Email is required.");
+                    return;
+                }
+                if(TextUtils.isEmpty(Password)){
+                    et_password.setError("password is required.");
+                    return;
+                }
+                if(TextUtils.isEmpty(Mobile)){
+                    et_mobile.setError("mobile number is required.");
+                    return;
+                }
+                if(TextUtils.isEmpty(conpassword)){
+                    et_cpassword.setError("confirm password is required.");
+                    return;
+                }
+                if(TextUtils.isEmpty(C)){
+                    et_city.setError("Please select a city.");
+                    return;
+                }
+                if(TextUtils.isEmpty(date)){
+                    et_dob.setError("Please enter the date of birth.");
+                    return;
+                }
+
+                if(et_password.length()<6){
+                    et_password.setError("Password must be>=6 Characters");
+                    return;
+                }
+                if(!(et_cpassword.getText().toString().equals(et_password.getText().toString()))){
+                    et_cpassword.setError("confirm password and password must be same");
+                    return;
+                }
+
+                if(et_mobile.length()<10){
+                    et_mobile.setError("Invalid number");
+                    return;
+                }
+                //-----------------------------------------------------------------
+                fname = et_firstname.getText().toString();
+                lname = et_lastname.getText().toString();
+                eml = et_email.getText().toString();
+                mobilenumber = et_mobile.getText().toString();
+                dateofbirth = et_dob.getText().toString();
+                city = et_city.getText().toString();
+//                    pswd = password.getText().toString();
+                //-----------------------------------------------------------------
+
+
+
+
+                firebaseAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getActivity().getApplicationContext(),"User Created",Toast.LENGTH_SHORT).show() ;
+
+                            fuser = firebaseAuth.getCurrentUser().getUid();
+
+                            insertUserData(fname,lname,mobilenumber, dateofbirth, city);
+                            navController.navigate(R.id.loginFragment);
+
+
+                        }
+
+
+
+                        else{
+                            Toast.makeText(getActivity().getApplicationContext(),"registration error",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+
+
+
+        });
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.loginFragment);
+            }
+        });
+
+    }
+
+    public void insertUserData(String firstname, String lastname, String mobileNumber,String d,String Ci) {
+
+        Map<String, Object> profileData = new HashMap<>();
+
+        profileData.put("firstName", firstname);
+        profileData.put("lastName", lastname);
+        profileData.put("mobilenumber", mobileNumber);
+        profileData.put("dob",d);
+        profileData.put("City",Ci);
+
+
+
+
+
+
+
+        db.collection("ProfileUpdate").document(fuser).set(profileData)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        Toast.makeText(getContext().getApplicationContext(),"Data inserted successfully",Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity().getApplicationContext(), "Error adding data" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+
+
 }
