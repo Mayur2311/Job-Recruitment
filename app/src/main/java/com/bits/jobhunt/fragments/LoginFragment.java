@@ -1,4 +1,4 @@
-package com.example.jobhunt.fragments;
+package com.bits.jobhunt.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,8 +21,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jobhunt.R;
-import com.example.jobhunt.UserActivity;
+
+import com.bits.jobhunt.R;
+import com.bits.jobhunt.UserActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;

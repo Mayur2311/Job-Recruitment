@@ -1,4 +1,4 @@
-package com.example.jobhunt;
+package com.bits.jobhunt;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.bits.jobhunt.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -48,9 +49,10 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         if (id == R.id.admin_dashboardFragment)
         {
             navController.navigate(R.id.admin_dashboardFragment);
-        }else
+        }else if (id == R.id.postadded){
 
-        if (id == R.id.logout)
+        }
+        else if (id == R.id.logout)
         {
             firebaseAuth.signOut();
             Intent intent = new Intent(this, LogInActivity.class);

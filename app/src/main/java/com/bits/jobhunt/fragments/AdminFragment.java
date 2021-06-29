@@ -1,4 +1,4 @@
-package com.example.jobhunt.fragments;
+package com.bits.jobhunt.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.jobhunt.AdminActivity;
-import com.example.jobhunt.R;
-import com.example.jobhunt.UserActivity;
+
+import com.bits.jobhunt.AdminActivity;
+import com.bits.jobhunt.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

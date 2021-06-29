@@ -11,12 +11,16 @@ import android.view.ViewGroup;
 import com.bits.jobhunt.R;
 
 
-public class DashboardFragment extends Fragment {
+public class Admin_dashboardFragment extends Fragment {
 
 
-    public DashboardFragment() {
+
+
+
+    public Admin_dashboardFragment() {
         // Required empty public constructor
     }
+
 
 
 
@@ -30,6 +34,6 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+        return inflater.inflate(R.layout.fragment_admin_dashboard, container, false);
     }
 }
