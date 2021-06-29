@@ -91,10 +91,12 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        currentUser = fAuth.getCurrentUser();
         if (currentUser != null) {
             Toast.makeText(getActivity().getApplicationContext(), "User Already Signing", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getActivity(), UserActivity.class);
             startActivity(intent);
+          //  updateUI(currentUser);
 
         }
 
@@ -176,8 +178,6 @@ public class LoginFragment extends Fragment {
                             if (task.isSuccessful())
                             {
                                 Toast.makeText(getActivity().getApplicationContext(),"Login Success!", Toast.LENGTH_SHORT).show();
-                                currentUser = fAuth.getCurrentUser();
-//                         updateUI(currentUser);
                                 Intent intent = new Intent(getActivity().getApplicationContext(), UserActivity.class);
                                 startActivity(intent);
                             }else {
