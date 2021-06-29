@@ -36,7 +36,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header_layout"
-        app:menu="@menu/user_drawer_main"/>
+        app:menu="@menu/admin_drawer_menu"/>
 
 
 
