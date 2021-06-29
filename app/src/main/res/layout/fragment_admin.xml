@@ -85,7 +85,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:drawableLeft="@drawable/account"
+            android:drawableLeft="@drawable/lock"
             android:drawablePadding="10dp"
             android:backgroundTint="@color/mainapp"
             android:hint="Enter your Password"

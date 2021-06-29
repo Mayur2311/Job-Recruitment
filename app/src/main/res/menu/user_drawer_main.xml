@@ -9,9 +9,11 @@
             android:icon="@drawable/user_list"
             android:id="@+id/userlists"/>
 
+
         <item android:title="Pending Post"
             android:icon="@drawable/pending_post"
             android:id="@+id/pendingpost"/>
+
 
         <item android:title="Logout"
             android:icon="@drawable/logout"
