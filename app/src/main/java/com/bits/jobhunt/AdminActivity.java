@@ -49,7 +49,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         if (id == R.id.admin_dashboardFragment)
         {
             navController.navigate(R.id.admin_dashboardFragment);
-        }else if (id == R.id.postadded){
+        }else if (id == R.id.job_post){
+
+        }else if(id==R.id.userlists){
+
+        }else if(id==R.id.pendingpost){
 
         }
         else if (id == R.id.logout)

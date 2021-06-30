@@ -39,7 +39,6 @@ public class LoginFragment extends Fragment {
     NavController navController;
     FirebaseUser currentUser;
 
-    String str_email, str_password;
 
 
     public LoginFragment() {
@@ -76,6 +75,7 @@ public class LoginFragment extends Fragment {
         btn2 = view.findViewById(R.id.btn_admin);
         navController = Navigation.findNavController(view);
         txt_forgotpassword = view.findViewById(R.id.txt_forgotpassword);
+
 
         btnVar_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
