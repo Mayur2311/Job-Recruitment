@@ -1,39 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DashboardFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/email_verification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="38dp"
-        android:text="Email Not Verified"
-        android:textColor="@color/red"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/resendcode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/resendcode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="174dp"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="28dp"
-        android:text="Verify Now"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_verification" />
+    tools:context=".fragments.Saved_JobFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -41,7 +11,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/user_dashboard_searchbar"
+            android:id="@+id/user_savedjob_searchbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -59,13 +29,13 @@
             android:hint="Search"/>
 
         <Button
-            android:id="@+id/user_dashboard_find_job"
+            android:id="@+id/user_savedjob_find_job"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_below="@+id/user_dashboard_searchbar"
+            android:layout_below="@+id/user_savedjob_searchbar"
             android:text="Find Jobs"
             android:backgroundTint="@color/mainapp"
             />
@@ -73,7 +43,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/user_dashboard_find_job"
+            android:layout_below="@id/user_savedjob_find_job"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
@@ -85,10 +55,9 @@
                 android:background="@drawable/round_corner">
 
                 <TextView
-                    android:id="@+id/user_dashboard_job_title"
+                    android:id="@+id/user_savedjob_job_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/save_job"
                     android:text="Job Title"
                     android:textStyle="bold"
                     android:textSize="25sp"
@@ -97,15 +66,14 @@
                     android:layout_marginRight="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="5dp"
-                    android:paddingRight="5dp"
                     android:layout_centerHorizontal="true"
                     />
 
                 <TextView
-                    android:id="@+id/user_dashboard_company_name"
+                    android:id="@+id/user_savedjob_company_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/user_dashboard_job_title"
+                    android:layout_below="@id/user_savedjob_job_title"
                     android:text="Company Name"
                     android:textSize="19sp"
                     android:layout_marginLeft="10dp"
@@ -116,10 +84,10 @@
                     />
 
                 <TextView
-                    android:id="@+id/user_dashboard_company_location"
+                    android:id="@+id/user_savedjob_company_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/user_dashboard_company_name"
+                    android:layout_below="@id/user_savedjob_company_name"
                     android:text="Company Location"
                     android:textSize="19sp"
                     android:layout_marginLeft="10dp"
@@ -130,10 +98,10 @@
                     />
 
                 <TextView
-                    android:id="@+id/user_dashboard_salary"
+                    android:id="@+id/user_savedjob_salary"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/user_dashboard_company_location"
+                    android:layout_below="@id/user_savedjob_company_location"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="26dp"

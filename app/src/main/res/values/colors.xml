@@ -10,6 +10,7 @@
 
 <!--Customized Colors-->
     <color name="red">#FB0000</color>
+    <color name="gray">#d3d3d3</color>
     <color name="primaryColor">#1565c0</color>
 
     <color name="mainapp">#5e92f3</color>
