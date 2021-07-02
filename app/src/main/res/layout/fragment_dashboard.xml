@@ -42,7 +42,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/email_verification">
+        app:layout_constraintTop_toTopOf="@+id/email_verification"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <EditText
             android:id="@+id/user_dashboard_searchbar"
@@ -78,17 +79,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="580dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/relative_layout"
-       >
+        app:layout_constraintTop_toBottomOf="@id/relative_layout">
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/recycleView"
-            />
-
+            android:id="@+id/dashboard_recycleView" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
