@@ -38,7 +38,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/user_dashboard_searchbar"
@@ -49,85 +53,81 @@
             android:layout_marginTop="25dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
+            android:background="@drawable/round_corner"
             android:cursorVisible="true"
             android:drawableLeft="@drawable/search"
             android:drawableRight="@drawable/filter"
-            android:background="@drawable/round_corner"
             android:drawablePadding="10dp"
             android:ems="10"
-            android:padding="15dp"
-            android:hint="Search"/>
+            android:hint="Search"
+            android:padding="15dp" />
 
         <Button
             android:id="@+id/user_dashboard_find_job"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/user_dashboard_searchbar"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_below="@+id/user_dashboard_searchbar"
-            android:text="Find Jobs"
             android:backgroundTint="@color/mainapp"
-            />
+            android:text="Find Jobs" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/user_dashboard_find_job"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="175dp"
-                android:orientation="vertical"
-                android:background="@drawable/round_corner">
+                android:background="@drawable/round_corner"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/user_dashboard_job_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/save_job"
-                    android:text="Job Title"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:drawableRight="@drawable/save_job"
                     android:paddingLeft="10dp"
                     android:paddingTop="5dp"
                     android:paddingRight="5dp"
-                    android:layout_centerHorizontal="true"
-                    />
+                    android:text="Job Title"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/user_dashboard_company_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/user_dashboard_job_title"
-                    android:text="Company Name"
-                    android:textSize="19sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:paddingLeft="10dp"
                     android:layout_centerHorizontal="true"
-                    />
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="Company Name"
+                    android:textSize="19sp" />
 
                 <TextView
                     android:id="@+id/user_dashboard_company_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/user_dashboard_company_name"
-                    android:text="Company Location"
-                    android:textSize="19sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:paddingLeft="10dp"
                     android:layout_centerHorizontal="true"
-                    />
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="Company Location"
+                    android:textSize="19sp" />
 
                 <TextView
                     android:id="@+id/user_dashboard_salary"
@@ -135,8 +135,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/user_dashboard_company_location"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="26dp"
+                    android:layout_marginRight="10dp"
                     android:background="@drawable/round_corner"
                     android:backgroundTint="@color/gray"
                     android:paddingLeft="10dp"

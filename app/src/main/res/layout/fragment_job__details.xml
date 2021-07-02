@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.Job_DetailsFragment">
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="663dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginLeft="3dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/user_jobdetails_job_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Job Title"
+                    android:textStyle="bold"
+                    android:textSize="35sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/user_jobdetails_company_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/user_jobdetails_job_title"
+                    android:text="Company Name"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/user_jobdetails_company_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/user_jobdetails_company_name"
+                    android:text="Company Location"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/user_jobdetails_jobdetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_below="@id/user_jobdetails_company_location"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:text="Job Details"
+                    android:textSize="28sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_salary"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/user_jobdetails_jobdetails"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="Salary"
+                    android:textSize="23sp"
+                    android:textColor="@color/medium_black"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_salaryinnumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/user_jobdetails_salary"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="This will be your salary"
+                    android:textSize="19sp"
+                    android:textColor="@color/light_black"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_jobtype"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/user_jobdetails_salaryinnumber"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="10dp"
+                    android:text="Job Type"
+                    android:textSize="23sp"
+                    android:textColor="@color/medium_black"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_jobtype1"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/user_jobdetails_jobtype"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="Job type requirement (Full-time)."
+                    android:textSize="19sp"
+                    android:textColor="@color/light_black"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_jobtype2"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/user_jobdetails_jobtype1"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="Job type requirement (Part-time)."
+                    android:textSize="19sp"
+                    android:textColor="@color/light_black"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_vacancy"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/user_jobdetails_jobtype2"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="10dp"
+                    android:text="Number of hires for this role"
+                    android:textSize="23sp"
+                    android:textColor="@color/medium_black"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_vacancynumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/user_jobdetails_vacancy"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="Vacancies for this job."
+                    android:textSize="19sp"
+                    android:textColor="@color/light_black"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_qualification"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_below="@id/user_jobdetails_vacancynumber"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:text="Qualifications"
+                    android:textSize="28sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_qualificationdetail1"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/user_jobdetails_qualification"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="Qualification requirement"
+                    android:textSize="19sp"
+                    android:textColor="@color/light_black"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_qualificationdetail2"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/user_jobdetails_qualificationdetail1"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="Qualification requirement"
+                    android:textSize="19sp"
+                    android:textColor="@color/light_black"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_jobdescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_below="@id/user_jobdetails_qualificationdetail2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:text="Full job description"
+                    android:textSize="28sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/user_jobdetails_company_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/user_jobdetails_jobdescription"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="Description"
+                    android:textSize="19sp"
+                    android:textColor="@color/light_black"/>
+
+            </RelativeLayout>
+        </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/user_jobdetails_apply"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="25dp"
+            android:backgroundTint="@color/mainapp"
+            android:text="Apply"
+            android:textSize="25sp"/>
+
+        <Button
+            android:id="@+id/user_jobdetails_save"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/mainapp"
+            android:text="Save"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
