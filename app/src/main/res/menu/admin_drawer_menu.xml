@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item android:title="Job Posts"
+        <item android:title="Job Post"
             android:icon="@drawable/dash"
-            android:id="@+id/dash"/>
+            android:id="@+id/job_post"/>
 
-        <item android:title="Post Added"
-            android:icon="@drawable/add_post"
-            android:id="@+id/postadded"/>
+        <item android:title="User Lists"
+            android:icon="@drawable/user_list"
+            android:id="@+id/userlists"/>
 
-        <item android:title="Saved Posts"
-            android:icon="@drawable/saved_post"
-            android:id="@+id/savedpost"/>
 
-        <item android:title="Applied Post"
-            android:icon="@drawable/applied_post"
-            android:id="@+id/appliedpost"/>
+        <item android:title="Pending Post"
+            android:icon="@drawable/pending_post"
+            android:id="@+id/pendingpost"/>
 
-        <item android:title="Update Profile"
-            android:icon="@drawable/update_profile"
-            android:id="@+id/updateprofile"/>
-
-        <item android:title="User Persona"
-            android:icon="@drawable/user_persona"
-            android:id="@+id/userpersona"/>
 
         <item android:title="Logout"
             android:icon="@drawable/logout"

@@ -46,7 +46,13 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.dashboardFragment) {
             navController.navigate(R.id.dashboardFragment);
-        } else if (id == R.id.logout) {
+        }else if (id == R.id.job_post){}
+       else if (id == R.id.savedpost){}
+       else if (id == R.id.postadded){}
+       else if (id == R.id.appliedpost){}
+       else if (id == R.id.updateprofile){}
+       else if (id == R.id.userpersona){}
+       else if (id == R.id.logout) {
             firebaseAuth.signOut();
             Intent intent = new Intent(this, LogInActivity.class);
             startActivity(intent);

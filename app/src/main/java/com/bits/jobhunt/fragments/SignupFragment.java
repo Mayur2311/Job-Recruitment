@@ -2,6 +2,7 @@ package com.bits.jobhunt.fragments;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,11 +28,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+
+import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 
 public class SignupFragment extends Fragment {
@@ -178,6 +182,19 @@ public class SignupFragment extends Fragment {
                             Toast.makeText(getActivity().getApplicationContext(),"User Created",Toast.LENGTH_SHORT).show() ;
 
                             fuser = firebaseAuth.getCurrentUser().getUid();
+                            /*Send verification link*/
+                            FirebaseUser user= firebaseAuth.getCurrentUser();
+                            user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void avoid) {
+                                  Toast.makeText(getActivity().getApplicationContext(),"Verification Email Has been Sent",Toast.LENGTH_SHORT);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG,"onFailure: Email not sent " +e.getMessage());
+                                }
+                            });
 
                             insertUserData(fname,lname,mobilenumber, dateofbirth, city);
                             navController.navigate(R.id.loginFragment);
