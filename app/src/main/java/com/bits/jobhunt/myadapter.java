@@ -1,6 +1,7 @@
 package com.bits.jobhunt;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -37,10 +38,10 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
         holder.user_dashboard_company_location.setText(datalist.get(position).getLocation());
         holder.user_dashboard_salary.setText(datalist.get(position).getSalary());
 
-       /* holder.user_dashboard_job_title.setOnClickListener(new View.OnClickListener() {
+        holder.user_dashboard_job_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(holder.user_dashboard_job_title.getContext(), Job_DetailsFragment.class);
+                Intent intent= new Intent(holder.user_dashboard_job_title.getContext(), Job_Details.class);
                 intent.putExtra("CompanyName",datalist.get(position).getCompanyName());
                 intent.putExtra("Description",datalist.get(position).getDescription());
                 intent.putExtra("JobName",datalist.get(position).getJobName());
@@ -54,7 +55,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
                 holder.user_dashboard_job_title.getContext().startActivity(intent);
 
             }
-        });*/
+        });
     }
 
 
