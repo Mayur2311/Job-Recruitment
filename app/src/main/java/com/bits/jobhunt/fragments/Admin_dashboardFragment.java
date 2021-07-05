@@ -13,10 +13,6 @@ import com.bits.jobhunt.R;
 
 public class Admin_dashboardFragment extends Fragment {
 
-
-
-
-
     public Admin_dashboardFragment() {
         // Required empty public constructor
     }

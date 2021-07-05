@@ -12,10 +12,10 @@ import com.bits.jobhunt.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Job_DetailsFragment#newInstance} factory method to
+ * Use the {@link Add_Post#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Job_DetailsFragment extends Fragment {
+public class Add_Post extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class Job_DetailsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Job_DetailsFragment() {
+    public Add_Post() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class Job_DetailsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Job_DetailsFragment.
+     * @return A new instance of fragment Add_Post.
      */
     // TODO: Rename and change types and number of parameters
-    public static Job_DetailsFragment newInstance(String param1, String param2) {
-        Job_DetailsFragment fragment = new Job_DetailsFragment();
+    public static Add_Post newInstance(String param1, String param2) {
+        Add_Post fragment = new Add_Post();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class Job_DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_job__details, container, false);
+        return inflater.inflate(R.layout.fragment_add__post, container, false);
     }
 }

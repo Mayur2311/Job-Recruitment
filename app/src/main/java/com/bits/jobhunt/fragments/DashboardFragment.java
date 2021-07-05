@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +17,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
+import com.bits.jobhunt.myadapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -24,11 +28,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment  {
     FirebaseUser user;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
@@ -38,6 +46,9 @@ public class DashboardFragment extends Fragment {
     String userId;
     TextView verifyMsg, txt_headerText;
     Button resendCode;
+    RecyclerView recview;
+    ArrayList<Model>datalist;
+    myadapter adapter;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -98,6 +109,28 @@ public class DashboardFragment extends Fragment {
             });
         }
 
+
+        recview=view.findViewById(R.id.dashboard_recycleView);
+        recview.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        datalist=new ArrayList<>();
+        adapter=new myadapter(datalist);
+        recview.setAdapter(adapter);
+        fireStore.collection("Jobs").orderBy("JobName").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list)
+                        {
+                            Model obj=d.toObject(Model.class);
+                            datalist.add(obj);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+
     }
+
 
 }
