@@ -11,14 +11,17 @@
         android:layout_height="match_parent"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/mainLayout">
 
         <ImageView
             android:id="@+id/img"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="157dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="71dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="0dp"
             android:src="@drawable/logo" />
 
         <EditText
@@ -42,7 +45,6 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:drawableLeft="@drawable/account"
             android:hint="Company Name"
             android:padding="10dp"
             android:textColorHint="@color/black" />
@@ -70,28 +72,62 @@
             android:hint=" Salary"
             android:padding="10dp"
             android:textColorHint="@color/black" />
-
-
-        <Button
-            android:id="@+id/postSubmit"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/salary"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginRight="20dp"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:text="Submit"
-            android:textColor="@color/primaryDarkColor" />
-
-        <Button
-            android:id="@+id/addPost"
+        <EditText
+            android:id="@+id/jobtype"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/postSubmit"
+            android:layout_below="@+id/salary"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:hint=" Jobtype"
+            android:padding="10dp"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/numberOfHires"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/jobtype"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:hint=" Number of  Hires"
+            android:padding="10dp"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/qualification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/numberOfHires"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:hint=" QUalification"
+            android:padding="10dp"
+            android:textColorHint="@color/black" />
+
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/qualification"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:hint=" Description"
+            android:padding="10dp"
+            android:textColorHint="@color/black" />
+
+
+        <Button
+            android:id="@+id/add_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@id/description"
             android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
             android:alpha="0.8"
@@ -99,6 +135,11 @@
             android:text="Add New"
             android:textColor="@color/white" />
 
+
     </RelativeLayout>
+
+
+
+
 
 </ScrollView>
