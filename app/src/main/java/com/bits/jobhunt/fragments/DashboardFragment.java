@@ -9,11 +9,15 @@ import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,10 +49,13 @@ public class DashboardFragment extends Fragment  {
     NavController navController;
     String userId;
     TextView verifyMsg, txt_headerText;
+    EditText search_bar;
     Button resendCode;
     RecyclerView recview;
-    ArrayList<Model>datalist;
+    ArrayList<Model> datalist;
     myadapter adapter;
+
+
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -77,11 +84,15 @@ public class DashboardFragment extends Fragment  {
         fireStore = FirebaseFirestore.getInstance();
         userId = firebaseAuth.getCurrentUser().getUid();
         NavigationView navigationView = getActivity().findViewById(R.id.navigationView);
+
        /* View headerView = navigationView.getHeaderView(0);
         txt_headerText = headerView.findViewById(R.id.txt_header);*/
 
         resendCode = view.findViewById(R.id.resendcode);
         verifyMsg = view.findViewById(R.id.email_verification);
+        search_bar = view.findViewById(R.id.user_dashboard_searchbar);
+
+
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
@@ -125,12 +136,47 @@ public class DashboardFragment extends Fragment  {
                             Model obj=d.toObject(Model.class);
                             datalist.add(obj);
                         }
-                        adapter.notifyDataSetChanged();
+
                     }
                 });
 
+        search_bar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
     }
+
+    private void filter(String text)
+    {
+        ArrayList<Model> filteredList = new ArrayList<>();
+
+        for(Model model : datalist)
+        {
+            if (model.getJobName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(model);
+            }
+        }
+
+        adapter.filterList(filteredList);
+    }
+
+
+
+
 
 
 }
