@@ -4,6 +4,9 @@
         <item android:title="Job Posts"
             android:icon="@drawable/dash"
             android:id="@+id/dash"/>
+        <item android:title="Add New Job Post"
+            android:icon="@drawable/addnewjobpost"
+            android:id="@+id/addnewjobpost"/>
 
         <item android:title="Applied Posts"
             android:icon="@drawable/applied_post"
