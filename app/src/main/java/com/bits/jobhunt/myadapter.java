@@ -1,23 +1,31 @@
 package com.bits.jobhunt;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
-   // private OnItemClickListener listener;
+public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
+    // private OnItemClickListener listener;
     ArrayList<Model> datalist;
+ //   ArrayList<Model> datalistAll;
 
     public myadapter(ArrayList<Model> datalist) {
         this.datalist = datalist;
+        //this.datalistAll = new ArrayList<>(datalist);
     }
 
     @NonNull
@@ -37,24 +45,24 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
         holder.user_dashboard_company_location.setText(datalist.get(position).getLocation());
         holder.user_dashboard_salary.setText(datalist.get(position).getSalary());
 
-       /* holder.user_dashboard_job_title.setOnClickListener(new View.OnClickListener() {
+        holder.user_dashboard_job_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(holder.user_dashboard_job_title.getContext(), Job_DetailsFragment.class);
-                intent.putExtra("CompanyName",datalist.get(position).getCompanyName());
-                intent.putExtra("Description",datalist.get(position).getDescription());
-                intent.putExtra("JobName",datalist.get(position).getJobName());
-                intent.putExtra("JobType",datalist.get(position).getJobType());
-                intent.putExtra("Location",datalist.get(position).getLocation());
-                intent.putExtra("Qualifications",datalist.get(position).getQualifications());
-                intent.putExtra("Salary",datalist.get(position).getSalary());
-                intent.putExtra("numberOFHires",datalist.get(position).getNumberOFHires());
+                Intent intent = new Intent(holder.user_dashboard_job_title.getContext(), Job_Details.class);
+                intent.putExtra("CompanyName", datalist.get(position).getCompanyName());
+                intent.putExtra("Description", datalist.get(position).getDescription());
+                intent.putExtra("JobName", datalist.get(position).getJobName());
+                intent.putExtra("JobType", datalist.get(position).getJobType());
+                intent.putExtra("Location", datalist.get(position).getLocation());
+                intent.putExtra("Qualifications", datalist.get(position).getQualifications());
+                intent.putExtra("Salary", datalist.get(position).getSalary());
+                intent.putExtra("numberOFHires", datalist.get(position).getNumberOFHires());
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.user_dashboard_job_title.getContext().startActivity(intent);
 
             }
-        });*/
+        });
     }
 
 
@@ -63,7 +71,48 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder> {
         return datalist.size();
     }
 
-   // class myviewholder extends RecyclerView.ViewHolder implements View.OnClickListener
+//    @Override
+//    public Filter getFilter() {
+//        return filter;
+//    }
+//
+//    Filter filter = new Filter() {
+//        @Override
+//        protected FilterResults performFiltering(CharSequence charSequence) {
+//
+//            ArrayList<Model> filteredList = new ArrayList<>();
+//
+//            if (charSequence.toString().isEmpty()) {
+//                filteredList.addAll(datalistAll);
+//            } else {
+//                for (Model model : datalistAll) {
+//                    if (model.getJobName().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+//                        filteredList.add(model);
+//                    }
+//                }
+//            }
+//
+//            FilterResults filterResults = new FilterResults();
+//            filterResults.values = filteredList;
+//            return filterResults;
+//        }
+//
+//        @Override
+//        protected void publishResults(CharSequence constraint, FilterResults results) {
+//
+//            datalist.clear();
+//            datalist.addAll((Collection<? extends Model>) results.values);
+//            notifyDataSetChanged();
+//        }
+//    };
+
+
+    public void filterList(ArrayList<Model> filteredList) {
+        datalist = filteredList;
+        notifyDataSetChanged();
+    }
+
+    // class myviewholder extends RecyclerView.ViewHolder implements View.OnClickListener
     class myviewholder extends RecyclerView.ViewHolder  {
         TextView user_dashboard_job_title, user_dashboard_company_name, user_dashboard_company_location, user_dashboard_salary;
 

@@ -1,4 +1,4 @@
-package com.bits.jobhunt;
+  package com.bits.jobhunt;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -44,11 +44,16 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
 
         int id = item.getItemId();
 
-        if (id == R.id.dashboardFragment) {
+        if (id == R.id.dash) {
             navController.navigate(R.id.dashboardFragment);
         }else if (id == R.id.job_post){}
-       else if (id == R.id.savedpost){}
+       else if (id == R.id.savedpost){
+           navController.navigate(R.id.saved_JobFragment);
+        }
        else if (id == R.id.postadded){}
+       else if(id==R.id.addnewjobpost){
+           navController.navigate(R.id.add_postFragment);
+        }
        else if (id == R.id.appliedpost){}
        else if (id == R.id.updateprofile){}
        else if (id == R.id.userpersona){}

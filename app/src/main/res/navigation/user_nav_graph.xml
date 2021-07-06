@@ -16,9 +16,11 @@
         android:label="fragment_saved__job"
         tools:layout="@layout/fragment_saved__job" />
     <fragment
-        android:id="@+id/job_DetailsFragment"
-        android:name="com.bits.jobhunt.fragments.Job_DetailsFragment"
-        android:label="fragment_job__details"
-        tools:layout="@layout/fragment_job__details" />
+        android:id="@+id/add_postFragment"
+        android:name="com.bits.jobhunt.fragments.Add_Post"
+        android:label="fragment_add__post"
+        tools:layout="@layout/fragment_add__post" />
+
+
 
 </navigation>
