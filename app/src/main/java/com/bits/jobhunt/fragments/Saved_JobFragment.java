@@ -2,59 +2,50 @@ package com.bits.jobhunt.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bits.jobhunt.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Saved_JobFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.bits.jobhunt.Model;
+import com.bits.jobhunt.R;
+import com.bits.jobhunt.Savedadapter;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Saved_JobFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    FirebaseFirestore fireStore;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+
+    RecyclerView recview;
+    ArrayList<Model>datalist;
+    Savedadapter adapter;
 
     public Saved_JobFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Saved_JobFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Saved_JobFragment newInstance(String param1, String param2) {
-        Saved_JobFragment fragment = new Saved_JobFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -62,5 +53,33 @@ public class Saved_JobFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_saved__job, container, false);
+
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        fireStore = FirebaseFirestore.getInstance();
+        recview=view.findViewById(R.id.saved_job_recycleView);
+        recview.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        datalist=new ArrayList<>();
+        adapter=new Savedadapter(datalist);
+        recview.setAdapter(adapter);
+        fireStore.collection("SavedJob").orderBy("JobName").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list)
+                        {
+                            Model obj=d.toObject(Model.class);
+                            datalist.add(obj);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
     }
 }

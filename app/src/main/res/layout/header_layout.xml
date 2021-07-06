@@ -11,7 +11,7 @@
         android:id="@+id/txt_header"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="Demo Text"
+        android:text="Job-Hunt"
         android:textSize="25sp"/>
 
 </RelativeLayout>
