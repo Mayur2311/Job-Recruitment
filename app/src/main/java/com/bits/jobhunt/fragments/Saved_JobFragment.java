@@ -31,8 +31,8 @@ public class Saved_JobFragment extends Fragment {
 
 
 
-    RecyclerView recview;
-    ArrayList<Model>datalist;
+    RecyclerView recycleview;
+    ArrayList<Model>saveddata;
     Savedadapter adapter;
 
     public Saved_JobFragment() {
@@ -62,12 +62,12 @@ public class Saved_JobFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         fireStore = FirebaseFirestore.getInstance();
-        recview=view.findViewById(R.id.saved_job_recycleView);
-        recview.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        datalist=new ArrayList<>();
-        adapter=new Savedadapter(datalist);
-        recview.setAdapter(adapter);
-        fireStore.collection("SavedJob").orderBy("JobName").get()
+        recycleview=view.findViewById(R.id.saved_job_recycleView);
+        recycleview.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        saveddata=new ArrayList<>();
+        adapter=new Savedadapter(saveddata);
+        recycleview.setAdapter(adapter);
+        fireStore.collection("SavedJob").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -75,7 +75,7 @@ public class Saved_JobFragment extends Fragment {
                         for(DocumentSnapshot d:list)
                         {
                             Model obj=d.toObject(Model.class);
-                            datalist.add(obj);
+                            saveddata.add(obj);
                         }
                         adapter.notifyDataSetChanged();
                     }

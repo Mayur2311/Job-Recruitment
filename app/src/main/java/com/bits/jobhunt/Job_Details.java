@@ -58,9 +58,19 @@ public class Job_Details extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Your application is submitted",Toast.LENGTH_SHORT).show();
+
+                int number = Integer.parseInt(getIntent().getStringExtra("numberOFHires").toString());
+
+                int x = number - 1;
+                String qqq = String.valueOf(x);
+                user_jobdetails_vacancynumber.setText(qqq);
+                number = number - 1;
+
+
                 insertAppliedData(getIntent().getStringExtra("JobName").toString(),getIntent().getStringExtra("CompanyName").toString(),getIntent().getStringExtra("Location").toString(),getIntent().getStringExtra("Salary").toString(),getIntent().getStringExtra("JobType").toString(),getIntent().getStringExtra("numberOFHires").toString(),getIntent().getStringExtra("Qualifications").toString(),getIntent().getStringExtra("Description").toString());
                 Intent intent = new Intent(getApplication(),UserActivity.class);
                 startActivity(intent);
+                user_jobdetails_vacancynumber.setText(qqq);
             }
         });
 

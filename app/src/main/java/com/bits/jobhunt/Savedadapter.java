@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class Savedadapter extends RecyclerView.Adapter<Savedadapter.myviewholder> {
 
-    ArrayList<Model> datalist;
+    ArrayList<Model> saveddata;
 
-    public Savedadapter(ArrayList<Model> datalist) {
-        this.datalist = datalist;
+    public Savedadapter(ArrayList<Model> saveddata) {
+        this.saveddata = saveddata;
     }
     @NonNull
 
@@ -29,34 +29,36 @@ public class Savedadapter extends RecyclerView.Adapter<Savedadapter.myviewholder
 
     @Override
     public void onBindViewHolder(@NonNull  Savedadapter.myviewholder holder, int position) {
-        holder.user_savedjob_job_title.setText(datalist.get(position).getJobName());
-        holder.user_savedjob_company_name.setText(datalist.get(position).getCompanyName());
-        holder.user_savedjob_company_location.setText(datalist.get(position).getLocation());
-        holder.user_savedjob_salary.setText(datalist.get(position).getSalary());
+        holder.user_savedjob_job_title.setText(saveddata.get(position).getJobName());
+        holder.user_savedjob_company_name.setText(saveddata.get(position).getCompanyName());
+        holder.user_savedjob_company_location.setText(saveddata.get(position).getLocation());
+        holder.user_savedjob_salary.setText(saveddata.get(position).getSalary());
 
-        holder.user_savedjob_job_title.setOnClickListener(new View.OnClickListener() {
+       holder.user_savedjob_job_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(holder.user_savedjob_job_title.getContext(), Job_Details.class);
-                intent.putExtra("CompanyName",datalist.get(position).getCompanyName());
-                intent.putExtra("Description",datalist.get(position).getDescription());
-                intent.putExtra("JobName",datalist.get(position).getJobName());
-                intent.putExtra("JobType",datalist.get(position).getJobType());
-                intent.putExtra("Location",datalist.get(position).getLocation());
-                intent.putExtra("Qualifications",datalist.get(position).getQualifications());
-                intent.putExtra("Salary",datalist.get(position).getSalary());
-                intent.putExtra("numberOFHires",datalist.get(position).getNumberOFHires());
-
+                intent.putExtra("CompanyName",saveddata.get(position).getCompanyName());
+                intent.putExtra("Description",saveddata.get(position).getDescription());
+                intent.putExtra("JobName",saveddata.get(position).getJobName());
+                intent.putExtra("JobType",saveddata.get(position).getJobType());
+                intent.putExtra("Location",saveddata.get(position).getLocation());
+                intent.putExtra("Qualifications",saveddata.get(position).getQualifications());
+                intent.putExtra("Salary",saveddata.get(position).getSalary());
+                intent.putExtra("numberOFHires",saveddata.get(position).getNumberOFHires());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.user_savedjob_job_title.getContext().startActivity(intent);
 
             }
         });
+
     }
+
+
 
     @Override
     public int getItemCount() {
-        return datalist.size();
+        return saveddata.size();
     }
 
     class myviewholder extends RecyclerView.ViewHolder {
@@ -66,7 +68,7 @@ public class Savedadapter extends RecyclerView.Adapter<Savedadapter.myviewholder
             super(itemView);
             user_savedjob_job_title = itemView.findViewById(R.id.user_savedjob_job_title);
             user_savedjob_company_name = itemView.findViewById(R.id.user_savedjob_company_name);
-            user_savedjob_company_location = itemView.findViewById(R.id.user_dashboard_company_location);
+            user_savedjob_company_location = itemView.findViewById(R.id.user_savedjob_company_location);
             user_savedjob_salary = itemView.findViewById(R.id.user_savedjob_salary);
 
 
