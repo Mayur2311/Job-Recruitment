@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E6ECE4"
     tools:context=".fragments.Add_Post">
 
@@ -29,7 +30,7 @@
         <EditText
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/header_title"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
@@ -44,7 +45,7 @@
         <EditText
             android:id="@+id/company"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/title"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
@@ -59,7 +60,7 @@
         <EditText
             android:id="@+id/location"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/company"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
@@ -74,7 +75,7 @@
         <EditText
             android:id="@+id/salary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/location"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
@@ -86,25 +87,49 @@
             android:hint=" Salary"
             android:padding="10dp"/>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/jobtype"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/salary"
-            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="19dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/round_corner"
-            android:drawableLeft="@drawable/job_type"
+            android:layout_below="@+id/salary"
+            app:startIconDrawable="@drawable/job_type"
             android:drawablePadding="15dp"
-            android:hint=" Job type"
-            android:padding="10dp"/>
+            android:background="@color/white">
+
+            <AutoCompleteTextView
+                android:id="@+id/act_jobtype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Job type"
+                android:inputType="none"
+                android:padding="10dp">
+            </AutoCompleteTextView>
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <Spinner-->
+<!--            android:id="@+id/jobtype"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="47dp"-->
+<!--            android:layout_below="@+id/salary"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="19dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:background="@drawable/round_corner"-->
+<!--            android:drawableLeft="@drawable/job_type"-->
+<!--            android:drawablePadding="15dp"-->
+<!--            android:entries="@array/job_type"-->
+<!--            android:hint=" Job type"-->
+<!--            android:padding="10dp"/>-->
 
         <EditText
             android:id="@+id/jobcategory"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/jobtype"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
@@ -116,25 +141,48 @@
             android:hint=" Job category"
             android:padding="10dp"/>
 
-        <EditText
+<!--        <EditText-->
+<!--            android:id="@+id/numberOfHires"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="47dp"-->
+<!--            android:layout_below="@+id/jobcategory"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="19dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:background="@drawable/round_corner"-->
+<!--            android:drawableLeft="@drawable/number_of_hires"-->
+<!--            android:drawablePadding="15dp"-->
+<!--            android:hint=" Number of  Hires"-->
+<!--            android:padding="10dp"/>-->
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/numberOfHires"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/jobcategory"
-            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="19dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/round_corner"
-            android:drawableLeft="@drawable/number_of_hires"
+            android:layout_below="@+id/jobcategory"
+            app:startIconDrawable="@drawable/number_of_hires"
             android:drawablePadding="15dp"
-            android:hint=" Number of  Hires"
-            android:padding="10dp"/>
+            android:background="@color/white">
+
+            <AutoCompleteTextView
+                android:id="@+id/act_numberOfHires"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Number of hires"
+                android:inputType="none"
+                android:padding="10dp">
+            </AutoCompleteTextView>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <EditText
             android:id="@+id/qualification"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/numberOfHires"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
@@ -150,7 +198,7 @@
         <EditText
             android:id="@+id/description"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/qualification"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
