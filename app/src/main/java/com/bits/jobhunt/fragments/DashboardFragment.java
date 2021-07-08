@@ -1,12 +1,8 @@
 package com.bits.jobhunt.fragments;
 
-import android.content.Context;
-import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,13 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
 import com.bits.jobhunt.myadapter;
@@ -33,7 +26,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -87,10 +79,7 @@ public class DashboardFragment extends Fragment  {
         fireStore = FirebaseFirestore.getInstance();
         userId = firebaseAuth.getCurrentUser().getUid();
         NavigationView navigationView = getActivity().findViewById(R.id.navigationView);
-        findjob = view.findViewById(R.id.user_dashboard_find_job);
-
-       /* View headerView = navigationView.getHeaderView(0);
-        txt_headerText = headerView.findViewById(R.id.txt_header);*/
+      
 
         resendCode = view.findViewById(R.id.resendcode);
         verifyMsg = view.findViewById(R.id.email_verification);
@@ -102,6 +91,7 @@ public class DashboardFragment extends Fragment  {
 
 
         if (!user.isEmailVerified()) {
+            search_bar.setVisibility(View.INVISIBLE);
             resendCode.setVisibility(View.VISIBLE);
             verifyMsg.setVisibility(View.VISIBLE);
 
@@ -181,10 +171,4 @@ public class DashboardFragment extends Fragment  {
 
         adapter.filterList(filteredList);
     }
-
-
-
-
-
-
 }

@@ -6,6 +6,9 @@
     android:elevation="4dp"
     android:layout_marginBottom="10dp"
     android:backgroundTint="#302F2F"
+    android:background="@color/gray"
+    android:padding="3dp"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
@@ -25,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_corner"
+            android:backgroundTint="#E3E9EA"
             android:orientation="vertical">
 
             <TextView
@@ -78,12 +82,12 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/round_corner"
-                android:backgroundTint="#F7F9FB"
+                android:backgroundTint="#E3E9EA"
                 android:paddingBottom="5dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="5dp"
                 android:text="Salary"
-                android:textColor="#979393"
+                android:textColor="#676464"
                 android:textSize="20sp" />
 
             <TextView
