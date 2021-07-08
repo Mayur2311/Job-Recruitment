@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E6ECE4"
     tools:context=".fragments.Add_Post">
 
@@ -14,112 +15,200 @@
         android:orientation="vertical"
         android:id="@+id/mainLayout">
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="match_parent"
-            android:layout_height="157dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="0dp"
-            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Add new job post here"
+            android:textSize="37dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"/>
 
         <EditText
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/img"
-            android:layout_alignParentLeft="true"
+            android:layout_height="47dp"
+            android:layout_below="@+id/header_title"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="25dp"
             android:layout_marginRight="20dp"
+            android:background="@drawable/round_corner"
+            android:drawableLeft="@drawable/job_title"
+            android:drawablePadding="15dp"
             android:hint="Job Title"
-            android:padding="10dp"
-            android:textColorHint="@color/black" />
+            android:padding="10dp"/>
 
         <EditText
             android:id="@+id/company"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="19dp"
             android:layout_marginRight="20dp"
+            android:background="@drawable/round_corner"
+            android:drawableLeft="@drawable/company_name"
+            android:drawablePadding="15dp"
             android:hint="Company Name"
-            android:padding="10dp"
-            android:textColorHint="@color/black" />
+            android:padding="10dp"/>
 
         <EditText
             android:id="@+id/location"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/company"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="19dp"
             android:layout_marginRight="20dp"
+            android:background="@drawable/round_corner"
+            android:drawableLeft="@drawable/location"
+            android:drawablePadding="15dp"
             android:hint="Location"
-            android:padding="10dp"
-            android:textColorHint="@color/black" />
+            android:padding="10dp"/>
 
         <EditText
             android:id="@+id/salary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/location"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="19dp"
             android:layout_marginRight="20dp"
+            android:background="@drawable/round_corner"
+            android:drawableLeft="@drawable/salary"
+            android:drawablePadding="15dp"
             android:hint=" Salary"
-            android:padding="10dp"
-            android:textColorHint="@color/black" />
-        <EditText
+            android:padding="10dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/jobtype"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/salary"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="19dp"
             android:layout_marginRight="20dp"
-            android:hint=" Jobtype"
-            android:padding="10dp"
-            android:textColorHint="@color/black" />
+            android:layout_below="@+id/salary"
+            app:startIconDrawable="@drawable/job_type"
+            android:drawablePadding="15dp"
+            android:background="@color/white">
+
+            <AutoCompleteTextView
+                android:id="@+id/act_jobtype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Job type"
+                android:inputType="none"
+                android:padding="10dp">
+            </AutoCompleteTextView>
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <Spinner-->
+<!--            android:id="@+id/jobtype"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="47dp"-->
+<!--            android:layout_below="@+id/salary"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="19dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:background="@drawable/round_corner"-->
+<!--            android:drawableLeft="@drawable/job_type"-->
+<!--            android:drawablePadding="15dp"-->
+<!--            android:entries="@array/job_type"-->
+<!--            android:hint=" Job type"-->
+<!--            android:padding="10dp"/>-->
 
         <EditText
+            android:id="@+id/jobcategory"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_below="@+id/jobtype"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/round_corner"
+            android:drawableLeft="@drawable/job_category"
+            android:drawablePadding="15dp"
+            android:hint=" Job category"
+            android:padding="10dp"/>
+
+<!--        <EditText-->
+<!--            android:id="@+id/numberOfHires"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="47dp"-->
+<!--            android:layout_below="@+id/jobcategory"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="19dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:background="@drawable/round_corner"-->
+<!--            android:drawableLeft="@drawable/number_of_hires"-->
+<!--            android:drawablePadding="15dp"-->
+<!--            android:hint=" Number of  Hires"-->
+<!--            android:padding="10dp"/>-->
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/numberOfHires"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/jobtype"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="19dp"
             android:layout_marginRight="20dp"
-            android:hint=" Number of  Hires"
-            android:padding="10dp"
-            android:textColorHint="@color/black" />
+            android:layout_below="@+id/jobcategory"
+            app:startIconDrawable="@drawable/number_of_hires"
+            android:drawablePadding="15dp"
+            android:background="@color/white">
+
+            <AutoCompleteTextView
+                android:id="@+id/act_numberOfHires"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Number of hires"
+                android:inputType="none"
+                android:padding="10dp">
+            </AutoCompleteTextView>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <EditText
             android:id="@+id/qualification"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/numberOfHires"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="19dp"
             android:layout_marginRight="20dp"
-            android:hint=" QUalification"
-            android:padding="10dp"
-            android:textColorHint="@color/black" />
+            android:background="@drawable/round_corner"
+            android:drawableLeft="@drawable/qualification"
+            android:drawablePadding="15dp"
+            android:hint=" Qualification"
+            android:padding="10dp"/>
 
 
         <EditText
             android:id="@+id/description"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_below="@+id/qualification"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="19dp"
             android:layout_marginRight="20dp"
+            android:background="@drawable/round_corner"
+            android:drawableLeft="@drawable/description"
+            android:drawablePadding="15dp"
             android:hint=" Description"
-            android:padding="10dp"
-            android:textColorHint="@color/black" />
+            android:padding="10dp"/>
 
 
         <Button

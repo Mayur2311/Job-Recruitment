@@ -71,40 +71,6 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
         return datalist.size();
     }
 
-//    @Override
-//    public Filter getFilter() {
-//        return filter;
-//    }
-//
-//    Filter filter = new Filter() {
-//        @Override
-//        protected FilterResults performFiltering(CharSequence charSequence) {
-//
-//            ArrayList<Model> filteredList = new ArrayList<>();
-//
-//            if (charSequence.toString().isEmpty()) {
-//                filteredList.addAll(datalistAll);
-//            } else {
-//                for (Model model : datalistAll) {
-//                    if (model.getJobName().toLowerCase().contains(charSequence.toString().toLowerCase())) {
-//                        filteredList.add(model);
-//                    }
-//                }
-//            }
-//
-//            FilterResults filterResults = new FilterResults();
-//            filterResults.values = filteredList;
-//            return filterResults;
-//        }
-//
-//        @Override
-//        protected void publishResults(CharSequence constraint, FilterResults results) {
-//
-//            datalist.clear();
-//            datalist.addAll((Collection<? extends Model>) results.values);
-//            notifyDataSetChanged();
-//        }
-//    };
 
 
     public void filterList(ArrayList<Model> filteredList) {

@@ -1,9 +1,12 @@
 package com.bits.jobhunt.fragments;
 
+import android.content.Context;
+import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
@@ -45,12 +49,11 @@ public class DashboardFragment extends Fragment  {
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
 
-
     NavController navController;
     String userId;
     TextView verifyMsg, txt_headerText;
     EditText search_bar;
-    Button resendCode;
+    Button resendCode, findjob;
     RecyclerView recview;
     ArrayList<Model> datalist;
     myadapter adapter;
@@ -84,6 +87,7 @@ public class DashboardFragment extends Fragment  {
         fireStore = FirebaseFirestore.getInstance();
         userId = firebaseAuth.getCurrentUser().getUid();
         NavigationView navigationView = getActivity().findViewById(R.id.navigationView);
+        findjob = view.findViewById(R.id.user_dashboard_find_job);
 
        /* View headerView = navigationView.getHeaderView(0);
         txt_headerText = headerView.findViewById(R.id.txt_header);*/
@@ -126,6 +130,8 @@ public class DashboardFragment extends Fragment  {
         datalist=new ArrayList<>();
         adapter=new myadapter(datalist);
         recview.setAdapter(adapter);
+
+
         fireStore.collection("Jobs").orderBy("JobName").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -135,7 +141,9 @@ public class DashboardFragment extends Fragment  {
                         {
                             Model obj=d.toObject(Model.class);
                             datalist.add(obj);
+                            adapter.notifyDataSetChanged();
                         }
+                        search_bar.clearFocus();
 
                     }
                 });
@@ -143,7 +151,7 @@ public class DashboardFragment extends Fragment  {
         search_bar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                adapter=new myadapter(datalist);
             }
 
             @Override

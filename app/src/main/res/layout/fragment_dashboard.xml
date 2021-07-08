@@ -58,7 +58,6 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/round_corner"
-            android:cursorVisible="true"
             android:drawableLeft="@drawable/search"
             android:drawableRight="@drawable/filter"
             android:drawablePadding="10dp"
