@@ -64,9 +64,6 @@
             android:ems="10"
             android:hint="Search"
             android:padding="15dp" />
-
-
-
     </RelativeLayout>
 
     <LinearLayout
