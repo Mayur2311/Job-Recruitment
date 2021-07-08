@@ -38,7 +38,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:drawableRight="@drawable/save_job"
                 android:paddingLeft="10dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"

@@ -40,6 +40,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
 
     @Override
     public void onBindViewHolder(@NonNull myadapter.myviewholder holder, int position) {
+
         holder.user_dashboard_job_title.setText(datalist.get(position).getJobName());
         holder.user_dashboard_company_name.setText(datalist.get(position).getCompanyName());
         holder.user_dashboard_company_location.setText(datalist.get(position).getLocation());
@@ -84,6 +85,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
+
             user_dashboard_job_title = itemView.findViewById(R.id.user_dashboard_job_title);
             user_dashboard_company_name = itemView.findViewById(R.id.user_dashboard_company_name);
             user_dashboard_company_location = itemView.findViewById(R.id.user_dashboard_company_location);

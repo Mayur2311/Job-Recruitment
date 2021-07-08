@@ -106,7 +106,7 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                 ftitle = et_title.getText().toString();
                 fcompany = et_company.getText().toString();
                 flocation = et_location.getText().toString();
-                fjobtype = til_jobtype.toString();
+                fjobtype = act_jobtype.toString();
                 fjobcategory = et_jobcategory.getText().toString();
                 fsalary = et_salary.getText().toString();
                 fnoOfHires = til_numberOfHires.toString();
@@ -125,7 +125,7 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                     return;
                 }
                 if (TextUtils.isEmpty(fjobtype)) {
-                    til_jobtype.setError("Job type is required.");
+                    act_jobtype.setError("Job type is required.");
                     return;
                 }
                 if (TextUtils.isEmpty(fjobcategory)) {

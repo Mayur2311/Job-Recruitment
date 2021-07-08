@@ -17,6 +17,7 @@ import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
 import com.bits.jobhunt.Savedadapter;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -28,12 +29,11 @@ import java.util.List;
 public class Saved_JobFragment extends Fragment {
 
     FirebaseFirestore fireStore;
-
-
-
+    FirebaseAuth firebaseAuth;
     RecyclerView recycleview;
     ArrayList<Model>saveddata;
     Savedadapter adapter;
+    String fuser;
 
     public Saved_JobFragment() {
         // Required empty public constructor
@@ -63,11 +63,15 @@ public class Saved_JobFragment extends Fragment {
 
         fireStore = FirebaseFirestore.getInstance();
         recycleview=view.findViewById(R.id.saved_job_recycleView);
+        firebaseAuth = FirebaseAuth.getInstance();
+        fuser = firebaseAuth.getCurrentUser().toString();
+
         recycleview.setLayoutManager(new LinearLayoutManager(view.getContext()));
         saveddata=new ArrayList<>();
         adapter=new Savedadapter(saveddata);
         recycleview.setAdapter(adapter);
-        fireStore.collection("SavedJob").get()
+
+        fireStore.collection("SavedJob").document(fuser).collection("user_savedJobs").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
