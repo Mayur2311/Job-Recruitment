@@ -21,6 +21,4 @@
         android:label="fragment_add__post"
         tools:layout="@layout/fragment_add__post" />
 
-
-
 </navigation>
