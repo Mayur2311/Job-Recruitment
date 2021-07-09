@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.Saved_JobFragment">
+    tools:context=".fragments.user_list_Fragment">
 
     <RelativeLayout
         android:id="@+id/relative_layout"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <EditText
-            android:id="@+id/user_savedjob_searchbar"
+            android:id="@+id/user_list_searchbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -26,7 +26,6 @@
             android:layout_marginBottom="20dp"
             android:cursorVisible="true"
             android:drawableLeft="@drawable/search"
-            android:drawableRight="@drawable/filter"
             android:background="@drawable/round_corner"
             android:drawablePadding="10dp"
             android:ems="10"
@@ -34,16 +33,15 @@
             android:hint="Search"/>
 
         <Button
-            android:id="@+id/user_savedjob_find_job"
+            android:id="@+id/user_list_find"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_below="@+id/user_savedjob_searchbar"
-            android:text="Find Jobs"
-            android:backgroundTint="@color/mainapp"
-            />
+            android:layout_below="@+id/user_list_searchbar"
+            android:text="Find"
+            android:backgroundTint="@color/mainapp"/>
 
     </RelativeLayout>
 
@@ -59,7 +57,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/saved_job_recycleView" />
+            android:id="@+id/user_list_recycleView" />
 
     </LinearLayout>
 
