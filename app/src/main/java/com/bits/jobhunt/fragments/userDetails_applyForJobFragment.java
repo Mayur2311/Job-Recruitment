@@ -12,10 +12,10 @@ import com.bits.jobhunt.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link user_list_Fragment#newInstance} factory method to
+ * Use the {@link userDetails_applyForJobFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class user_list_Fragment extends Fragment {
+public class userDetails_applyForJobFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class user_list_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public user_list_Fragment() {
+    public userDetails_applyForJobFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class user_list_Fragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment user_list_Fragment.
+     * @return A new instance of fragment userDetails_applyForJobFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static user_list_Fragment newInstance(String param1, String param2) {
-        user_list_Fragment fragment = new user_list_Fragment();
+    public static userDetails_applyForJobFragment newInstance(String param1, String param2) {
+        userDetails_applyForJobFragment fragment = new userDetails_applyForJobFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class user_list_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_list_, container, false);
+        return inflater.inflate(R.layout.fragment_user_details_apply_for_job, container, false);
     }
 }
