@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,20 +35,51 @@ import java.util.Map;
 
 
 public class Add_Post extends Fragment implements AdapterView.OnItemSelectedListener {
-EditText et_title,et_company,et_location,et_salary,txt_jobtype, et_jobcategory, txt_noOfHires,et_qualification,et_description;
+EditText et_title,et_company,et_location,et_salary,txt_jobtype, et_jobcategory,txt_noOfHires,et_qualification,et_description,txt_salary;
 Button add_new;
 FirebaseAuth firebaseAuth;
 NavController navController;
 FirebaseFirestore db;
 String fuser;
 String ftitle,fcompany,flocation,fsalary,fjobtype, fjobcategory, fnoOfHires,fqualification,fdescription;
-Spinner spinner_jobtype, spinner_numberOfHires;
-String jobType, numberOfHires;
+Spinner spinner_jobtype, spinner_numberOfHires,spinner_salarytype,spinner_locationtype;
+String jobType, numberOfHires,sp_salary,location;
 Model model;
 
 String[] JobType = {"Choose Job type", "Full-time", "Part-time", "Internship", "Permanent", "Temporary"};
-String[] NumberOfHires = {"Choose Number of hires", "1","2","3", "4", "5", "6", "7", "8", "9", "10"};
 
+String[] NumberOfHires = {"Choose Number of hires", "1","2","3", "4", "5", "6", "7", "8", "9", "10"};
+String[] Sp_salary={"PER ANNUM","PER HOUR","PER MONTH"};
+String[] Location={"Toronto\t-\tOntario",
+        "Montréal\t-\tQuebec",
+        "Vancouver\t-\tBritish Columbia",
+        "Ottawa\t-\tOntario",
+        "Edmonton\t-\tAlberta",
+        "Calgary\t-\tAlberta",
+        "Quebéc\t-\tQuebec",
+        "Winnipeg\t-\tManitoba",
+        "Hamilton\t-\tOntario",
+        "London\t-\tOntario",
+       	"Kitchener\t-\tOntario",
+        "St Catharines-Niagara\t-\tOntario",
+        "Halifax\t-\tNova Scotia",
+        "Victoria\t-\tBritish Columbia",
+        "Windsor\t-\tOntario",
+        "Oshawa\t-\tOntario",
+        "Saskatoon\t-\tSaskatchewan",
+        "Regina\t-\tSaskatchewan",
+        "St John's\t-\tNewfoundland",
+        "Sudbury\t-\tOntario",
+        "Chicoutimi\t-\tQuebec",
+        "Sherbrooke\t-\tQuebec",
+        "Kingston\t-\tOntario",
+        "Trois-Rivières\t-\tQuebec",
+        "Kelowna\t-\tBritish Columbia",
+        "Abbotsford\t-\tBritish Columbia",
+        "Saint John\t-\tNew Brunswick",
+        "Thunder Bay\t-\tOntario",
+        "Barrie\t-\tOntario",
+        "Sydney\t-\tNova Scotia"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,17 +105,23 @@ String[] NumberOfHires = {"Choose Number of hires", "1","2","3", "4", "5", "6", 
         et_jobcategory = view.findViewById(R.id.jobcategory);
         et_salary = view.findViewById(R.id.salary);
         txt_noOfHires = view.findViewById(R.id.number_of_hires);
+        txt_salary=view.findViewById(R.id.textsalary);
         et_qualification = view.findViewById(R.id.qualification);
         et_description = view.findViewById(R.id.description);
         firebaseAuth = FirebaseAuth.getInstance();
         add_new = view.findViewById(R.id.add_new);
-
+        navController= Navigation.findNavController(view);
         spinner_jobtype = view.findViewById(R.id.spinner_jobtype);
         spinner_jobtype.setOnItemSelectedListener(this);
 
         spinner_numberOfHires = view.findViewById(R.id.spinner_number_of_hires);
         spinner_numberOfHires.setOnItemSelectedListener(this);
 
+        spinner_salarytype = view.findViewById(R.id.spinner_salarytype);
+        spinner_salarytype.setOnItemSelectedListener(this);
+
+        spinner_locationtype = view.findViewById(R.id.spinner_locationtype);
+        spinner_locationtype.setOnItemSelectedListener(this);
         model = new Model();
 
         ArrayAdapter jobType_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, JobType);
@@ -94,6 +132,14 @@ String[] NumberOfHires = {"Choose Number of hires", "1","2","3", "4", "5", "6", 
         numberOfHires_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_numberOfHires.setAdapter(numberOfHires_arrayAdapter);
 
+        ArrayAdapter sp_salary_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, Sp_salary);
+        sp_salary_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_salarytype.setAdapter(sp_salary_arrayAdapter);
+
+
+        ArrayAdapter Location_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, Location);
+        Location_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_locationtype.setAdapter(Location_arrayAdapter);
 
         add_new.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +149,7 @@ String[] NumberOfHires = {"Choose Number of hires", "1","2","3", "4", "5", "6", 
                 flocation = et_location.getText().toString();
                 fjobtype = txt_jobtype.getText().toString();
                 fjobcategory = et_jobcategory.getText().toString();
-                fsalary = et_salary.getText().toString();
+                fsalary = et_salary.getText().toString()+""+txt_salary.getText().toString();
                 fnoOfHires = txt_noOfHires.getText().toString();
                 fqualification = et_qualification.getText().toString();
                 fdescription = et_description.getText().toString();
@@ -144,7 +190,7 @@ String[] NumberOfHires = {"Choose Number of hires", "1","2","3", "4", "5", "6", 
                     return;
                 }
                 addnewjobpost(ftitle,fcompany,flocation,fjobtype, fjobcategory, fsalary,fnoOfHires,fqualification,fdescription);
-
+                navController.navigate(R.id.dashboardFragment);
             }
         });
     }
@@ -157,6 +203,11 @@ String[] NumberOfHires = {"Choose Number of hires", "1","2","3", "4", "5", "6", 
         numberOfHires = spinner_numberOfHires.getSelectedItem().toString();
         txt_noOfHires.setText(numberOfHires);
 
+        sp_salary=spinner_salarytype.getSelectedItem().toString();
+        txt_salary.setText(sp_salary);
+
+       location =spinner_locationtype.getSelectedItem().toString();
+        et_location.setText(location);
     }
 
     @Override
@@ -184,6 +235,7 @@ String[] NumberOfHires = {"Choose Number of hires", "1","2","3", "4", "5", "6", 
                             public void onSuccess(Void aVoid) {
 
                                 Toast.makeText(getContext().getApplicationContext(), "post data inserted successfully", Toast.LENGTH_LONG).show();
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
