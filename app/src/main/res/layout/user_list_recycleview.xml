@@ -2,13 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     android:elevation="4dp"
     android:layout_marginBottom="10dp"
-    android:backgroundTint="#302F2F"
-    android:background="@color/gray"
-    android:padding="3dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:padding="3dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,12 +24,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:background="@drawable/round_corner"
-            android:backgroundTint="#E3E9EA"
-            android:orientation="vertical">
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <TextView
-                android:id="@+id/user_dashboard_job_title"
+                android:id="@+id/user_list_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -40,71 +39,53 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="Job Title"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/user_dashboard_company_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/user_dashboard_job_title"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="10dp"
-                android:text="Company Name"
-                android:textSize="19sp" />
-
-            <TextView
-                android:id="@+id/user_dashboard_company_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/user_dashboard_company_name"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="10dp"
-                android:text="Company Location"
-                android:textSize="19sp" />
-
-            <TextView
-                android:id="@+id/user_dashboard_salary"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/user_dashboard_company_location"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:backgroundTint="#E3E9EA"
                 android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:text="Salary"
-                android:textColor="#676464"
+                android:backgroundTint="#E3E9EA"
+                android:background="@drawable/round_corner"
+                android:text="Name"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/user_dashboard_post_life"
+                android:id="@+id/user_list_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/user_dashboard_salary"
+                android:layout_below="@+id/user_list_name"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
                 android:paddingLeft="10dp"
-                android:text="How many days ago job posted"
-                android:textSize="15sp" />
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:backgroundTint="#E3E9EA"
+                android:background="@drawable/round_corner"
+                android:text="Email"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/user_list_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_list_email"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:backgroundTint="#E3E9EA"
+                android:background="@drawable/round_corner"
+                android:text="Mobile"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
         </RelativeLayout>
 
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

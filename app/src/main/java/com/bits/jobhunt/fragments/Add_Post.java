@@ -12,12 +12,15 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,20 +33,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Add_Post extends Fragment {
-EditText et_title,et_company,et_location,et_salary,et_jobtype, et_jobcategory, et_noOfHires,et_qualification,et_description;
+public class Add_Post extends Fragment implements AdapterView.OnItemSelectedListener {
+EditText et_title,et_company,et_location,et_salary,txt_jobtype, et_jobcategory, txt_noOfHires,et_qualification,et_description;
 Button add_new;
 FirebaseAuth firebaseAuth;
 NavController navController;
 FirebaseFirestore db;
 String fuser;
 String ftitle,fcompany,flocation,fsalary,fjobtype, fjobcategory, fnoOfHires,fqualification,fdescription;
+Spinner spinner_jobtype, spinner_numberOfHires;
+String jobType, numberOfHires;
+Model model;
 
-TextInputLayout til_jobtype, til_numberOfHires;
-AutoCompleteTextView act_jobtype, act_numberOfHires;
-
-ArrayList<String> arrayList_jobtype, arrayList_numberOfHires;
-ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
+String[] JobType = {"Choose Job type", "Full-time", "Part-time", "Internship", "Permanent", "Temporary"};
+String[] NumberOfHires = {"Choose Number of hires", "1","2","3", "4", "5", "6", "7", "8", "9", "10"};
 
 
     @Override
@@ -66,39 +69,31 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
         et_title = view.findViewById(R.id.title);
         et_company = view.findViewById(R.id.company);
         et_location = view.findViewById(R.id.location);
-//        et_jobtype = view.findViewById(R.id.jobtype);
+        txt_jobtype = view.findViewById(R.id.job_type);
         et_jobcategory = view.findViewById(R.id.jobcategory);
         et_salary = view.findViewById(R.id.salary);
-//        et_noOfHires = view.findViewById(R.id.numberOfHires);
+        txt_noOfHires = view.findViewById(R.id.number_of_hires);
         et_qualification = view.findViewById(R.id.qualification);
         et_description = view.findViewById(R.id.description);
         firebaseAuth = FirebaseAuth.getInstance();
         add_new = view.findViewById(R.id.add_new);
 
-        til_jobtype = (TextInputLayout)view.findViewById(R.id.jobtype);
-        act_jobtype =(AutoCompleteTextView)view.findViewById(R.id.act_jobtype);
+        spinner_jobtype = view.findViewById(R.id.spinner_jobtype);
+        spinner_jobtype.setOnItemSelectedListener(this);
 
-        arrayList_jobtype = new ArrayList<>();
-        arrayList_jobtype.add("Full-time");
-        arrayList_jobtype.add("Part-time");
-        arrayList_jobtype.add("Permanent");
-        arrayList_jobtype.add("Temporary");
-        arrayList_jobtype.add("Internship");
+        spinner_numberOfHires = view.findViewById(R.id.spinner_number_of_hires);
+        spinner_numberOfHires.setOnItemSelectedListener(this);
 
-        arrayAdapter_jobtype = new ArrayAdapter<>(getContext(),R.layout.dropdown_item,arrayList_jobtype);
-        act_jobtype.setAdapter(arrayAdapter_jobtype);
-        act_jobtype.setThreshold(1);
+        model = new Model();
 
-        til_numberOfHires = (TextInputLayout)view.findViewById(R.id.numberOfHires);
-        act_numberOfHires =(AutoCompleteTextView)view.findViewById(R.id.act_numberOfHires);
+        ArrayAdapter jobType_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, JobType);
+        jobType_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_jobtype.setAdapter(jobType_arrayAdapter);
 
-        arrayList_numberOfHires = new ArrayList<>();
-        arrayList_numberOfHires.add("1"); arrayList_numberOfHires.add("2"); arrayList_numberOfHires.add("3"); arrayList_numberOfHires.add("4"); arrayList_numberOfHires.add("5");
-        arrayList_numberOfHires.add("6"); arrayList_numberOfHires.add("7"); arrayList_numberOfHires.add("8"); arrayList_numberOfHires.add("9"); arrayList_numberOfHires.add("10");
+        ArrayAdapter numberOfHires_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, NumberOfHires);
+        numberOfHires_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_numberOfHires.setAdapter(numberOfHires_arrayAdapter);
 
-        arrayAdapter_numberOfHires = new ArrayAdapter<>(getContext(),R.layout.dropdown_item,arrayList_numberOfHires);
-        act_numberOfHires.setAdapter(arrayAdapter_numberOfHires);
-        act_numberOfHires.setThreshold(1);
 
         add_new.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,10 +101,10 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                 ftitle = et_title.getText().toString();
                 fcompany = et_company.getText().toString();
                 flocation = et_location.getText().toString();
-                fjobtype = act_jobtype.toString();
+                fjobtype = txt_jobtype.getText().toString();
                 fjobcategory = et_jobcategory.getText().toString();
                 fsalary = et_salary.getText().toString();
-                fnoOfHires = til_numberOfHires.toString();
+                fnoOfHires = txt_noOfHires.getText().toString();
                 fqualification = et_qualification.getText().toString();
                 fdescription = et_description.getText().toString();
                 if (TextUtils.isEmpty(ftitle)) {
@@ -124,8 +119,8 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                     et_location.setError("Location is required.");
                     return;
                 }
-                if (TextUtils.isEmpty(fjobtype)) {
-                    act_jobtype.setError("Job type is required.");
+                if (jobType == "Choose Job type") {
+                    txt_jobtype.setError("Job type is required.");
                     return;
                 }
                 if (TextUtils.isEmpty(fjobcategory)) {
@@ -136,8 +131,8 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                     et_salary.setError("Salary is required.");
                     return;
                 }
-                if (TextUtils.isEmpty(fnoOfHires)) {
-                    til_numberOfHires.setError("Number of Hires is required.");
+                if (numberOfHires == "Choose Number of hires") {
+                    txt_noOfHires.setError("Number of Hires is required.");
                     return;
                 }
                 if (TextUtils.isEmpty(fqualification)) {
@@ -154,6 +149,20 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
         });
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        jobType = spinner_jobtype.getSelectedItem().toString();
+        txt_jobtype.setText(jobType);
+
+        numberOfHires = spinner_numberOfHires.getSelectedItem().toString();
+        txt_noOfHires.setText(numberOfHires);
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 
             public void addnewjobpost(String title, String company, String location, String jobtype, String jobcategory, String salary, String noOfHires, String qualification, String description) {
 
@@ -185,5 +194,5 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                 });
             }
 
-    }
+}
 

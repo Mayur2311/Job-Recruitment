@@ -10,4 +10,9 @@
         android:name="com.bits.jobhunt.fragments.Admin_dashboardFragment"
         android:label="fragment_admin_dashboard"
         tools:layout="@layout/fragment_admin_dashboard" />
+    <fragment
+        android:id="@+id/user_list_Fragment"
+        android:name="com.bits.jobhunt.fragments.user_listFragment"
+        android:label="fragment_user_list_"
+        tools:layout="@layout/fragment_user_list" />
 </navigation>
