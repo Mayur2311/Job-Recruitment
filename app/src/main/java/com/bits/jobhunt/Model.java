@@ -2,12 +2,12 @@ package com.bits.jobhunt;
 
 public class Model {
 
-    String CompanyName,Description,JobName,JobType,Location,Qualifications,Salary,numberOFHires,Uid;
+    String CompanyName,Description,JobName,JobType,Location,Qualifications,Salary,numberOFHires, JobCategory, Uid;
 
     public Model() {
     }
 
-    public Model(String companyName, String description, String jobName, String jobType, String location, String qualifications, String salary, String numberOFHires, String uid) {
+    public Model(String companyName, String description, String jobName, String jobType, String location, String qualifications, String salary, String numberOFHires, String jobCategory, String uid) {
         CompanyName = companyName;
         Description = description;
         JobName = jobName;
@@ -16,6 +16,7 @@ public class Model {
         Qualifications = qualifications;
         Salary = salary;
         this.numberOFHires = numberOFHires;
+        JobCategory = jobCategory;
         Uid = uid;
     }
 
@@ -34,7 +35,7 @@ public class Model {
         Salary = salary;
     }
 
-    public Model(String companyName, String description, String jobName, String jobType, String location, String qualifications, String salary, String numberOFHires) {
+    public Model(String companyName, String description, String jobName, String jobType, String location, String qualifications, String salary, String numberOFHires, String jobCategory) {
         CompanyName = companyName;
         Description = description;
         JobName = jobName;
@@ -43,6 +44,7 @@ public class Model {
         Qualifications = qualifications;
         Salary = salary;
         this.numberOFHires = numberOFHires;
+        JobCategory = jobCategory;
     }
 
     public String getCompanyName() {
@@ -108,4 +110,8 @@ public class Model {
     public void setNumberOFHires(String numberOFHires) {
         this.numberOFHires = numberOFHires;
     }
+
+    public String getJobCategory() { return JobCategory; }
+
+    public void setJobCategory(String jobCategory) { JobCategory = jobCategory; }
 }
