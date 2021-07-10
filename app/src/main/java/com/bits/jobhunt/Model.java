@@ -2,12 +2,12 @@ package com.bits.jobhunt;
 
 public class Model {
 
-    String CompanyName,Description,JobName,JobType,Location,Qualifications,Salary,numberOFHires,Uid;
+    String documentId, CompanyName,Description,JobName,JobType,Location,Qualifications,Salary,numberOFHires,Uid,CompanyLocation,JobTitle,Qualification,Vacancy;
 
     public Model() {
     }
 
-    public Model(String companyName, String description, String jobName, String jobType, String location, String qualifications, String salary, String numberOFHires, String uid) {
+    public Model(String companyName,String description, String jobName, String jobType, String location, String qualifications, String salary, String numberOFHires, String uid) {
         CompanyName = companyName;
         Description = description;
         JobName = jobName;
@@ -17,6 +17,44 @@ public class Model {
         Salary = salary;
         this.numberOFHires = numberOFHires;
         Uid = uid;
+    }
+
+    public String getDocumentId(){
+        return documentId;
+    }
+    public void setDocumentId(String documentId){
+        this.documentId = documentId;
+    }
+    public String getCompanyLocation() {
+        return CompanyLocation;
+    }
+
+    public void setCompanyLocation(String companyLocation) {
+        CompanyLocation = companyLocation;
+    }
+
+    public String getJobTitle() {
+        return JobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        JobTitle = jobTitle;
+    }
+
+    public String getQualification() {
+        return Qualification;
+    }
+
+    public void setQualification(String qualification) {
+        Qualification = qualification;
+    }
+
+    public String getVacancy() {
+        return Vacancy;
+    }
+
+    public void setVacancy(String vacancy) {
+        Vacancy = vacancy;
     }
 
     public String getUid() {
