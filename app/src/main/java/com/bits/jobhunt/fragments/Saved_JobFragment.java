@@ -11,13 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
 import com.bits.jobhunt.Savedadapter;
+import com.bits.jobhunt.myadapter;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -28,19 +35,18 @@ import java.util.List;
 
 public class Saved_JobFragment extends Fragment {
 
-    FirebaseFirestore fireStore;
     FirebaseAuth firebaseAuth;
-    RecyclerView recycleview;
-    ArrayList<Model>saveddata;
-    Savedadapter adapter;
+    FirebaseFirestore fireStore;
     String fuser;
+    EditText search_bar;
+    RecyclerView recyclerView;
+    ArrayList<Model> saveddatalist;
+    Savedadapter savedadapter;
+
 
     public Saved_JobFragment() {
         // Required empty public constructor
     }
-
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,17 +67,19 @@ public class Saved_JobFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        fireStore = FirebaseFirestore.getInstance();
-        recycleview=view.findViewById(R.id.saved_job_recycleView);
         firebaseAuth = FirebaseAuth.getInstance();
-        fuser = firebaseAuth.getCurrentUser().toString();
+        fireStore = FirebaseFirestore.getInstance();
+        fuser = firebaseAuth.getCurrentUser().getUid();
+        NavigationView navigationView = getActivity().findViewById(R.id.navigationView);
 
-        recycleview.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        saveddata=new ArrayList<>();
-        adapter=new Savedadapter(saveddata);
-        recycleview.setAdapter(adapter);
+        recyclerView=view.findViewById(R.id.saved_job_recycleView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        saveddatalist =new ArrayList<>();
+        savedadapter = new Savedadapter(saveddatalist);
+        recyclerView.setAdapter(savedadapter);
 
-        fireStore.collection("SavedJob").document(fuser).collection("user_savedJobs").get()
+
+        fireStore.collection("SavedJob").document(fuser).collection("user_savedJobs").orderBy("JobTitle").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -79,9 +87,9 @@ public class Saved_JobFragment extends Fragment {
                         for(DocumentSnapshot d:list)
                         {
                             Model obj=d.toObject(Model.class);
-                            saveddata.add(obj);
+                            saveddatalist.add(obj);
                         }
-                        adapter.notifyDataSetChanged();
+                        savedadapter.notifyDataSetChanged();
                     }
                 });
 

@@ -19,9 +19,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
-    // private OnItemClickListener listener;
+
+
     ArrayList<Model> datalist;
- //   ArrayList<Model> datalistAll;
+
 
     public myadapter(ArrayList<Model> datalist) {
         this.datalist = datalist;
@@ -29,13 +30,10 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
     }
 
     @NonNull
-
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_dashboard_recycleview, parent, false);
         return new myviewholder(view);
-
-
     }
 
     @Override

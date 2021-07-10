@@ -33,17 +33,7 @@
             android:padding="15dp"
             android:hint="Search"/>
 
-        <Button
-            android:id="@+id/user_savedjob_find_job"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/user_savedjob_searchbar"
-            android:text="Find Jobs"
-            android:backgroundTint="@color/mainapp"
-            />
+
 
     </RelativeLayout>
 

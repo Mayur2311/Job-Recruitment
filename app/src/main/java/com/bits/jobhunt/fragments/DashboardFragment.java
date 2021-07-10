@@ -44,10 +44,8 @@ public class DashboardFragment extends Fragment  {
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
-
-    NavController navController;
     String userId;
-    TextView verifyMsg, txt_headerText;
+    TextView verifyMsg;
     EditText search_bar;
     Button resendCode;
     RecyclerView recview;
