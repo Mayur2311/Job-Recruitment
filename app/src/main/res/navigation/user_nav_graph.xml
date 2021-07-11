@@ -20,5 +20,10 @@
         android:name="com.bits.jobhunt.fragments.Add_Post"
         android:label="fragment_add__post"
         tools:layout="@layout/fragment_add__post" />
+    <fragment
+        android:id="@+id/edit_profileFragment"
+        android:name="com.bits.jobhunt.fragments.edit_profileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
 
 </navigation>
