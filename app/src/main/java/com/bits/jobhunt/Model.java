@@ -2,22 +2,23 @@ package com.bits.jobhunt;
 
 public class Model {
 
-    String CompanyName,Description,JobTitle,JobType,CompanyLocation,Qualification,Salary,Vacancy,Uid;
+    String CompanyName,Description,JobName,JobType,Location,Qualifications,Salary,numberOFHires,Uid,JobTitle,CompanyLocation,Qualification,Vacancy;
 
     public Model() {
     }
 
-    public Model(String companyName, String description, String jobTitle, String jobType, String Companylocation, String qualification , String salary, String Vacancy, String uid) {
+    public Model(String companyName, String description, String jobName, String jobType, String location, String qualifications, String salary, String numberOFHires, String uid) {
         CompanyName = companyName;
         Description = description;
-        JobTitle = jobTitle ;
+        JobName = jobName;
         JobType = jobType;
-        CompanyLocation = Companylocation;
-        Qualification = qualification;
+        Location = location;
+        Qualifications = qualifications;
         Salary = salary;
-        this.Vacancy = Vacancy;
+        this.numberOFHires = numberOFHires;
         Uid = uid;
     }
+    
 
     public String getUid() {
         return Uid;
@@ -27,22 +28,54 @@ public class Model {
         Uid = uid;
     }
 
-    public Model(String companyName, String JobTitle, String CompanyLocation, String salary) {
+    public Model(String companyName, String jobName, String location, String salary) {
         CompanyName = companyName;
-        JobTitle = JobTitle;
-        CompanyLocation = CompanyLocation;
+        JobName = jobName;
+        Location = location;
         Salary = salary;
     }
 
-    public Model(String companyName, String description, String JobTitle, String jobType, String CompanyLocation, String qualification, String salary, String vacancy) {
+    public Model(String companyName, String description, String jobName, String jobType, String location, String qualifications, String salary, String numberOFHires) {
         CompanyName = companyName;
         Description = description;
-        JobTitle = JobTitle;
+        JobName = jobName;
         JobType = jobType;
-        CompanyLocation = CompanyLocation;
-        Qualification = qualification;
+        Location = location;
+        Qualifications = qualifications;
         Salary = salary;
-        this.Vacancy = vacancy;
+        this.numberOFHires = numberOFHires;
+    }
+
+    public String getJobTitle() {
+        return JobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        JobTitle = jobTitle;
+    }
+
+    public String getCompanyLocation() {
+        return CompanyLocation;
+    }
+
+    public void setCompanyLocation(String companyLocation) {
+        CompanyLocation = companyLocation;
+    }
+
+    public String getQualification() {
+        return Qualification;
+    }
+
+    public void setQualification(String qualification) {
+        Qualification = qualification;
+    }
+
+    public String getVacancy() {
+        return Vacancy;
+    }
+
+    public void setVacancy(String vacancy) {
+        Vacancy = vacancy;
     }
 
     public String getCompanyName() {
@@ -61,12 +94,12 @@ public class Model {
         Description = description;
     }
 
-    public String getJobTitle() {
-        return JobTitle;
+    public String getJobName() {
+        return JobName;
     }
 
-    public void setJobTitle(String jobName) {
-        JobTitle = jobName;
+    public void setJobName(String jobName) {
+        JobName = jobName;
     }
 
     public String getJobType() {
@@ -77,20 +110,20 @@ public class Model {
         JobType = jobType;
     }
 
-    public String getCompanyLocation() {
-        return CompanyLocation;
+    public String getLocation() {
+        return Location;
     }
 
-    public void setCompanyLocation(String CompanyLocation) {
-        CompanyLocation = CompanyLocation;
+    public void setLocation(String location) {
+        Location = location;
     }
 
-    public String getQualification() {
-        return Qualification;
+    public String getQualifications() {
+        return Qualifications;
     }
 
-    public void setQualification(String qualification) {
-        Qualification = qualification;
+    public void setQualifications(String qualifications) {
+        Qualifications = qualifications;
     }
 
     public String getSalary() {
@@ -101,11 +134,11 @@ public class Model {
         Salary = salary;
     }
 
-    public String getVacancy() {
-        return Vacancy;
+    public String getNumberOFHires() {
+        return numberOFHires;
     }
 
-    public void setVacancy(String vacancy) {
-        this.Vacancy = Vacancy;
+    public void setNumberOFHires(String numberOFHires) {
+        this.numberOFHires = numberOFHires;
     }
 }
