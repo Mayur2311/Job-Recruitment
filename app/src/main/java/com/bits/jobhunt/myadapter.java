@@ -19,9 +19,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
-    // private OnItemClickListener listener;
+
+
     ArrayList<Model> datalist;
- //   ArrayList<Model> datalistAll;
+
 
     public myadapter(ArrayList<Model> datalist) {
         this.datalist = datalist;
@@ -29,17 +30,15 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
     }
 
     @NonNull
-
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_dashboard_recycleview, parent, false);
         return new myviewholder(view);
-
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull myadapter.myviewholder holder, int position) {
+
         holder.user_dashboard_job_title.setText(datalist.get(position).getJobName());
         holder.user_dashboard_company_name.setText(datalist.get(position).getCompanyName());
         holder.user_dashboard_company_location.setText(datalist.get(position).getLocation());
@@ -84,6 +83,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
+
             user_dashboard_job_title = itemView.findViewById(R.id.user_dashboard_job_title);
             user_dashboard_company_name = itemView.findViewById(R.id.user_dashboard_company_name);
             user_dashboard_company_location = itemView.findViewById(R.id.user_dashboard_company_location);

@@ -1,5 +1,6 @@
 package com.bits.jobhunt.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +19,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bits.jobhunt.LogInActivity;
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
+import com.bits.jobhunt.UserActivity;
 import com.bits.jobhunt.myadapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -37,20 +41,16 @@ import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 
 public class DashboardFragment extends Fragment  {
-    FirebaseUser user;
+
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
-
-    NavController navController;
     String userId;
-    TextView verifyMsg, txt_headerText;
+    TextView verifyMsg;
     EditText search_bar;
-    Button resendCode, findjob;
+    Button resendCode;
     RecyclerView recview;
     ArrayList<Model> datalist;
     myadapter adapter;
-
-
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -68,7 +68,6 @@ public class DashboardFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
-
     }
 
     @Override
@@ -77,23 +76,29 @@ public class DashboardFragment extends Fragment  {
 
         firebaseAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
+
         userId = firebaseAuth.getCurrentUser().getUid();
         NavigationView navigationView = getActivity().findViewById(R.id.navigationView);
-      
 
         resendCode = view.findViewById(R.id.resendcode);
         verifyMsg = view.findViewById(R.id.email_verification);
         search_bar = view.findViewById(R.id.user_dashboard_searchbar);
 
-
+        recview=view.findViewById(R.id.dashboard_recycleView);
+        recview.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        datalist=new ArrayList<>();
+        adapter=new myadapter(datalist);
+        recview.setAdapter(adapter);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
         if (!user.isEmailVerified()) {
+
             search_bar.setVisibility(View.INVISIBLE);
             resendCode.setVisibility(View.VISIBLE);
             verifyMsg.setVisibility(View.VISIBLE);
+            recview.setVisibility(View.INVISIBLE);
 
             resendCode.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -102,6 +107,11 @@ public class DashboardFragment extends Fragment  {
                         @Override
                         public void onSuccess(Void avoid) {
                             Toast.makeText(view.getContext(), "Verification Email Has been Sent", Toast.LENGTH_SHORT);
+                            firebaseAuth.signOut();
+
+                            Intent intent = new Intent(getActivity(), LogInActivity.class);
+                            startActivity(intent);
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -114,12 +124,6 @@ public class DashboardFragment extends Fragment  {
             });
         }
 
-
-        recview=view.findViewById(R.id.dashboard_recycleView);
-        recview.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        datalist=new ArrayList<>();
-        adapter=new myadapter(datalist);
-        recview.setAdapter(adapter);
 
 
         fireStore.collection("Jobs").orderBy("JobName").get()

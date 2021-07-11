@@ -8,16 +8,20 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,21 +34,52 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Add_Post extends Fragment {
-EditText et_title,et_company,et_location,et_salary,et_jobtype, et_jobcategory, et_noOfHires,et_qualification,et_description;
+public class Add_Post extends Fragment implements AdapterView.OnItemSelectedListener {
+EditText et_title,et_company,et_location,et_salary,txt_jobtype, et_jobcategory,txt_noOfHires,et_qualification,et_description,txt_salary;
 Button add_new;
 FirebaseAuth firebaseAuth;
 NavController navController;
 FirebaseFirestore db;
 String fuser;
 String ftitle,fcompany,flocation,fsalary,fjobtype, fjobcategory, fnoOfHires,fqualification,fdescription;
+Spinner spinner_jobtype, spinner_numberOfHires,spinner_salarytype,spinner_locationtype;
+String jobType, numberOfHires,sp_salary,location;
+Model model;
 
-TextInputLayout til_jobtype, til_numberOfHires;
-AutoCompleteTextView act_jobtype, act_numberOfHires;
+String[] JobType = {"Full-time", "Part-time", "Internship", "Permanent", "Temporary"};
 
-ArrayList<String> arrayList_jobtype, arrayList_numberOfHires;
-ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
-
+String[] NumberOfHires = {"1","2","3", "4", "5", "6", "7", "8", "9", "10"};
+String[] Sp_salary={"PER ANNUM","PER HOUR","PER MONTH"};
+String[] Location={"Toronto\t-\tOntario",
+        "Montréal\t-\tQuebec",
+        "Vancouver\t-\tBritish Columbia",
+        "Ottawa\t-\tOntario",
+        "Edmonton\t-\tAlberta",
+        "Calgary\t-\tAlberta",
+        "Quebéc\t-\tQuebec",
+        "Winnipeg\t-\tManitoba",
+        "Hamilton\t-\tOntario",
+        "London\t-\tOntario",
+       	"Kitchener\t-\tOntario",
+        "St Catharines-Niagara\t-\tOntario",
+        "Halifax\t-\tNova Scotia",
+        "Victoria\t-\tBritish Columbia",
+        "Windsor\t-\tOntario",
+        "Oshawa\t-\tOntario",
+        "Saskatoon\t-\tSaskatchewan",
+        "Regina\t-\tSaskatchewan",
+        "St John's\t-\tNewfoundland",
+        "Sudbury\t-\tOntario",
+        "Chicoutimi\t-\tQuebec",
+        "Sherbrooke\t-\tQuebec",
+        "Kingston\t-\tOntario",
+        "Trois-Rivières\t-\tQuebec",
+        "Kelowna\t-\tBritish Columbia",
+        "Abbotsford\t-\tBritish Columbia",
+        "Saint John\t-\tNew Brunswick",
+        "Thunder Bay\t-\tOntario",
+        "Barrie\t-\tOntario",
+        "Sydney\t-\tNova Scotia"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,39 +101,45 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
         et_title = view.findViewById(R.id.title);
         et_company = view.findViewById(R.id.company);
         et_location = view.findViewById(R.id.location);
-//        et_jobtype = view.findViewById(R.id.jobtype);
+        txt_jobtype = view.findViewById(R.id.job_type);
         et_jobcategory = view.findViewById(R.id.jobcategory);
         et_salary = view.findViewById(R.id.salary);
-//        et_noOfHires = view.findViewById(R.id.numberOfHires);
+        txt_noOfHires = view.findViewById(R.id.number_of_hires);
+        txt_salary=view.findViewById(R.id.textsalary);
         et_qualification = view.findViewById(R.id.qualification);
         et_description = view.findViewById(R.id.description);
         firebaseAuth = FirebaseAuth.getInstance();
         add_new = view.findViewById(R.id.add_new);
+        navController= Navigation.findNavController(view);
+        spinner_jobtype = view.findViewById(R.id.spinner_jobtype);
+        spinner_jobtype.setOnItemSelectedListener(this);
 
-        til_jobtype = (TextInputLayout)view.findViewById(R.id.jobtype);
-        act_jobtype =(AutoCompleteTextView)view.findViewById(R.id.act_jobtype);
+        spinner_numberOfHires = view.findViewById(R.id.spinner_number_of_hires);
+        spinner_numberOfHires.setOnItemSelectedListener(this);
 
-        arrayList_jobtype = new ArrayList<>();
-        arrayList_jobtype.add("Full-time");
-        arrayList_jobtype.add("Part-time");
-        arrayList_jobtype.add("Permanent");
-        arrayList_jobtype.add("Temporary");
-        arrayList_jobtype.add("Internship");
+        spinner_salarytype = view.findViewById(R.id.spinner_salarytype);
+        spinner_salarytype.setOnItemSelectedListener(this);
 
-        arrayAdapter_jobtype = new ArrayAdapter<>(getContext(),R.layout.dropdown_item,arrayList_jobtype);
-        act_jobtype.setAdapter(arrayAdapter_jobtype);
-        act_jobtype.setThreshold(1);
+        spinner_locationtype = view.findViewById(R.id.spinner_locationtype);
+        spinner_locationtype.setOnItemSelectedListener(this);
+        model = new Model();
 
-        til_numberOfHires = (TextInputLayout)view.findViewById(R.id.numberOfHires);
-        act_numberOfHires =(AutoCompleteTextView)view.findViewById(R.id.act_numberOfHires);
+        ArrayAdapter jobType_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, JobType);
+        jobType_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_jobtype.setAdapter(jobType_arrayAdapter);
 
-        arrayList_numberOfHires = new ArrayList<>();
-        arrayList_numberOfHires.add("1"); arrayList_numberOfHires.add("2"); arrayList_numberOfHires.add("3"); arrayList_numberOfHires.add("4"); arrayList_numberOfHires.add("5");
-        arrayList_numberOfHires.add("6"); arrayList_numberOfHires.add("7"); arrayList_numberOfHires.add("8"); arrayList_numberOfHires.add("9"); arrayList_numberOfHires.add("10");
+        ArrayAdapter numberOfHires_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, NumberOfHires);
+        numberOfHires_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_numberOfHires.setAdapter(numberOfHires_arrayAdapter);
 
-        arrayAdapter_numberOfHires = new ArrayAdapter<>(getContext(),R.layout.dropdown_item,arrayList_numberOfHires);
-        act_numberOfHires.setAdapter(arrayAdapter_numberOfHires);
-        act_numberOfHires.setThreshold(1);
+        ArrayAdapter sp_salary_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, Sp_salary);
+        sp_salary_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_salarytype.setAdapter(sp_salary_arrayAdapter);
+
+
+        ArrayAdapter Location_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, Location);
+        Location_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_locationtype.setAdapter(Location_arrayAdapter);
 
         add_new.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,10 +147,10 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                 ftitle = et_title.getText().toString();
                 fcompany = et_company.getText().toString();
                 flocation = et_location.getText().toString();
-                fjobtype = til_jobtype.toString();
+                fjobtype = txt_jobtype.getText().toString();
                 fjobcategory = et_jobcategory.getText().toString();
-                fsalary = et_salary.getText().toString();
-                fnoOfHires = til_numberOfHires.toString();
+                fsalary = et_salary.getText().toString()+""+txt_salary.getText().toString();
+                fnoOfHires = txt_noOfHires.getText().toString();
                 fqualification = et_qualification.getText().toString();
                 fdescription = et_description.getText().toString();
                 if (TextUtils.isEmpty(ftitle)) {
@@ -125,7 +166,7 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                     return;
                 }
                 if (TextUtils.isEmpty(fjobtype)) {
-                    til_jobtype.setError("Job type is required.");
+                    txt_jobtype.setError("Job type is required.");
                     return;
                 }
                 if (TextUtils.isEmpty(fjobcategory)) {
@@ -137,7 +178,7 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                     return;
                 }
                 if (TextUtils.isEmpty(fnoOfHires)) {
-                    til_numberOfHires.setError("Number of Hires is required.");
+                    txt_noOfHires.setError("Number of Hires is required.");
                     return;
                 }
                 if (TextUtils.isEmpty(fqualification)) {
@@ -149,11 +190,30 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                     return;
                 }
                 addnewjobpost(ftitle,fcompany,flocation,fjobtype, fjobcategory, fsalary,fnoOfHires,fqualification,fdescription);
-
+                navController.navigate(R.id.dashboardFragment);
             }
         });
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        jobType = spinner_jobtype.getSelectedItem().toString();
+        txt_jobtype.setText(jobType);
+
+        numberOfHires = spinner_numberOfHires.getSelectedItem().toString();
+        txt_noOfHires.setText(numberOfHires);
+
+        sp_salary=spinner_salarytype.getSelectedItem().toString();
+        txt_salary.setText(sp_salary);
+
+       location =spinner_locationtype.getSelectedItem().toString();
+        et_location.setText(location);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 
             public void addnewjobpost(String title, String company, String location, String jobtype, String jobcategory, String salary, String noOfHires, String qualification, String description) {
 
@@ -175,6 +235,7 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                             public void onSuccess(Void aVoid) {
 
                                 Toast.makeText(getContext().getApplicationContext(), "post data inserted successfully", Toast.LENGTH_LONG).show();
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -185,5 +246,5 @@ ArrayAdapter<String> arrayAdapter_jobtype, arrayAdapter_numberOfHires;
                 });
             }
 
-    }
+}
 

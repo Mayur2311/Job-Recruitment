@@ -11,60 +11,67 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-
+import com.bits.jobhunt.AppliedJobs_Adapter;
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
 import com.bits.jobhunt.Savedadapter;
-import com.bits.jobhunt.myadapter;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
 
-
-public class Saved_JobFragment extends Fragment {
+public class AppliedJobs extends Fragment {
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
     String fuser;
     EditText search_bar;
     RecyclerView recyclerView;
-    ArrayList<Model> saveddatalist;
-    Savedadapter savedadapter;
+    ArrayList<Model> appliedDataList;
+    AppliedJobs_Adapter appliedJobs_adapter;
+
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
 
-    public Saved_JobFragment() {
+    private String mParam1;
+    private String mParam2;
+
+    public AppliedJobs() {
         // Required empty public constructor
+    }
+
+   public static AppliedJobs newInstance(String param1, String param2) {
+        AppliedJobs fragment = new AppliedJobs();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_saved__job, container, false);
-
-
+        return inflater.inflate(R.layout.fragment_applied_jobs, container, false);
     }
 
+
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull  View view, @Nullable  Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -74,24 +81,11 @@ public class Saved_JobFragment extends Fragment {
 
         recyclerView=view.findViewById(R.id.saved_job_recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        saveddatalist =new ArrayList<>();
-        savedadapter = new Savedadapter(saveddatalist);
-        recyclerView.setAdapter(savedadapter);
+        appliedDataList =new ArrayList<>();
+        appliedJobs_adapter = new AppliedJobs_Adapter(appliedDataList
+        );
+        recyclerView.setAdapter(appliedJobs_adapter);
 
-
-        fireStore.collection("SavedJob").document(fuser).collection("user_savedJobs").orderBy("JobTitle").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
-                        for(DocumentSnapshot d:list)
-                        {
-                            Model obj=d.toObject(Model.class);
-                            saveddatalist.add(obj);
-                        }
-                        savedadapter.notifyDataSetChanged();
-                    }
-                });
 
     }
 }
