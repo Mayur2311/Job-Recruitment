@@ -46,9 +46,9 @@ Spinner spinner_jobtype, spinner_numberOfHires,spinner_salarytype,spinner_locati
 String jobType, numberOfHires,sp_salary,location;
 Model model;
 
-String[] JobType = {"Choose Job type", "Full-time", "Part-time", "Internship", "Permanent", "Temporary"};
+String[] JobType = {"Full-time", "Part-time", "Internship", "Permanent", "Temporary"};
 
-String[] NumberOfHires = {"Choose Number of hires", "1","2","3", "4", "5", "6", "7", "8", "9", "10"};
+String[] NumberOfHires = {"1","2","3", "4", "5", "6", "7", "8", "9", "10"};
 String[] Sp_salary={"PER ANNUM","PER HOUR","PER MONTH"};
 String[] Location={"Toronto\t-\tOntario",
         "Montréal\t-\tQuebec",
@@ -165,7 +165,7 @@ String[] Location={"Toronto\t-\tOntario",
                     et_location.setError("Location is required.");
                     return;
                 }
-                if (jobType == "Choose Job type") {
+                if (TextUtils.isEmpty(fjobtype)) {
                     txt_jobtype.setError("Job type is required.");
                     return;
                 }
@@ -177,7 +177,7 @@ String[] Location={"Toronto\t-\tOntario",
                     et_salary.setError("Salary is required.");
                     return;
                 }
-                if (numberOfHires == "Choose Number of hires") {
+                if (TextUtils.isEmpty(fnoOfHires)) {
                     txt_noOfHires.setError("Number of Hires is required.");
                     return;
                 }

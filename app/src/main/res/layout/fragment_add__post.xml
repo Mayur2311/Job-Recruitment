@@ -77,7 +77,8 @@
             android:drawableLeft="@drawable/location"
             android:drawablePadding="15dp"
             android:hint="Location"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:inputType="none"/>
         <Spinner
             android:id="@+id/spinner_locationtype"
             android:layout_width="wrap_content"
