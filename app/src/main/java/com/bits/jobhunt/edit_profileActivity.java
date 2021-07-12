@@ -16,6 +16,10 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -23,19 +27,31 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 public class edit_profileActivity extends AppCompatActivity {
-
-    EditText edt_select_PDF;
-    Button submit_PDF;
+    EditText edt_profilename, edt_mobile,edt_city,edt_select_PDF, edt_aboutme, edt_education1, edt_education2, edt_education3, edt_experience1, edt_experience2, edt_experience3;
+    Button submit_PDF,btn_save;
     StorageReference storageReference;
     FirebaseFirestore firebaseFirestore;
-
+    FirebaseUser user;
+    FirebaseAuth fAuth=FirebaseAuth.getInstance();;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
+        edt_profilename =findViewById(R.id.name);
+        edt_mobile =findViewById(R.id.mobile);
+        edt_city=findViewById(R.id.city);
+        edt_education1 =findViewById(R.id.edt_education1);
+        edt_education2 =findViewById(R.id.edt_education2);
+        edt_education3 =findViewById(R.id.edt_education3);
+        edt_aboutme =findViewById(R.id.edt_about_me);
+        edt_experience1=findViewById(R.id.edt_experience1);
+        edt_experience2=findViewById(R.id.edt_experience2);
+        edt_experience3=findViewById(R.id.edt_experience3);
+        btn_save=findViewById(R.id.btn_save);
         edt_select_PDF=findViewById(R.id.edt_select_PDF);
+
+        // readFireStore();
         submit_PDF=findViewById(R.id.submit_PDF);
         storageReference= FirebaseStorage.getInstance().getReference();
         firebaseFirestore=FirebaseFirestore.getInstance();
@@ -74,6 +90,35 @@ public class edit_profileActivity extends AppCompatActivity {
             });
         }
     }
+
+  /*  public void readFireStore() {
+        user = fAuth.getCurrentUser();
+
+        DocumentReference docRef = firebaseFirestore.collection("ProfileUpdate").document(user.getUid());
+
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                if (documentSnapshot.exists()) {
+
+                    String Name = documentSnapshot.getString("firstName")+documentSnapshot.getString("lastName");
+                    String City = documentSnapshot.getString("City");
+                    String mobile=documentSnapshot.getString("mobilenumber");
+
+                    edt_mobile.setText(mobile);
+                    edt_city.setText(City);
+                    edt_profilename.setText(Name);
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(edit_profileActivity.this, "error in data importing", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }*/
+
 
     private void uploadPDFFileFirebase(Uri data)
     {
