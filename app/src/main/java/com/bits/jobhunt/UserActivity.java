@@ -55,7 +55,10 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
            navController.navigate(R.id.add_postFragment);
         }
        else if (id == R.id.appliedpost){}
-       else if (id == R.id.updateprofile){}
+       else if (id == R.id.updateprofile){
+           Intent intent= new Intent(this,edit_profileActivity.class);
+           startActivity(intent);
+        }
        else if (id == R.id.userpersona){
            Intent intent= new Intent(this,UserPersona.class);
            startActivity(intent);
