@@ -7,17 +7,16 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="175dp"
             android:orientation="vertical"
             android:background="@drawable/round_corner">
 
@@ -37,7 +36,7 @@
                 />
 
             <TextView
-                android:id="@+id/user_savedjob_company_name"
+                android:id="@+id/user_added_company"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_added_job_title"
@@ -51,10 +50,10 @@
                 />
 
             <TextView
-                android:id="@+id/user_savedjob_company_location"
+                android:id="@+id/user_added_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/user_savedjob_company_name"
+                android:layout_below="@id/user_added_company"
                 android:text="Company Location"
                 android:textSize="19sp"
                 android:layout_marginLeft="10dp"
@@ -65,16 +64,15 @@
                 />
 
             <TextView
-                android:id="@+id/user_savedjob_salary"
-                android:layout_width="300dp"
+                android:id="@+id/user_added_salary"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/user_savedjob_company_location"
-                android:layout_marginBottom="10dp"
+                android:layout_below="@id/user_added_location"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="26dp"
                 android:background="@drawable/round_corner"
-                android:backgroundTint="#F7F9FB"
+                android:backgroundTint="@color/gray"
                 android:paddingLeft="10dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
