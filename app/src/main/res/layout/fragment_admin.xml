@@ -111,7 +111,7 @@
 
         <TextView
             android:id="@+id/errorView"
-            android:layout_below="@id/ss"
+            android:layout_below="@id/btn_adminlogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""

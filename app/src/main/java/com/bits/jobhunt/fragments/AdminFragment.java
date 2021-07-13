@@ -94,7 +94,6 @@ public class AdminFragment extends Fragment {
                         // Log.d("", document.getId());
                         a = document.getData().get("admin").toString();
                         //Toast.makeText(AdminLogin.this,""+a,Toast.LENGTH_SHORT).show();
-
                         btn_adminLogIn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -103,7 +102,6 @@ public class AdminFragment extends Fragment {
 
                                 if(e.equals(a))
                                 {
-
                                     firebaseAuth.signInWithEmailAndPassword(e,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -118,15 +116,10 @@ public class AdminFragment extends Fragment {
                                             }
                                         }
                                     });
-                                    //    Intent i=new Intent(AdminLogin.this,AdminPanel.class);
-                                    //    startActivity(i);
                                 }
 
                             }
                         });
-
-
-
                     }
                 }
             }
