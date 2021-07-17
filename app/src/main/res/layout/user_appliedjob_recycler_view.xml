@@ -87,6 +87,7 @@
 
                 android:textSize="20sp" />
 
+<!--
             <TextView
                 android:id="@+id/user_appliedjob_post_life"
                 android:layout_width="match_parent"
@@ -100,6 +101,7 @@
                 android:paddingLeft="10dp"
                 android:text="How many days ago job posted"
                 android:textSize="15sp" />
+-->
 
         </RelativeLayout>
     </ScrollView>

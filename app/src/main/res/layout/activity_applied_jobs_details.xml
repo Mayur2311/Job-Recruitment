@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D6E8DB"
-    tools:context=".SavedJobsDetails_activity">
+    tools:context=".AppliedJobsDetails">
 
     <Toolbar
         android:id="@+id/toolbar"
@@ -23,7 +23,7 @@
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="663dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -37,7 +37,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/user_savedjobdetails_job_title"
+                android:id="@+id/user_appliedjobdetails_job_title"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Job Title"
@@ -55,7 +55,7 @@
                 android:id="@+id/user_appliedjobdetails_company_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/user_savedjobdetails_job_title"
+                android:layout_below="@id/user_appliedjobdetails_job_title"
                 android:text="Company Name"
                 android:textSize="25sp"
                 android:layout_marginLeft="10dp"
@@ -65,7 +65,7 @@
                 />
 
             <TextView
-                android:id="@+id/user_savedjobdetails_company_location"
+                android:id="@+id/user_appliedjobdetails_company_location"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@id/user_appliedjobdetails_company_name"
@@ -78,10 +78,10 @@
                 />
 
             <TextView
-                android:id="@+id/user_savedjobdetails_jobdetails"
+                android:id="@+id/user_appliedjobdetails_jobdetails"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_below="@id/user_savedjobdetails_company_location"
+                android:layout_below="@id/user_appliedjobdetails_company_location"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
@@ -92,10 +92,10 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/user_savedjobdetails_salary"
+                android:id="@+id/user_appliedjobdetails_salary"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/user_savedjobdetails_jobdetails"
+                android:layout_below="@id/user_appliedjobdetails_jobdetails"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
@@ -105,10 +105,10 @@
                 android:textColor="@color/medium_black"/>
 
             <TextView
-                android:id="@+id/user_savedjobdetails_salaryinnumber"
+                android:id="@+id/user_appliedjobdetails_salaryinnumber"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_below="@id/user_savedjobdetails_salary"
+                android:layout_below="@id/user_appliedjobdetails_salary"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
@@ -117,10 +117,10 @@
                 android:textColor="@color/light_black"/>
 
             <TextView
-                android:id="@+id/user_savedjobdetails_jobtype"
+                android:id="@+id/user_appliedjobdetails_jobtype"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/user_savedjobdetails_salaryinnumber"
+                android:layout_below="@id/user_appliedjobdetails_salaryinnumber"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
@@ -130,10 +130,10 @@
                 android:textColor="@color/medium_black"/>
 
             <TextView
-                android:id="@+id/user_savedjobdetails_jobtype1"
+                android:id="@+id/user_appliedjobdetails_jobtype1"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_below="@id/user_savedjobdetails_jobtype"
+                android:layout_below="@id/user_appliedjobdetails_jobtype"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
@@ -142,10 +142,10 @@
                 android:textColor="@color/light_black"/>
 
             <TextView
-                android:id="@+id/user_savedjobdetails_vacancy"
+                android:id="@+id/user_appliedjobdetails_vacancy"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/user_savedjobdetails_jobtype1"
+                android:layout_below="@id/user_appliedjobdetails_jobtype1"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
@@ -155,10 +155,10 @@
                 android:textColor="@color/medium_black"/>
 
             <TextView
-                android:id="@+id/user_savedjobdetails_vacancynumber"
+                android:id="@+id/user_appliedjobdetails_vacancynumber"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_below="@id/user_savedjobdetails_vacancy"
+                android:layout_below="@id/user_appliedjobdetails_vacancy"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
@@ -167,10 +167,10 @@
                 android:textColor="@color/light_black"/>
 
             <TextView
-                android:id="@+id/user_savedjobdetails_qualification"
+                android:id="@+id/user_appliedjobdetails_qualification"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_below="@id/user_savedjobdetails_vacancynumber"
+                android:layout_below="@id/user_appliedjobdetails_vacancynumber"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
@@ -181,10 +181,10 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/user_savedjobdetails_qualificationdetail1"
+                android:id="@+id/user_appliedjobdetails_qualificationdetail1"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_below="@id/user_savedjobdetails_qualification"
+                android:layout_below="@id/user_appliedjobdetails_qualification"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
@@ -193,10 +193,10 @@
                 android:textColor="@color/light_black"/>
 
             <TextView
-                android:id="@+id/user_savedjobdetails_jobdescription"
+                android:id="@+id/user_appliedjobdetails_jobdescription"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_below="@id/user_savedjobdetails_qualificationdetail1"
+                android:layout_below="@id/user_appliedjobdetails_qualificationdetail1"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
@@ -207,41 +207,18 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/user_savedjobdetails_company_details"
+                android:id="@+id/user_appliedjobdetails_company_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/user_savedjobdetails_jobdescription"
+                android:layout_below="@id/user_appliedjobdetails_jobdescription"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Description"
-                android:textSize="19sp"
+                android:textSize="17sp"
                 android:textColor="@color/light_black"/>
 
         </RelativeLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal"
-        android:paddingTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <Button
-            android:id="@+id/user_savedjobdetails_apply"
-            android:layout_width="170dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="115dp"
-            android:backgroundTint="@color/mainapp"
-            android:text="Apply"
-            android:textSize="25sp"/>
-
-    </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

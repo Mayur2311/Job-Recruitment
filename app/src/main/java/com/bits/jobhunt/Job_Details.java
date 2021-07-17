@@ -26,7 +26,8 @@ public class Job_Details extends AppCompatActivity {
     FirebaseFirestore db;
     String name;
     FirebaseAuth firebaseAuth;
-    String fuser;
+    String fuser,status;
+
 
 
     @Override
@@ -64,8 +65,11 @@ public class Job_Details extends AppCompatActivity {
         user_jobdetails_apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                 status="Applied";
+                fuser = firebaseAuth.getCurrentUser().getEmail();
                 Toast.makeText(getApplicationContext(),"Your application is submitted",Toast.LENGTH_SHORT).show();
-                insertAppliedData(getIntent().getStringExtra("JobName").toString(),getIntent().getStringExtra("CompanyName").toString(),getIntent().getStringExtra("Location").toString(),getIntent().getStringExtra("Salary").toString(),getIntent().getStringExtra("JobType").toString(),getIntent().getStringExtra("numberOFHires").toString(),getIntent().getStringExtra("Qualifications").toString(),getIntent().getStringExtra("Description").toString());
+
+                insertAppliedData(getIntent().getStringExtra("JobName").toString(),getIntent().getStringExtra("CompanyName").toString(),getIntent().getStringExtra("Location").toString(),getIntent().getStringExtra("Salary").toString(),getIntent().getStringExtra("JobType").toString(),getIntent().getStringExtra("numberOFHires").toString(),getIntent().getStringExtra("Qualifications").toString(),getIntent().getStringExtra("Description").toString(),status,fuser);
                 Intent intent = new Intent(getApplication(),UserActivity.class);
                 startActivity(intent);
 
@@ -75,17 +79,18 @@ public class Job_Details extends AppCompatActivity {
         user_jobdetails_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                 status="Saved";
+                fuser = firebaseAuth.getCurrentUser().getEmail();
                 Toast.makeText(getApplicationContext(),"Your application is saved successfully",Toast.LENGTH_SHORT).show();
-                insertSavedData(getIntent().getStringExtra("JobName").toString(),getIntent().getStringExtra("CompanyName").toString(),getIntent().getStringExtra("Location").toString(),getIntent().getStringExtra("Salary").toString(),getIntent().getStringExtra("JobType").toString(),getIntent().getStringExtra("numberOFHires").toString(),getIntent().getStringExtra("Qualifications").toString(),getIntent().getStringExtra("Description").toString());
+                insertSavedData(getIntent().getStringExtra("JobName").toString(),getIntent().getStringExtra("CompanyName").toString(),getIntent().getStringExtra("Location").toString(),getIntent().getStringExtra("Salary").toString(),getIntent().getStringExtra("JobType").toString(),getIntent().getStringExtra("numberOFHires").toString(),getIntent().getStringExtra("Qualifications").toString(),getIntent().getStringExtra("Description").toString(),status,fuser);
                 Intent intent = new Intent(getApplication(),UserActivity.class);
                 startActivity(intent);
             }
         });
 
     }
-    public void insertAppliedData(String jobtitle, String company_name, String company_location,String salary,String jobtype,String vacancy,String qualification, String description) {
+    public void insertAppliedData(String jobtitle, String company_name, String company_location,String salary,String jobtype,String vacancy,String qualification, String description,String Status,String email) {
 
-        fuser = firebaseAuth.getCurrentUser().getUid();
 
         Map<String, Object> profileData = new HashMap<>();
 
@@ -97,8 +102,11 @@ public class Job_Details extends AppCompatActivity {
         profileData.put("Vacancy",vacancy);
         profileData.put("Qualification",qualification);
         profileData.put("Description",description);
+        profileData.put("Status",Status);
+        profileData.put("Email",email);
 
-        db.collection("AppliedJob").document(fuser).collection("user_appliedJobs").document().set(profileData)
+
+        db.collection("AppliedJob").document().set(profileData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -112,10 +120,10 @@ public class Job_Details extends AppCompatActivity {
 
             }
         });
-    }
-    public void insertSavedData(String jobtitle, String company_name, String company_location,String salary,String jobtype,String vacancy,String qualification, String description) {
 
-        fuser = firebaseAuth.getCurrentUser().getUid();
+
+    }
+    public void insertSavedData(String jobtitle, String company_name, String company_location,String salary,String jobtype,String vacancy,String qualification, String description,String status,String email) {
 
         Map<String, Object> profileData = new HashMap<>();
 
@@ -127,8 +135,11 @@ public class Job_Details extends AppCompatActivity {
         profileData.put("Vacancy",vacancy);
         profileData.put("Qualification",qualification);
         profileData.put("Description",description);
+        profileData.put("Status",status);
+        profileData.put("Email",email);
 
-        db.collection("SavedJob").document(fuser).collection("user_savedJobs").document().set(profileData)
+
+        db.collection("SavedJob").document().set(profileData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
