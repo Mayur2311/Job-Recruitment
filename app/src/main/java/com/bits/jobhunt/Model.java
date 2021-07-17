@@ -2,10 +2,24 @@ package com.bits.jobhunt;
 
 public class Model {
 
-    String CompanyName,Description,JobName,JobType,Location,Qualifications,Salary,numberOFHires,Uid,name,url,CompanyLocation,JobTitle,Vacancy,Qualification;
+    String CompanyName,Description,JobName,JobType,Location,Qualifications,Salary,numberOFHires,Uid,name,url,CompanyLocation,JobTitle,Vacancy,Qualification,imageurl;
 
     public Model() {
     }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
+    }
+
+    public Model(String imageurl) {
+        this.imageurl = imageurl;
+    }
+
+
 
     public Model(String name, String url) {
         this.name = name;
