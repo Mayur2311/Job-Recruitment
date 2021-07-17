@@ -46,7 +46,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_savedjob_job_title"
                 android:text="Company Name"
-                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:layout_marginLeft="10dp"
