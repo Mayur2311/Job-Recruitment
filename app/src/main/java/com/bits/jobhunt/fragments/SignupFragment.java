@@ -234,12 +234,6 @@ public class SignupFragment extends Fragment {
         profileData.put("dob",d);
         profileData.put("City",Ci);
 
-
-
-
-
-
-
         db.collection("ProfileUpdate").document(fuser).set(profileData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

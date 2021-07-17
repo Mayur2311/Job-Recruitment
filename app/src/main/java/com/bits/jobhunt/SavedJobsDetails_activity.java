@@ -97,7 +97,7 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(getApplication(), "", Toast.LENGTH_LONG).show();
 
-                        deleteJob();
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -108,23 +108,7 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
         });
     }
 
-    public void deleteJob() {
 
-        db.collection("SavedJobs").document(fuser).collection("user_savedJobs").document(objModel.getUid()).delete()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(SavedJobsDetails_activity.this, "JObs deleted", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnCanceledListener(new OnCanceledListener() {
-            @Override
-            public void onCanceled() {
-                Toast.makeText(SavedJobsDetails_activity.this, "error deleting job", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-    }
 }
 
 
