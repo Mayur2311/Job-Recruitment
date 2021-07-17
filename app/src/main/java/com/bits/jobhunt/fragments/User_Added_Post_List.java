@@ -10,11 +10,6 @@ import android.view.ViewGroup;
 
 import com.bits.jobhunt.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link User_Added_Post_List#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class User_Added_Post_List extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -28,24 +23,6 @@ public class User_Added_Post_List extends Fragment {
 
     public User_Added_Post_List() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment User_Added_Post_List.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static User_Added_Post_List newInstance(String param1, String param2) {
-        User_Added_Post_List fragment = new User_Added_Post_List();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
