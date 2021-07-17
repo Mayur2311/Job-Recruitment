@@ -29,7 +29,6 @@ public class Job_Details extends AppCompatActivity {
     String fuser,status;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
