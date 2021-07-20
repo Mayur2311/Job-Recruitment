@@ -40,7 +40,7 @@ public class edit_profileActivity extends AppCompatActivity {
     StorageReference storageReference;
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     DocumentReference documentReference;
-    FirebaseUser user;
+    FirebaseUser user ;
     private ImageView profilePic;
     public Uri imageUri;
     private FirebaseStorage storage;
@@ -149,7 +149,7 @@ public class edit_profileActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(edit_profileActivity.this,"ss",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(edit_profileActivity.this,"",Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -201,9 +201,10 @@ public class edit_profileActivity extends AppCompatActivity {
 
     private void uploadPicture(Uri data) {
         final ProgressDialog pd=new ProgressDialog(this);
+        user=FirebaseAuth.getInstance().getCurrentUser();
         pd.setTitle("Uploading Image....");
         pd.show();
-        final String randomKey= UUID.randomUUID().toString();
+        String randomKey= user.getEmail().toString();
         StorageReference imagesRef = storageReference.child("images/"+randomKey);
         imagesRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
