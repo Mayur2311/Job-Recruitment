@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,10 +21,8 @@ public class AppliedJobs_Adapter extends RecyclerView.Adapter<AppliedJobs_Adapte
 
     @Override
     public AppliedViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_appliedjob_recycler_view, parent, false);
         return new AppliedViewHolder(view);
-
     }
 
 
@@ -48,11 +45,10 @@ public class AppliedJobs_Adapter extends RecyclerView.Adapter<AppliedJobs_Adapte
                 intent.putExtra("Qualification",appliedDataList.get(position).getQualification());
                 intent.putExtra("Salary",appliedDataList.get(position).getSalary());
                 intent.putExtra("Vacancy",appliedDataList.get(position).getVacancy());
-                //   intent.putExtra("Position",saveddataList.get(position).getUid());
+                //intent.putExtra("Position",saveddataList.get(position).getUid());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.user_appliedjob_job_title.getContext().startActivity(intent);
-
-            }
+              }
         });
 
     }
@@ -72,9 +68,6 @@ public class AppliedJobs_Adapter extends RecyclerView.Adapter<AppliedJobs_Adapte
             user_appliedjob_company_location = itemView.findViewById(R.id.user_appliedjob_company_location);
             user_appliedjob_salary = itemView.findViewById(R.id.user_appliedjob_salary);
 
-
         }
-
-
     }
 }

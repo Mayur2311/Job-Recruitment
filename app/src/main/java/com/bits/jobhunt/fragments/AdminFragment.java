@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+ 
 
 public class AdminFragment extends Fragment {
 
@@ -106,13 +107,10 @@ public class AdminFragment extends Fragment {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if(task.isSuccessful()){
-
                                                 Toast.makeText(getContext().getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(getActivity().getApplicationContext(), AdminActivity.class));
-
                                             }else {
                                                 Toast.makeText(getContext().getApplicationContext(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
                                             }
                                         }
                                     });
