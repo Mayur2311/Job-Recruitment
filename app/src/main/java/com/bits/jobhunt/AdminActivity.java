@@ -29,7 +29,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-
         firebaseAuth = FirebaseAuth.getInstance();
 
         setupNavigation();
