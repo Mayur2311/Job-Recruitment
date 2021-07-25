@@ -52,7 +52,7 @@
                 />
 
             <TextView
-                android:id="@+id/user_appliedjobdetails_company_name"
+                android:id="@+id/user_savedjobdetails_company_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@id/user_savedjobdetails_job_title"
@@ -68,7 +68,7 @@
                 android:id="@+id/user_savedjobdetails_company_location"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/user_appliedjobdetails_company_name"
+                android:layout_below="@id/user_savedjobdetails_company_name"
                 android:text="Company Location"
                 android:textSize="25sp"
                 android:layout_marginLeft="10dp"

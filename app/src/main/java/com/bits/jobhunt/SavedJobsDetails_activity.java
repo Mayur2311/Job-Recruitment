@@ -50,7 +50,7 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
         setContentView(R.layout.activity_saved_jobs_details);
 
         user_savedjobdetails_job_title = findViewById(R.id.user_savedjobdetails_job_title);
-        user_savedjobdetails_company_name = findViewById(R.id.user_appliedjobdetails_company_name);
+        user_savedjobdetails_company_name = findViewById(R.id.user_savedjobdetails_company_name);
         user_savedjobdetails_company_location = findViewById(R.id.user_savedjobdetails_company_location);
         user_savedjobdetails_salaryinnumber = findViewById(R.id.user_savedjobdetails_salaryinnumber);
         user_savedjobdetails_jobtype1 = findViewById(R.id.user_savedjobdetails_jobtype1);
@@ -82,7 +82,7 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
                 fuser = firebaseAuth.getCurrentUser().getEmail();
                 Toast.makeText(getApplicationContext(), "Your application is submitted", Toast.LENGTH_SHORT).show();
                 insertAppliedData(getIntent().getStringExtra("JobTitle").toString(), getIntent().getStringExtra("CompanyName").toString(), getIntent().getStringExtra("CompanyLocation").toString(), getIntent().getStringExtra("Salary").toString(), getIntent().getStringExtra("JobType").toString(), getIntent().getStringExtra("Vacancy").toString(), getIntent().getStringExtra("Qualification").toString(), getIntent().getStringExtra("Description").toString(),status,fuser);
-            //    updateData(view);
+                //updateData(view);
                 Intent intent = new Intent(getApplication(), UserActivity.class);
                 startActivity(intent);
 
@@ -93,11 +93,7 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
 
     public void insertAppliedData (String jobtitle, String company_name, String company_location, String salary, String jobtype, String vacancy, String
             qualification, String description,String status,String email){
-
-
-
         Map<String, Object> profileData = new HashMap<>();
-
         profileData.put("JobTitle", jobtitle);
         profileData.put("CompanyName", company_name);
         profileData.put("CompanyLocation", company_location);
@@ -108,13 +104,12 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
         profileData.put("Description", description);
         profileData.put("Email",email);
         profileData.put("Status",status);
-
+        fuser = firebaseAuth.getCurrentUser().getEmail();
         db.collection("AppliedJob").document().set(profileData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(getApplication(), "", Toast.LENGTH_LONG).show();
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -130,30 +125,11 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     List<String> list = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task.getResult()) {
-
                         Log.d("", document.getId());
                         list.add(document.getId());
-
-
                     }
                     updateData(list);
                 }
-                else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(SavedJobsDetails_activity.this);
-                    builder.setMessage("You haven't saved any jobs yet, Press 'OK' to go back to Home")
-                            .setCancelable(false)
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    Intent i=new Intent(SavedJobsDetails_activity.this,UserActivity.class);
-                                    startActivity(i);
-
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                    //  return;
-                }
-
             }
         });
 
@@ -162,15 +138,11 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
 
     private void updateData(List<String> list) {
         WriteBatch batch = db.batch();
-
         // Iterate through the list
         for (int k = 0; k < list.size(); k++) {
-
             // Update each list item
             DocumentReference ref = db.collection("SavedJob").document(list.get(k));
             batch.update(ref,"Status","Applied" );
-
-
         }
 
 
@@ -182,7 +154,6 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
         });
 
     }
+
+
 }
-
-
-
