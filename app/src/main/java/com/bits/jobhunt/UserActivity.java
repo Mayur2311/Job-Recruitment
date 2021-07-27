@@ -89,7 +89,7 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        navController = Navigation.findNavController(this, R.id.host_fragment);
+        navController = Navigation.findNavController(this, R.id.host_fragment_user);
     }
 
     @Override

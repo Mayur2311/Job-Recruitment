@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.bits.jobhunt.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -81,7 +80,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
 
-        navController = Navigation.findNavController(this, R.id.host_fragment);
+        navController = Navigation.findNavController(this, R.id.host_fragment_user);
     }
 
     @Override

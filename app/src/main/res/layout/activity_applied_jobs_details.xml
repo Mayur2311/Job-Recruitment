@@ -5,77 +5,97 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D6E8DB"
-    tools:context=".AppliedJobsDetails">
+    tools:context=".AppliedJobsDetails"
+    android:id="@+id/appliedJobDetials">
 
-    <Toolbar
-        android:id="@+id/toolbar"
+    <RelativeLayout
+        android:id="@+id/relative_layout_header"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/mainapp"
-        android:titleTextColor="@color/white"
-        android:title="Job Details"
-        android:navigationIcon="@drawable/back_arrow"
-        />
+        >
+
+        <Button
+            android:id="@+id/backArrow_appliedJobDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:backgroundTint="@color/mainapp"
+            android:drawableLeft="@drawable/back_arrow" />
+
+        <TextView
+            android:id="@+id/header_button"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/mainapp"
+            android:gravity="center"
+            android:text="Job Details"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </RelativeLayout>
+
 
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_height="663dp"
+        app:layout_constraintTop_toBottomOf="@+id/relative_layout_header"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="3dp"
-            android:layout_marginLeft="3dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_job_title"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="Job Title"
-                android:textStyle="bold"
-                android:textSize="35sp"
-                android:textColor="@color/black"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="5dp"
-                android:layout_centerHorizontal="true"
-                />
+                android:text="Job Title"
+                android:textColor="@color/black"
+                android:textSize="35sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_company_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@id/user_appliedjobdetails_job_title"
-                android:text="Company Name"
-                android:textSize="25sp"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:layout_centerHorizontal="true"
-                />
+                android:text="Company Name"
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_company_location"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@id/user_appliedjobdetails_company_name"
-                android:text="Company Location"
-                android:textSize="25sp"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:layout_centerHorizontal="true"
-                />
+                android:text="Company Location"
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_jobdetails"
@@ -83,26 +103,26 @@
                 android:layout_height="35dp"
                 android:layout_below="@id/user_appliedjobdetails_company_location"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Job Details"
-                android:textSize="28sp"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_salary"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@id/user_appliedjobdetails_jobdetails"
-                android:layout_marginTop="15dp"
                 android:layout_marginLeft="40dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Salary"
-                android:textSize="23sp"
-                android:textColor="@color/medium_black"/>
+                android:textColor="@color/medium_black"
+                android:textSize="23sp" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_salaryinnumber"
@@ -113,8 +133,8 @@
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="This will be your salary"
-                android:textSize="19sp"
-                android:textColor="@color/light_black"/>
+                android:textColor="@color/light_black"
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_jobtype"
@@ -122,12 +142,12 @@
                 android:layout_height="30dp"
                 android:layout_below="@id/user_appliedjobdetails_salaryinnumber"
                 android:layout_marginLeft="40dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Job Type"
-                android:textSize="23sp"
-                android:textColor="@color/medium_black"/>
+                android:textColor="@color/medium_black"
+                android:textSize="23sp" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_jobtype1"
@@ -138,8 +158,8 @@
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Job type requirement (Full-time)."
-                android:textSize="19sp"
-                android:textColor="@color/light_black"/>
+                android:textColor="@color/light_black"
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_vacancy"
@@ -147,12 +167,12 @@
                 android:layout_height="30dp"
                 android:layout_below="@id/user_appliedjobdetails_jobtype1"
                 android:layout_marginLeft="40dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Number of hires for this role"
-                android:textSize="23sp"
-                android:textColor="@color/medium_black"/>
+                android:textColor="@color/medium_black"
+                android:textSize="23sp" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_vacancynumber"
@@ -163,8 +183,8 @@
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Vacancies for this job."
-                android:textSize="19sp"
-                android:textColor="@color/light_black"/>
+                android:textColor="@color/light_black"
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_qualification"
@@ -172,13 +192,13 @@
                 android:layout_height="35dp"
                 android:layout_below="@id/user_appliedjobdetails_vacancynumber"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Qualifications"
-                android:textSize="28sp"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_qualificationdetail1"
@@ -189,8 +209,8 @@
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Qualification requirement"
-                android:textSize="19sp"
-                android:textColor="@color/light_black"/>
+                android:textColor="@color/light_black"
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_jobdescription"
@@ -198,26 +218,26 @@
                 android:layout_height="35dp"
                 android:layout_below="@id/user_appliedjobdetails_qualificationdetail1"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Full job description"
-                android:textSize="28sp"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/user_appliedjobdetails_company_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_appliedjobdetails_jobdescription"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Description"
-                android:textSize="17sp"
-                android:textColor="@color/light_black"/>
+                android:textColor="@color/light_black"
+                android:textSize="17sp" />
 
         </RelativeLayout>
     </ScrollView>

@@ -7,6 +7,17 @@ public class Model {
     public Model() {
     }
 
+//    public Model(String companyName, String description, String jobTitle, String jobType, String companyLocation, String qualification, String salary, String vacancy){
+//        CompanyName = companyName;
+//        Description = description;
+//        JobTitle = jobTitle;
+//        JobType = jobType;
+//        CompanyLocation = companyLocation;
+//        Qualification = qualification;
+//        Salary = salary;
+//        Vacancy = vacancy;
+//    }
+
     public String getImageurl() {
         return imageurl;
     }

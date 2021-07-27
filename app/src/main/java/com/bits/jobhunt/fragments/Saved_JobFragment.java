@@ -39,7 +39,6 @@ public class Saved_JobFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
     String fuser;
-    EditText search_bar;
     RecyclerView recyclerView;
     ArrayList<Model> saveddatalist;
     Savedadapter savedadapter;

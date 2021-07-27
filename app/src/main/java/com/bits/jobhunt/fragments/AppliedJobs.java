@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.bits.jobhunt.AppliedJobs_Adapter;
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
 import com.bits.jobhunt.Savedadapter;
+import com.bits.jobhunt.myadapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,10 +35,10 @@ public class AppliedJobs extends Fragment {
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
     String fuser;
-    EditText search_bar;
     RecyclerView recyclerView;
     ArrayList<Model> appliedDataList;
     AppliedJobs_Adapter appliedJobs_adapter;
+
 
     public AppliedJobs() {
         // Required empty public constructor
@@ -85,6 +88,6 @@ public class AppliedJobs extends Fragment {
                     }
                 });
 
-
     }
+
 }

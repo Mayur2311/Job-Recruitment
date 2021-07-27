@@ -1,11 +1,12 @@
 package com.bits.jobhunt.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,10 +14,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,13 +39,15 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 
-public class DashboardFragment extends Fragment  {
+public class DashboardFragment extends Fragment {
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
@@ -52,15 +59,18 @@ public class DashboardFragment extends Fragment  {
     ArrayList<Model> datalist;
     myadapter adapter;
 
+    //-------------------------------------
+    ArrayList<Model> filteredList =  new ArrayList<>();
+
+
+
     public DashboardFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -70,19 +80,23 @@ public class DashboardFragment extends Fragment  {
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
     }
 
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         firebaseAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
+        search_bar = view.findViewById(R.id.searchBar_dashboard);
 
         userId = firebaseAuth.getCurrentUser().getUid();
         NavigationView navigationView = getActivity().findViewById(R.id.navigationView);
 
         resendCode = view.findViewById(R.id.resendcode);
         verifyMsg = view.findViewById(R.id.email_verification);
-        search_bar = view.findViewById(R.id.user_dashboard_searchbar);
+
+
 
         recview=view.findViewById(R.id.dashboard_recycleView);
         recview.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -92,6 +106,35 @@ public class DashboardFragment extends Fragment  {
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
+
+        search_bar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                filteredList.clear();
+
+                if(s.toString().isEmpty())
+                {
+                    recview.setAdapter(new myadapter(datalist));
+                    adapter.notifyDataSetChanged();
+                }
+                else
+                {
+                    filter(s.toString());
+                }
+
+            }
+        });
 
         if (!user.isEmailVerified()) {
 
@@ -122,9 +165,9 @@ public class DashboardFragment extends Fragment  {
 
                 }
             });
+
+
         }
-
-
 
         fireStore.collection("Jobs").orderBy("JobName").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -137,33 +180,16 @@ public class DashboardFragment extends Fragment  {
                             datalist.add(obj);
                             adapter.notifyDataSetChanged();
                         }
-                        search_bar.clearFocus();
-
+                       // search_bar.clearFocus();
                     }
                 });
 
+      }
 
-        search_bar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                adapter=new myadapter(datalist);
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                filter(s.toString());
-            }
-        });
-
-    }
 
     private void filter(String text)
     {
-        ArrayList<Model> filteredList = new ArrayList<>();
 
         for(Model model : datalist)
         {
@@ -171,7 +197,10 @@ public class DashboardFragment extends Fragment  {
                 filteredList.add(model);
             }
         }
-
-        adapter.filterList(filteredList);
+        recview.setAdapter(new myadapter(filteredList));
+        adapter.notifyDataSetChanged();
     }
+
+
+
 }

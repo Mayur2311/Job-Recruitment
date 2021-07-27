@@ -23,7 +23,7 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/host_fragment"
+            android:id="@+id/host_fragment_user"
             android:name="androidx.navigation.fragment.NavHostFragment"
             app:defaultNavHost="true"
             app:navGraph="@navigation/admin_nav_graph"/>

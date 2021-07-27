@@ -6,36 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.Saved_JobFragment">
 
-    <RelativeLayout
-        android:id="@+id/relative_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <EditText
-            android:id="@+id/user_savedjob_searchbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:cursorVisible="true"
-            android:drawableLeft="@drawable/search"
-            android:drawableRight="@drawable/filter"
-            android:background="@drawable/round_corner"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:padding="15dp"
-            android:hint="Search"/>
-
-
-
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

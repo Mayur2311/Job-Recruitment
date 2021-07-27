@@ -6,14 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +21,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
 
     public myadapter(ArrayList<Model> datalist) {
         this.datalist = datalist;
-        //this.datalistAll = new ArrayList<>(datalist);
+
     }
 
     @NonNull
@@ -72,24 +67,15 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
 
 
 
-    public void filterList(ArrayList<Model> filteredList) {
-        datalist = filteredList;
-        notifyDataSetChanged();
-    }
-
-    // class myviewholder extends RecyclerView.ViewHolder implements View.OnClickListener
     class myviewholder extends RecyclerView.ViewHolder  {
         TextView user_dashboard_job_title, user_dashboard_company_name, user_dashboard_company_location, user_dashboard_salary;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
-
             user_dashboard_job_title = itemView.findViewById(R.id.user_dashboard_job_title);
             user_dashboard_company_name = itemView.findViewById(R.id.user_dashboard_company_name);
             user_dashboard_company_location = itemView.findViewById(R.id.user_dashboard_company_location);
             user_dashboard_salary = itemView.findViewById(R.id.user_dashboard_salary);
-
-
         }
 
 

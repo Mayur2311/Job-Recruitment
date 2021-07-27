@@ -1,6 +1,8 @@
 package com.bits.jobhunt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,7 +30,7 @@ import java.util.Map;
 
 public class Job_Details extends AppCompatActivity {
     TextView user_jobdetails_job_title, user_jobdetails_company_name, user_jobdetails_company_location, user_jobdetails_salaryinnumber, user_jobdetails_jobtype1, user_jobdetails_vacancynumber, user_jobdetails_qualificationdetail1, user_jobdetails_company_details;
-    Button user_jobdetails_apply, user_jobdetails_save;
+    Button user_jobdetails_apply, user_jobdetails_save,backArrow;
     FirebaseFirestore db;
     String name;
     FirebaseAuth firebaseAuth;
@@ -39,6 +41,8 @@ public class Job_Details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job__details);
+
+        backArrow = findViewById(R.id.backArrow_JobDetails);
 
         user_jobdetails_job_title = findViewById(R.id.user_jobdetails_job_title);
         user_jobdetails_company_name = findViewById(R.id.user_jobdetails_company_name);
@@ -68,6 +72,14 @@ public class Job_Details extends AppCompatActivity {
         checkIfDataIsAvailableForSaved();
         checkIfDataIsAvailableForApplied();
 
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(),UserActivity.class);
+                startActivity(intent);
+            }
+        });
 
         user_jobdetails_apply.setOnClickListener(new View.OnClickListener() {
             @Override

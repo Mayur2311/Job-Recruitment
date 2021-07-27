@@ -45,6 +45,7 @@ public class UserPersona extends AppCompatActivity {
 
     DocumentReference documentReference;
     FirebaseUser user;
+    ImageView userPicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +63,19 @@ public class UserPersona extends AppCompatActivity {
         t_experience1=findViewById(R.id.txt_experience1);
         t_experience2=findViewById(R.id.txt_experience2);
         t_experience3=findViewById(R.id.txt_experience3);
+        userPicture = findViewById(R.id.fetchimages);
+
+
         fauth=FirebaseAuth.getInstance();
-         db=FirebaseFirestore.getInstance();
-         user=fauth.getCurrentUser();
+        db=FirebaseFirestore.getInstance();
+        user=fauth.getCurrentUser();
         documentReference= db.collection("ProfileUpdate").document(user.getUid());
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.getResult().exists()){
+
                     String firstnameResult=task.getResult().getString("firstName");
                     String lastnameResult=task.getResult().getString("lastName");
                     String mobilenumber=task.getResult().getString("mobilenumber");
@@ -81,6 +87,7 @@ public class UserPersona extends AppCompatActivity {
                     String exp1=task.getResult().getString("Experience1");
                     String exp2=task.getResult().getString("Experience2");
                     String exp3=task.getResult().getString("Experience3");
+
                     t_firstname.setText(firstnameResult);
                     t_lastname.setText(lastnameResult);
                     t_mobile.setText(mobilenumber);
@@ -92,15 +99,12 @@ public class UserPersona extends AppCompatActivity {
                     t_experience1.setText(exp1);
                     t_experience2.setText(exp2);
                     t_experience3.setText(exp3);
+
                 }else{
                     Toast.makeText(UserPersona.this,"No Profile",Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
-
-
     }
 }
 
