@@ -19,9 +19,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +50,7 @@ import java.util.List;
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
@@ -58,10 +61,13 @@ public class DashboardFragment extends Fragment {
     RecyclerView recview;
     ArrayList<Model> datalist;
     myadapter adapter;
+    Spinner filterSpinner;
+    ArrayAdapter jobType_arrayAdapter;
 
     //-------------------------------------
     ArrayList<Model> filteredList =  new ArrayList<>();
-
+    String[] searchCategory = {"Location", "Industry", "CompanyName","EmployeementType", "JobName"};
+    String selectedCategory ;
 
 
     public DashboardFragment() {
@@ -96,6 +102,8 @@ public class DashboardFragment extends Fragment {
         resendCode = view.findViewById(R.id.resendcode);
         verifyMsg = view.findViewById(R.id.email_verification);
 
+        filterSpinner = view.findViewById(R.id.spinner_filter);
+        filterSpinner.setOnItemSelectedListener(this);
 
 
         recview=view.findViewById(R.id.dashboard_recycleView);
@@ -105,6 +113,11 @@ public class DashboardFragment extends Fragment {
         recview.setAdapter(adapter);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
+
+
+        jobType_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, searchCategory);
+        jobType_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filterSpinner.setAdapter(jobType_arrayAdapter);
 
 
         search_bar.addTextChangedListener(new TextWatcher() {
@@ -180,7 +193,7 @@ public class DashboardFragment extends Fragment {
                             datalist.add(obj);
                             adapter.notifyDataSetChanged();
                         }
-                       // search_bar.clearFocus();
+                       search_bar.clearFocus();
                     }
                 });
 
@@ -188,19 +201,56 @@ public class DashboardFragment extends Fragment {
 
 
 
-    private void filter(String text)
-    {
+    private void filter(String text) {
 
-        for(Model model : datalist)
-        {
-            if (model.getJobName().toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(model);
+        for (Model model : datalist) {
+
+            if (selectedCategory == searchCategory[0])
+            {
+                if (model.getLocation().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(model);
+                }
             }
+            else if (selectedCategory == searchCategory[1])
+            {
+                if (model.getJobType().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(model);
+                }
+            }
+            else if(selectedCategory == searchCategory[2])
+            {
+                if (model.getCompanyName().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(model);
+                }
+            }
+            else if(selectedCategory == searchCategory[3])
+            {
+                if (model.getJobType().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(model);
+                }
+            }
+            else if(selectedCategory.equals(searchCategory[4]))
+            {
+                if (model.getJobName().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(model);
+                }
+            }
+
+            recview.setAdapter(new myadapter(filteredList));
+            adapter.notifyDataSetChanged();
         }
-        recview.setAdapter(new myadapter(filteredList));
-        adapter.notifyDataSetChanged();
+
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        selectedCategory = filterSpinner.getSelectedItem().toString();
+    }
 
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }
