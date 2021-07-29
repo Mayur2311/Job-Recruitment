@@ -1,27 +1,34 @@
 package com.bits.jobhunt;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class adminJob_Details extends AppCompatActivity {
     TextView admin_jobdetails_job_title, admin_jobdetails_company_name, admin_jobdetails_company_location, admin_jobdetails_salaryinnumber, admin_jobdetails_jobtype1, admin_jobdetails_vacancynumber, admin_jobdetails_qualificationdetail1, admin_jobdetails_company_details;
-       FirebaseFirestore db;
+    FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
     Button backArrow;
 
@@ -47,23 +54,24 @@ public class adminJob_Details extends AppCompatActivity {
         admin_jobdetails_vacancynumber.setText(getIntent().getStringExtra("numberOFHires").toString());
         admin_jobdetails_qualificationdetail1.setText(getIntent().getStringExtra("Qualifications").toString());
         admin_jobdetails_company_details.setText(getIntent().getStringExtra("Description").toString());
-
+        backArrow = findViewById(R.id.backArrow_adminJobDetails);
         //For Applied Job
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        backArrow=findViewById(R.id.backArrow_adminJobDetails);
+
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),AdminActivity.class);
+                Intent intent = new Intent(getApplication(), AdminActivity.class);
                 startActivity(intent);
             }
         });
 
 
-
     }
+
+
 }
 
 

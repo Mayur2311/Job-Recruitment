@@ -193,11 +193,11 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
                             datalist.add(obj);
                             adapter.notifyDataSetChanged();
                         }
-                       search_bar.clearFocus();
+                        search_bar.clearFocus();
                     }
                 });
 
-      }
+    }
 
 
 
