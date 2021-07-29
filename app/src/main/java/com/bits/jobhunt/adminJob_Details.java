@@ -23,6 +23,7 @@ public class adminJob_Details extends AppCompatActivity {
     TextView admin_jobdetails_job_title, admin_jobdetails_company_name, admin_jobdetails_company_location, admin_jobdetails_salaryinnumber, admin_jobdetails_jobtype1, admin_jobdetails_vacancynumber, admin_jobdetails_qualificationdetail1, admin_jobdetails_company_details;
        FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
+    Button backArrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,15 @@ public class adminJob_Details extends AppCompatActivity {
         //For Applied Job
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        backArrow=findViewById(R.id.backArrow_adminJobDetails);
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(),AdminActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 

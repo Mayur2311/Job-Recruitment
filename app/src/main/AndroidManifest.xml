@@ -19,6 +19,7 @@
         <activity android:name=".UserPersona"></activity>
         <activity android:name=".SavedJobsDetails_activity"></activity>
         <activity android:name=".AppliedJobsDetails"></activity>
+        <activity android:name=".adminJob_Details"></activity>
         <activity android:name=".Job_Details" />
         <activity android:name=".UserActivity" />
         <activity android:name=".AdminActivity" />

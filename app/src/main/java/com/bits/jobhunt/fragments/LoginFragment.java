@@ -136,39 +136,6 @@ public class LoginFragment extends Fragment {
             }
         });
 
-
-
-       /* btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (TextUtils.isEmpty(et_email.getText())) {
-                    et_email.setError("Please enter email address");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(et_password.getText())) {
-                    et_password.setError("Please enter password");
-                    return;
-
-                }
-
-
-                fAuth.signInWithEmailAndPassword(et_email.getText().toString(),et_password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Log In Successful", Toast.LENGTH_SHORT).show();
-
-                        }
-                        else
-                        {
-                            Toast.makeText(getActivity(), "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        });*/
         btn_login.setOnClickListener(view2 ->{
             if (!checkEmptyFields())
             {
