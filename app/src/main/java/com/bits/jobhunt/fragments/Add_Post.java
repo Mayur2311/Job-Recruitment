@@ -218,17 +218,17 @@ String[] Location={"Toronto\t-\tOntario",
             public void addnewjobpost(String title, String company, String location, String jobtype, String jobcategory, String salary, String noOfHires, String qualification, String description) {
 
                 Map<String, Object> postData = new HashMap<>();
-                fuser = firebaseAuth.getCurrentUser().getUid();
-                /*postData.put("UserId",fuser);*/
-                postData.put("title", title);
-                postData.put("company", company);
-                postData.put("location", location);
-                postData.put("jobtype", jobtype);
+                fuser = firebaseAuth.getCurrentUser().getEmail();
+                postData.put("Email",fuser);
+                postData.put("JobName", title);
+                postData.put("CompanyName", company);
+                postData.put("Location", location);
+                postData.put("JobType", jobtype);
                 postData.put("jobcategory", jobcategory);
-                postData.put("salary", salary);
-                postData.put("noOFHires", noOfHires);
-                postData.put("qualification", qualification);
-                postData.put("description", description);
+                postData.put("Salary", salary);
+                postData.put("numberOFHires", noOfHires);
+                postData.put("Qualifications", qualification);
+                postData.put("Description", description);
                 db.collection("AddPostData").document().set(postData)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
