@@ -86,6 +86,7 @@ String[] Location={"Toronto\t-\tOntario",
         super.onCreate(savedInstanceState);
         firebaseAuth=FirebaseAuth.getInstance();
         db= FirebaseFirestore.getInstance();
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
