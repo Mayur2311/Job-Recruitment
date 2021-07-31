@@ -40,7 +40,7 @@ Button add_new;
 FirebaseAuth firebaseAuth;
 NavController navController;
 FirebaseFirestore db;
-String fuser;
+String fuser,status;
 String ftitle,fcompany,flocation,fsalary,fjobtype, fjobcategory, fnoOfHires,fqualification,fdescription;
 Spinner spinner_jobtype, spinner_numberOfHires,spinner_salarytype,spinner_locationtype;
 String jobType, numberOfHires,sp_salary,location;
@@ -220,6 +220,8 @@ String[] Location={"Toronto\t-\tOntario",
 
                 Map<String, Object> postData = new HashMap<>();
                 fuser = firebaseAuth.getCurrentUser().getEmail();
+                status="Pending";
+
                 postData.put("Email",fuser);
                 postData.put("JobName", title);
                 postData.put("CompanyName", company);
@@ -230,6 +232,7 @@ String[] Location={"Toronto\t-\tOntario",
                 postData.put("numberOFHires", noOfHires);
                 postData.put("Qualifications", qualification);
                 postData.put("Description", description);
+                postData.put("Status",status);
                 db.collection("AddPostData").document().set(postData)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

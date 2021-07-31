@@ -84,7 +84,7 @@ public class Admin_dashboardFragment extends Fragment implements AdapterView.OnI
         admin_jobType_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, searchCategory);
         admin_jobType_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         filterSpinner.setAdapter(admin_jobType_arrayAdapter);
-        fireStore.collection("Jobs").orderBy("JobName").get()
+        fireStore.collection("Jobs").whereEqualTo("Status","Approved").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

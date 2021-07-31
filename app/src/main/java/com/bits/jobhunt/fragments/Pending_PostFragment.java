@@ -69,7 +69,7 @@ public class Pending_PostFragment extends Fragment {
         pendingAdapter = new Pending_PostAdapter(datalist);
         recycleview.setAdapter(pendingAdapter);
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        fireStore.collection("AddPostData").get()
+        fireStore.collection("AddPostData").whereEqualTo("Status","Pending").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

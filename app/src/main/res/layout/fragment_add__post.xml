@@ -108,6 +108,7 @@
                 android:background="@drawable/round_corner"
                 android:drawableLeft="@drawable/salary"
                 android:drawablePadding="15dp"
+                android:inputType="phone"
                 android:hint=" Salary"
                 android:padding="10dp" />
 

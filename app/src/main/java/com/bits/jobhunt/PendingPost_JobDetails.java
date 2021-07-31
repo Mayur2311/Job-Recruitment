@@ -28,11 +28,11 @@ import java.util.List;
 import java.util.Map;
 
 public class PendingPost_JobDetails extends AppCompatActivity {
-    TextView pending_job_title, pending_company_name, pending_company_location, pending_salaryinnumber, pending_jobtype1, pending_vacancynumber, pending_qualificationdetail1, pending_company_details,pending_jobcategory,email;
+    TextView pending_job_title, pending_company_name, pending_company_location, pending_salaryinnumber, pending_jobtype1, pending_vacancynumber, pending_qualificationdetail1, pending_company_details,pending_jobcategory;
     Button approve, disapprove;
     FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
-    String  status,doctitle;
+    String  status,doctitle,email,jobname,docEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +64,13 @@ public class PendingPost_JobDetails extends AppCompatActivity {
         //For Applied Job
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        checkIfDataIsAvailableForApprove();
+
 
         approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                jobname=getIntent().getStringExtra("JobName").toString();
                 status = "Approved";
                 Toast.makeText(getApplicationContext(), "Job Post is approved", Toast.LENGTH_SHORT).show();
                 insertApprovedData(getIntent().getStringExtra("JobName").toString(), getIntent().getStringExtra("CompanyName").toString(), getIntent().getStringExtra("Location").toString(), getIntent().getStringExtra("Salary").toString(), getIntent().getStringExtra("JobType").toString(), getIntent().getStringExtra("numberOFHires").toString(), getIntent().getStringExtra("Qualifications").toString(), getIntent().getStringExtra("jobcategory").toString(), getIntent().getStringExtra("Description").toString(), status);
@@ -77,12 +79,13 @@ public class PendingPost_JobDetails extends AppCompatActivity {
             }
         });
 
-      /*  disapprove.setOnClickListener(new View.OnClickListener() {
+       disapprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 status="Disapproved";
+                jobname=getIntent().getStringExtra("JobName").toString();
 
-                db.collection("AddPostData").whereEqualTo("Status","").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                db.collection("AddPostData").whereEqualTo("JobName",jobname).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
@@ -95,7 +98,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                         }
                     }
                 });
-                Toast.makeText(getApplicationContext(), "Job Post is disapproved", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getApplicationContext(), "Job Post is disapproved", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplication(), AdminActivity.class);
                 startActivity(intent);
             }
@@ -111,6 +114,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
             // Update each list item
             DocumentReference ref = db.collection("AddPostData").document(list.get(k));
             batch.update(ref,"Status","Disapproved" );
+            Toast.makeText(getApplicationContext(), "tfgfg", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -121,8 +125,8 @@ public class PendingPost_JobDetails extends AppCompatActivity {
             }
         });
 
-    }*/
     }
+
 
 
 
@@ -159,12 +163,13 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                 }
             });
 
-            db.collection("Jobs").whereEqualTo("Status", "Approved").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            db.collection("AddPostData").whereEqualTo("Status", "Pending").whereEqualTo("JobName",jobname).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         List<String> list = new ArrayList<>();
                         for (QueryDocumentSnapshot document : task.getResult()) {
+                          //  docEmail = document.getData().get("Email").toString();
                             Log.d("", document.getId());
                             list.add(document.getId());
                         }
@@ -193,27 +198,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
             });
 
         }
-    public void checkIfDataIsAvailableForApprove() {
-        db.collection("Jobs").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    //  List<String> list = new ArrayList<>();
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        // Log.d("", document.getId());
-                        doctitle = document.getData().get("JobName").toString();
 
-                        if (pending_job_title.getText().toString().equals(doctitle)) {
-                            Toast.makeText(PendingPost_JobDetails.this, "You have already approved for this job.", Toast.LENGTH_SHORT).show();
-                            approve.setVisibility(View.INVISIBLE);
-                            disapprove.setVisibility(View.INVISIBLE);
-                        }
-
-                    }
-                }
-            }
-        });
-    }
 
 
     }

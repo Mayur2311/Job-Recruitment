@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
@@ -21,16 +22,21 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.WriteBatch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class adminJob_Details extends AppCompatActivity {
     TextView admin_jobdetails_job_title, admin_jobdetails_company_name, admin_jobdetails_company_location, admin_jobdetails_salaryinnumber, admin_jobdetails_jobtype1, admin_jobdetails_vacancynumber, admin_jobdetails_qualificationdetail1, admin_jobdetails_company_details;
     FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
-    Button backArrow;
+    Button backArrow,delete;
+    String status,jobname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +61,11 @@ public class adminJob_Details extends AppCompatActivity {
         admin_jobdetails_qualificationdetail1.setText(getIntent().getStringExtra("Qualifications").toString());
         admin_jobdetails_company_details.setText(getIntent().getStringExtra("Description").toString());
         backArrow = findViewById(R.id.backArrow_adminJobDetails);
+
         //For Applied Job
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-
+        delete = findViewById(R.id.deletepost);
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,11 +74,60 @@ public class adminJob_Details extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               jobname= getIntent().getStringExtra("JobName").toString();
+                status = "deleted";
+                db.collection("Jobs").whereEqualTo("JobName",jobname).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<String> list = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("", document.getId());
+                                list.add(document.getId());
+                            }
+                            deleteData(list);
+                        }
+                    }
+                });
+                Intent intent = new Intent(getApplication(), AdminActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void deleteData(List<String> list) {
+        WriteBatch batch = db.batch();
+        // Iterate through the list
+        for (int k = 0; k < list.size(); k++) {
+            DocumentReference ref = db.collection("Jobs").document(list.get(k));
+            batch.update(ref,"Status","Delete" );
+            Toast.makeText(getApplicationContext(), "Job Post is deleted", Toast.LENGTH_SHORT).show();
+
+
+        }
+
+
+        batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+            }
+        });
+
+    }
+
+
 
 
     }
 
 
-}
+
+
+
+
 
 
