@@ -6,24 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".UserPersona">
 
-    <Toolbar
-        android:id="@+id/toolbar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/user_persona_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/mainapp"
-        android:titleTextColor="@color/white"
-        android:title="Profile"
-        android:navigationIcon="@drawable/back_arrow"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Profile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/user_persona_toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -114,7 +113,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
-                android:drawableLeft="@drawable/mail"
+                android:drawableLeft="@drawable/city"
+                android:drawableTint="@color/black"
                 android:drawablePadding="15dp"
                 android:padding="3dp"
                 android:hint="city"
@@ -139,14 +139,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/about"
-                android:background="@drawable/round_corner"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/round_corner"
+                android:hint="About you"
                 android:paddingLeft="15dp"
-                android:paddingRight="10dp"
                 android:paddingTop="3dp"
+                android:paddingRight="10dp"
                 android:paddingBottom="3dp"
-                android:hint="Write something about you"
                 android:textSize="20sp" />
 
             <TextView
@@ -272,16 +272,16 @@
                 android:hint="Education"
                 android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/btn_update"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_below="@id/txt_education3"
-                android:backgroundTint="@color/primaryDarkColor"
-                android:text="Update"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"/>
+<!--            <Button-->
+<!--                android:id="@+id/btn_update"-->
+<!--                android:layout_width="150dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_below="@id/txt_education3"-->
+<!--                android:backgroundTint="@color/primaryDarkColor"-->
+<!--                android:text="Update"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_centerHorizontal="true"/>-->
 
         </RelativeLayout>
 

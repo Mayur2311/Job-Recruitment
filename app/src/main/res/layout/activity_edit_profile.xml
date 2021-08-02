@@ -3,27 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".edit_profileActivity">
 
-    <Toolbar
-        android:id="@+id/toolbar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/edit_profile_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/mainapp"
-        android:titleTextColor="@color/white"
-        android:title="Edit Profile"
-        android:navigationIcon="@drawable/back_arrow"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Edit Profile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
+
 
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -72,7 +72,6 @@
                 android:textStyle="bold"/>
 
 
-
             <EditText
                 android:id="@+id/firstName"
                 android:layout_width="match_parent"
@@ -84,8 +83,8 @@
                 android:background="@drawable/round_corner"
                 android:drawableLeft="@drawable/name"
                 android:drawablePadding="15dp"
-                android:padding="3dp"
                 android:hint="First name"
+                android:padding="3dp"
                 android:textSize="20sp" />
 
             <EditText
@@ -94,35 +93,35 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/firstName"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
                 android:drawableLeft="@drawable/name"
                 android:drawablePadding="15dp"
-                android:padding="3dp"
                 android:hint="Last name"
+                android:padding="3dp"
                 android:textSize="20sp" />
 
 
             <EditText
                 android:id="@+id/city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/lastName"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:hint="City"
-                android:textSize="20sp"
-                android:drawablePadding="15dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
                 android:drawableLeft="@drawable/city"
+                android:drawablePadding="15dp"
                 android:drawableTint="@color/black"
-                android:layout_marginRight="10dp"
+                android:hint="City"
                 android:padding="3dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textSize="20sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerHorizontal="true"
@@ -144,13 +143,12 @@
 
                 <EditText
                     android:id="@+id/mobile"
-                    android:layout_width="wrap_content"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginStart="2dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
                     android:layout_toEndOf="@+id/ccp"
                     android:background="@drawable/round_corner"
                     android:hint=" Mobile No."
@@ -193,28 +191,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edt_about_me"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="3dp"
                 android:text="Experience"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edt_experience1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/experience"
-                android:background="@drawable/round_corner"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
+                android:background="@drawable/round_corner"
                 android:hint="Experience"
+                android:paddingLeft="15dp"
+                android:paddingTop="3dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="3dp"
                 android:textSize="20sp" />
 
             <EditText
@@ -222,15 +220,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edt_experience1"
-                android:background="@drawable/round_corner"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/round_corner"
                 android:hint="Experience"
+                android:paddingLeft="15dp"
+                android:paddingTop="3dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="3dp"
                 android:textSize="20sp" />
 
             <EditText
@@ -283,15 +281,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edt_education1"
-                android:background="@drawable/round_corner"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/round_corner"
                 android:hint="Education"
+                android:paddingLeft="15dp"
+                android:paddingTop="3dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="3dp"
                 android:textSize="20sp" />
 
             <EditText
@@ -357,11 +355,11 @@
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_below="@id/linear_layout"
+                android:layout_centerHorizontal="true"
                 android:backgroundTint="@color/primaryDarkColor"
                 android:text="SAVE"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"/>
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
