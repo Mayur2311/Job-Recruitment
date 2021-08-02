@@ -6,29 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bits.jobhunt.fragments.AppliedJobs;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 public class AppliedJobsDetails extends AppCompatActivity {
 
     TextView user_appliedjobdetails_job_title, user_appliedjobdetails_company_name, user_appliedjobdetails_company_location, user_appliedjobdetails_salaryinnumber, user_appliedjobdetails_jobtype1, user_appliedjobdetails_vacancynumber, user_appliedjobdetails_qualificationdetail1, user_appliedjobdetails_company_details;
     Model objModel = new Model();
-    Button backArrow;
+
 
     FragmentTransaction fragmentTransaction;
 
@@ -37,7 +23,6 @@ public class AppliedJobsDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_applied_jobs_details);
 
-        backArrow = findViewById(R.id.backArrow_appliedJobDetails);
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
         user_appliedjobdetails_job_title = findViewById(R.id.user_appliedjobdetails_job_title);
@@ -59,12 +44,6 @@ public class AppliedJobsDetails extends AppCompatActivity {
         user_appliedjobdetails_qualificationdetail1.setText(getIntent().getStringExtra("Qualification").toString());
         user_appliedjobdetails_company_details.setText(getIntent().getStringExtra("Description").toString());
 
-        backArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentTransaction.replace(R.id.appliedJobDetials, new AppliedJobs()).commit();
-            }
-        });
 
 
     }

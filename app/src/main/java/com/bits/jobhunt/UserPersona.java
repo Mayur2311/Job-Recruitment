@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideExtension;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +39,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 
 public class UserPersona extends AppCompatActivity {
@@ -46,6 +51,7 @@ public class UserPersona extends AppCompatActivity {
     DocumentReference documentReference;
     FirebaseUser user;
     ImageView userPicture;
+    String imgUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +71,27 @@ public class UserPersona extends AppCompatActivity {
         t_experience3=findViewById(R.id.txt_experience3);
         userPicture = findViewById(R.id.fetchimages);
 
-
         fauth=FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
         user=fauth.getCurrentUser();
-        documentReference= db.collection("ProfileUpdate").document(user.getUid());
-        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 
+        documentReference= db.collection("ProfileUpdate").document(user.getUid());
+
+        db.collection("Upload image").document(user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                if (task.getResult().exists())
+                {
+                    imgUrl = task.getResult().getString("imageurl");
+
+                       Glide.with(getApplicationContext())
+                            .load(imgUrl)
+                            .into(userPicture);
+                }
+            }
+        });
+
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.getResult().exists()){

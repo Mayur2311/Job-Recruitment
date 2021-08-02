@@ -73,7 +73,7 @@ public class AdminFragment extends Fragment {
 
         user_btn = view.findViewById(R.id.btn_user);
         navController = Navigation.findNavController(view);
-        btn_adminLogIn = view.findViewById(R.id.btn_login);
+        btn_adminLogIn = view.findViewById(R.id.btn_adminlogin);
         admin_email = view.findViewById(R.id.etadminemail);
         admin_password = view.findViewById(R.id.etadminpassword);
         db = FirebaseFirestore.getInstance();
@@ -113,33 +113,30 @@ public class AdminFragment extends Fragment {
         });
     }
 
-        private void checkUserAcessLevel (String uid){
-            DocumentReference df = db.collection("ProfileUpdate").document(uid);
-            df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    Log.d("Tag", "onsuccess" + documentSnapshot.getData());
-                    e=admin_email.getText().toString();
-                    if (documentSnapshot.getString("isAdmin")!=null) {
-                        Intent i= new Intent(getActivity(), AdminActivity.class);
-                        startActivity(i);
-                    }
+    private void checkUserAcessLevel (String uid){
+        DocumentReference df = db.collection("ProfileUpdate").document(uid);
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("Tag", "onsuccess" + documentSnapshot.getData());
+                e=admin_email.getText().toString();
+                if (documentSnapshot.getString("isAdmin")!=null) {
+                    Intent i= new Intent(getActivity(), AdminActivity.class);
+                    startActivity(i);
                 }
-            });
-        }
-
-        public boolean checkField (EditText textField){
-            if (textField.getText().toString().isEmpty()) {
-                textField.setError("Error");
-                valid = false;
-            } else {
-                valid = true;
             }
+        });
+    }
 
-            return valid;
+    public boolean checkField (EditText textField){
+        if (textField.getText().toString().isEmpty()) {
+            textField.setError("Error");
+            valid = false;
+        } else {
+            valid = true;
         }
+
+        return valid;
+    }
 
 }
-
-
-

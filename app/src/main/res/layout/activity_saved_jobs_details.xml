@@ -17,7 +17,6 @@
         android:background="@color/mainapp"
         android:titleTextColor="@color/white"
         android:title="Job Details"
-        android:navigationIcon="@drawable/back_arrow"
         />
 
     <ScrollView

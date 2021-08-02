@@ -95,7 +95,7 @@
             android:textColorHint="#52595E" />
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_adminlogin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/etadminpassword"
@@ -111,7 +111,7 @@
 
         <TextView
             android:id="@+id/errorView"
-            android:layout_below="@id/btn_login"
+            android:layout_below="@id/btn_adminlogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""

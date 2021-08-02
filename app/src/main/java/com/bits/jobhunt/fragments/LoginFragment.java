@@ -68,7 +68,7 @@ public class LoginFragment extends Fragment {
 
         et_email = view.findViewById(R.id.etemail);
         et_password = view.findViewById(R.id.etpassword);
-        btn_login = view.findViewById(R.id.btn_login);
+        btn_login = view.findViewById(R.id.btn_adminlogin);
         fAuth = FirebaseAuth.getInstance();
         btnVar_signUp = view.findViewById(R.id.btn_signUp);
         btn1 = view.findViewById(R.id.btn_user);
