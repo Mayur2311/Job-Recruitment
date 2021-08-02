@@ -16,7 +16,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -48,10 +48,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         {
             navController.navigate(R.id.admin_dashboardFragment);
         }else if (id == R.id.job_post){
-
+            navController.navigate(R.id.admin_dashboardFragment);
         }else if(id==R.id.userlists){
 
         }else if(id==R.id.pendingpost){
+            navController.navigate(R.id.pending_PostFragment);
 
         }
         else if (id == R.id.logout)

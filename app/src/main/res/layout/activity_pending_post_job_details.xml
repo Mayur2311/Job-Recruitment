@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D6E8DB"
-    tools:context=".adminJob_Details">
+    tools:context=".PendingPost_JobDetails">
+
     <RelativeLayout
         android:id="@+id/relative_layout_header"
         android:layout_width="match_parent"
@@ -15,20 +16,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         >
 
-        <Button
-            android:id="@+id/backArrow_adminJobDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:backgroundTint="@color/mainapp"
-            android:drawableLeft="@drawable/back_arrow" />
-
         <TextView
             android:id="@+id/header_button"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/mainapp"
             android:gravity="center"
-            android:text="Job Details"
+            android:text="Pending Post Details"
             android:textColor="@color/black"
             android:textSize="30dp"
             android:textStyle="bold"
@@ -38,6 +32,7 @@
 
 
     </RelativeLayout>
+
 
     <ScrollView
         android:id="@+id/scroll_view"
@@ -56,10 +51,10 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/admin_jobdetails_job_title"
+                android:id="@+id/pending_job_title"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="Job Title"
+                android:text="Job Name"
                 android:textStyle="bold"
                 android:textSize="35sp"
                 android:textColor="@color/black"
@@ -71,10 +66,24 @@
                 />
 
             <TextView
-                android:id="@+id/admin_jobdetails_company_name"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/admin_jobdetails_job_title"
+                android:layout_below="@id/pending_job_title"
+                android:text="Email"
+                android:textSize="25sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="10dp"
+                android:layout_centerHorizontal="true"
+                />
+
+
+            <TextView
+                android:id="@+id/pending_company_name"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/email"
                 android:text="Company Name"
                 android:textSize="25sp"
                 android:layout_marginLeft="10dp"
@@ -84,10 +93,10 @@
                 />
 
             <TextView
-                android:id="@+id/admin_jobdetails_company_location"
+                android:id="@+id/pending_company_location"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/admin_jobdetails_company_name"
+                android:layout_below="@id/pending_company_name"
                 android:text="Company Location"
                 android:textSize="25sp"
                 android:layout_marginLeft="10dp"
@@ -97,24 +106,24 @@
                 />
 
             <TextView
-                android:id="@+id/admin_jobdetails_jobdetails"
+                android:id="@+id/pending_jobdetails"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_below="@id/admin_jobdetails_company_location"
+                android:layout_below="@id/pending_company_location"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="10dp"
-                android:text="Job Details"
+                android:text="Description"
                 android:textSize="28sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/admin_jobdetails_salary"
+                android:id="@+id/pending_salary"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/admin_jobdetails_jobdetails"
+                android:layout_below="@id/pending_jobdetails"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
@@ -124,10 +133,10 @@
                 android:textColor="@color/medium_black"/>
 
             <TextView
-                android:id="@+id/admin_jobdetails_salaryinnumber"
+                android:id="@+id/pending_salaryinnumber"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_below="@id/admin_jobdetails_salary"
+                android:layout_below="@id/pending_salary"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
@@ -136,10 +145,10 @@
                 android:textColor="@color/light_black"/>
 
             <TextView
-                android:id="@+id/admin_jobdetails_jobtype"
+                android:id="@+id/pending_jobtype"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/admin_jobdetails_salaryinnumber"
+                android:layout_below="@id/pending_salaryinnumber"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
@@ -149,22 +158,46 @@
                 android:textColor="@color/medium_black"/>
 
             <TextView
-                android:id="@+id/admin_jobdetails_jobtype1"
+                android:id="@+id/pending_jobtype1"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_below="@id/admin_jobdetails_jobtype"
+                android:layout_below="@id/pending_jobtype"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Job type requirement (Full-time)."
                 android:textSize="19sp"
                 android:textColor="@color/light_black"/>
-
             <TextView
-                android:id="@+id/admin_jobdetails_vacancy"
+                android:id="@+id/pending_jobcategory"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/admin_jobdetails_jobtype1"
+                android:layout_below="@id/pending_jobtype1"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="10dp"
+                android:text="Job Category"
+                android:textSize="23sp"
+                android:textColor="@color/medium_black"/>
+
+            <TextView
+                android:id="@+id/pending_jobcategory1"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_below="@id/pending_jobcategory"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="10dp"
+                android:text="Job Category."
+                android:textSize="19sp"
+                android:textColor="@color/light_black"/>
+
+            <TextView
+                android:id="@+id/pending_vacancy"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/pending_jobcategory1"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
@@ -174,10 +207,10 @@
                 android:textColor="@color/medium_black"/>
 
             <TextView
-                android:id="@+id/admin_jobdetails_vacancynumber"
+                android:id="@+id/pending_vacancynumber"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_below="@id/admin_jobdetails_vacancy"
+                android:layout_below="@id/pending_vacancy"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
@@ -186,10 +219,10 @@
                 android:textColor="@color/light_black"/>
 
             <TextView
-                android:id="@+id/admin_jobdetails_qualification"
+                android:id="@+id/pending_qualification"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_below="@id/admin_jobdetails_vacancynumber"
+                android:layout_below="@id/pending_vacancynumber"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
@@ -200,10 +233,10 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/admin_jobdetails_qualificationdetail1"
+                android:id="@+id/pending_qualificationdetail1"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_below="@id/admin_jobdetails_qualification"
+                android:layout_below="@id/pending_qualification"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
@@ -212,10 +245,10 @@
                 android:textColor="@color/light_black"/>
 
             <TextView
-                android:id="@+id/admin_jobdetails_jobdescription"
+                android:id="@+id/pending_jobdescription"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_below="@id/admin_jobdetails_qualificationdetail1"
+                android:layout_below="@id/pending_qualificationdetail1"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
@@ -226,30 +259,49 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/admin_jobdetails_company_details"
+                android:id="@+id/pending_company_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/admin_jobdetails_jobdescription"
-                android:layout_marginLeft="40dp"
+                android:layout_below="@id/pending_jobdescription"
                 android:layout_marginTop="10dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="Description"
-                android:textColor="@color/light_black"
-                android:textSize="19sp" />
-
-            <Button
-                android:id="@+id/deletepost"
-                android:layout_width="170dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="99dp"
-                android:layout_marginTop="9dp"
-                android:layout_below="@id/admin_jobdetails_company_details"
-                android:backgroundTint="@color/mainapp"
-                android:text="Delete Post"
-                android:textSize="15dp" />
-
+                android:textSize="19sp"
+                android:textColor="@color/light_black"/>
 
         </RelativeLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/approve"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="25dp"
+            android:backgroundTint="@color/mainapp"
+            android:text="Approve"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/disapprove"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/mainapp"
+            android:text="Disapprove"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

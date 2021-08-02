@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/img"
@@ -62,7 +62,7 @@
             android:layout_below="@+id/slide"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:cursorVisible="true"
@@ -95,7 +95,7 @@
             android:textColorHint="#52595E" />
 
         <Button
-            android:id="@+id/btn_adminlogin"
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/etadminpassword"
@@ -111,7 +111,7 @@
 
         <TextView
             android:id="@+id/errorView"
-            android:layout_below="@id/btn_adminlogin"
+            android:layout_below="@id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
@@ -123,5 +123,4 @@
 
 
     </RelativeLayout>
-
 </ScrollView>

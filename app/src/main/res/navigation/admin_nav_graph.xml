@@ -15,4 +15,9 @@
         android:name="com.bits.jobhunt.fragments.user_listFragment"
         android:label="fragment_user_list_"
         tools:layout="@layout/fragment_user_list" />
+    <fragment
+        android:id="@+id/pending_PostFragment"
+        android:name="com.bits.jobhunt.fragments.Pending_PostFragment"
+        android:label="fragment_pending__post"
+        tools:layout="@layout/fragment_pending__post" />
 </navigation>

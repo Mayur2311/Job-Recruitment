@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bits.jobhunt">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,11 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JobHunt"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".edit_profileActivity"></activity>
-        <activity android:name=".UserPersona"></activity>
-        <activity android:name=".SavedJobsDetails_activity"></activity>
-        <activity android:name=".AppliedJobsDetails"></activity>
+        <activity android:name=".PendingPost_JobDetails"></activity>
+        <activity android:name=".edit_profileActivity" />
+        <activity android:name=".UserPersona" />
+        <activity android:name=".SavedJobsDetails_activity" />
+        <activity android:name=".AppliedJobsDetails" />
+        <activity android:name=".adminJob_Details" />
         <activity android:name=".Job_Details" />
         <activity android:name=".UserActivity" />
         <activity android:name=".AdminActivity" />
@@ -31,5 +29,8 @@
         </activity>
         <activity android:name=".LogInActivity" />
     </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

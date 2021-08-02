@@ -11,19 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.bits.jobhunt.LogInActivity;
+import android.widget.Spinner;
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
 import com.bits.jobhunt.adminjobAdapter;
 import com.bits.jobhunt.myadapter;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,20 +29,23 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
-
-
-public class Admin_dashboardFragment extends Fragment {
+public class Admin_dashboardFragment extends Fragment implements AdapterView.OnItemSelectedListener{
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
     adminjobAdapter ajobAdapter;
     RecyclerView recview;
     ArrayList<Model> datalist;
     EditText search_bar;
+    Spinner filterSpinner;
+    ArrayAdapter admin_jobType_arrayAdapter;
+    //-------------------------------------
+    ArrayList<Model> filteredList =  new ArrayList<>();
+    String[] searchCategory = {"Location", "Industry", "CompanyName","EmployeementType", "JobName"};
+    String selectedCategory ;
+
 
 
     public Admin_dashboardFragment() {
@@ -72,20 +73,24 @@ public class Admin_dashboardFragment extends Fragment {
         fireStore = FirebaseFirestore.getInstance();
         NavigationView navigationView = getActivity().findViewById(R.id.navigationView);
         search_bar = view.findViewById(R.id.admin_dashboard_searchbar);
-        recview=view.findViewById(R.id.admin_dashboard_recycleView);
+        recview = view.findViewById(R.id.admin_dashboard_recycleView);
         recview.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        datalist=new ArrayList<>();
-        ajobAdapter=new adminjobAdapter(datalist);
+        datalist = new ArrayList<>();
+        ajobAdapter = new adminjobAdapter(datalist);
         recview.setAdapter(ajobAdapter);
+        filterSpinner = view.findViewById(R.id.admin_spinner_filter);
+        filterSpinner.setOnItemSelectedListener(this);
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        fireStore.collection("Jobs").orderBy("JobName").get()
+        admin_jobType_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, searchCategory);
+        admin_jobType_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filterSpinner.setAdapter(admin_jobType_arrayAdapter);
+        fireStore.collection("Jobs").whereEqualTo("Status","Approved").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
-                        for(DocumentSnapshot d:list)
-                        {
-                            Model obj=d.toObject(Model.class);
+                        List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                        for (DocumentSnapshot d : list) {
+                            Model obj = d.toObject(Model.class);
                             datalist.add(obj);
                             ajobAdapter.notifyDataSetChanged();
                         }
@@ -97,7 +102,7 @@ public class Admin_dashboardFragment extends Fragment {
         search_bar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                ajobAdapter=new adminjobAdapter(datalist);
+                ajobAdapter = new adminjobAdapter(datalist);
             }
 
             @Override
@@ -113,19 +118,56 @@ public class Admin_dashboardFragment extends Fragment {
         });
 
     }
+    private void filter(String text) {
 
-    private void filter(String text)
-    {
-        ArrayList<Model> filteredList = new ArrayList<>();
+        for (Model model : datalist) {
 
-        for(Model model : datalist)
-        {
-            if (model.getJobName().toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(model);
+            if (selectedCategory == searchCategory[0])
+            {
+                if (model.getLocation().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(model);
+                }
             }
+            else if (selectedCategory == searchCategory[1])
+            {
+                if (model.getJobType().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(model);
+                }
+            }
+            else if(selectedCategory == searchCategory[2])
+            {
+                if (model.getCompanyName().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(model);
+                }
+            }
+            else if(selectedCategory == searchCategory[3])
+            {
+                if (model.getJobType().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(model);
+                }
+            }
+            else if(selectedCategory.equals(searchCategory[4]))
+            {
+                if (model.getJobName().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(model);
+                }
+            }
+
+            recview.setAdapter(new adminjobAdapter(filteredList));
+            ajobAdapter.notifyDataSetChanged();
         }
 
-        ajobAdapter.filterList(filteredList);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        selectedCategory = filterSpinner.getSelectedItem().toString();
+    }
+
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
 

@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item android:title="Job Post"
-            android:icon="@drawable/dash"
-            android:id="@+id/job_post"/>
+        <item android:id="@+id/job_post"
+            android:title="Job Post"
+            android:icon="@drawable/dash"/>
 
-        <item android:title="User Lists"
-            android:icon="@drawable/user_list"
-            android:id="@+id/userlists"/>
+        <item android:id="@+id/userlists"
+            android:title="User Lists"
+            android:icon="@drawable/user_list"/>
 
+        <item android:id="@+id/pendingpost"
+            android:title="Pending Post"
+            android:icon="@drawable/pending_post"/>
 
-        <item android:title="Pending Post"
-            android:icon="@drawable/pending_post"
-            android:id="@+id/pendingpost"/>
-
-
-        <item android:title="Logout"
+        <item android:id="@+id/logout"
             android:icon="@drawable/logout"
-            android:id="@+id/logout"/>
+            android:title="Logout"/>
     </group>
 </menu>

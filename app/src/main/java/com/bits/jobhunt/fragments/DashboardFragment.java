@@ -1,11 +1,9 @@
 package com.bits.jobhunt.fragments;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,16 +12,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +25,6 @@ import android.widget.Toast;
 import com.bits.jobhunt.LogInActivity;
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
-import com.bits.jobhunt.UserActivity;
 import com.bits.jobhunt.myadapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,8 +34,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,7 +97,7 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
         filterSpinner.setOnItemSelectedListener(this);
 
 
-        recview=view.findViewById(R.id.dashboard_recycleView);
+        recview=view.findViewById(R.id.pendingpost_recycleView);
         recview.setLayoutManager(new LinearLayoutManager(view.getContext()));
         datalist=new ArrayList<>();
         adapter=new myadapter(datalist);
@@ -182,7 +173,7 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
 
         }
 
-        fireStore.collection("Jobs").orderBy("JobName").get()
+        fireStore.collection("Jobs").whereEqualTo("Status","Approved").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -193,11 +184,11 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
                             datalist.add(obj);
                             adapter.notifyDataSetChanged();
                         }
-                       search_bar.clearFocus();
+                        search_bar.clearFocus();
                     }
                 });
 
-      }
+    }
 
 
 
