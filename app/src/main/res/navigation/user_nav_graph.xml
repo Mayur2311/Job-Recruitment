@@ -25,10 +25,5 @@
         android:name="com.bits.jobhunt.fragments.AppliedJobs"
         android:label="fragment_applied_jobs"
         tools:layout="@layout/fragment_applied_jobs" />
-    <fragment
-        android:id="@+id/addedPost"
-        android:name="com.bits.jobhunt.AddedPost"
-        android:label="fragment_added_post"
-        tools:layout="@layout/fragment_added_post" />
 
 </navigation>
