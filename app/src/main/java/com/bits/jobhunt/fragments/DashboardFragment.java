@@ -183,8 +183,6 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
 
                 }
             });
-
-
         }
 
         fireStore.collection("Jobs").whereEqualTo("Status","Approved").get()

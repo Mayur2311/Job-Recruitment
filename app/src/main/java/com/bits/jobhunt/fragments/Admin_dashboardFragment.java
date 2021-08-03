@@ -41,6 +41,8 @@ public class Admin_dashboardFragment extends Fragment implements AdapterView.OnI
     EditText search_bar;
     Spinner filterSpinner;
     ArrayAdapter admin_jobType_arrayAdapter;
+
+
     //-------------------------------------
     ArrayList<Model> filteredList =  new ArrayList<>();
     String[] searchCategory = {"Location", "Industry", "CompanyName","EmployeementType", "JobName"};
@@ -84,6 +86,7 @@ public class Admin_dashboardFragment extends Fragment implements AdapterView.OnI
         admin_jobType_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, searchCategory);
         admin_jobType_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         filterSpinner.setAdapter(admin_jobType_arrayAdapter);
+
         fireStore.collection("Jobs").whereEqualTo("Status","Approved").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -113,7 +116,17 @@ public class Admin_dashboardFragment extends Fragment implements AdapterView.OnI
 
             @Override
             public void afterTextChanged(Editable s) {
-                filter(s.toString());
+                filteredList.clear();
+
+                if(s.toString().isEmpty())
+                {
+                    recview.setAdapter(new myadapter(datalist));
+                    ajobAdapter.notifyDataSetChanged();
+                }
+                else
+                {
+                    filter(s.toString());
+                }
             }
         });
 
