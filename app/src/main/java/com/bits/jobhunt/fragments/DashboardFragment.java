@@ -1,6 +1,8 @@
 package com.bits.jobhunt.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +37,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,8 +62,11 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
     myadapter adapter;
     Spinner filterSpinner;
     ArrayAdapter jobType_arrayAdapter;
+    NavigationView navigationView;
 
-    //-------------------------------------
+
+    //-----------------------------------------------------------------------------------//
+
     ArrayList<Model> filteredList =  new ArrayList<>();
     String[] searchCategory = {"Location", "Industry", "CompanyName","EmployeementType", "JobName"};
     String selectedCategory ;
@@ -83,12 +94,16 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //navigationView = view.findViewById(R.id.navigationView);
+
+
         firebaseAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
         search_bar = view.findViewById(R.id.searchBar_dashboard);
 
+
         userId = firebaseAuth.getCurrentUser().getUid();
-        NavigationView navigationView = getActivity().findViewById(R.id.navigationView);
+        navigationView = view.findViewById(R.id.navigationView);
 
         resendCode = view.findViewById(R.id.resendcode);
         verifyMsg = view.findViewById(R.id.email_verification);
@@ -104,7 +119,6 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
         recview.setAdapter(adapter);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
-
 
         jobType_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, searchCategory);
         jobType_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

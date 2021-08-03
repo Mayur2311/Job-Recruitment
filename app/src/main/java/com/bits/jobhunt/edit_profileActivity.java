@@ -59,6 +59,7 @@ public class edit_profileActivity extends AppCompatActivity {
     Toolbar toolbar;
     String userEmail;
     String imgUrl;
+    StorageReference stref;
 
 
     @Override
@@ -101,12 +102,12 @@ public class edit_profileActivity extends AppCompatActivity {
         //------------Getting and Setting image on the image view-------------//
 
 
-        storageReference = FirebaseStorage.getInstance().getReference("images/"+userEmail+"/images/"+userEmail);
+        stref = FirebaseStorage.getInstance().getReference("images/"+userEmail);
 
         try
         {
             File localfile = File.createTempFile("tempfile",".jpg");
-             storageReference.getFile(localfile)
+             stref.getFile(localfile)
                      .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -126,15 +127,6 @@ public class edit_profileActivity extends AppCompatActivity {
 
         //----------------------------------------------------------------------------------------------------//
 
-        db.collection("Upload image").document(userEmail).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()){
-                     DocumentSnapshot doc = task.getResult();
-                     imgUrl = (String) doc.get("imageurl");
-                }
-            }
-        });
 
         documentReference= db.collection("ProfileUpdate").document(user.getUid());
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

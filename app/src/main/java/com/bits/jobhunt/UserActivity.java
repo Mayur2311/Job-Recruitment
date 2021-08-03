@@ -10,18 +10,37 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-public class UserActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.io.File;
+import java.io.IOException;
+
+  public class UserActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavController navController;
     NavigationView navigationView;
     FirebaseAuth firebaseAuth;
+
+    View headview;
+    ImageView headerImage;
+    StorageReference storageRef;
+    String ueml;
+    TextView header_textview_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +48,31 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_user);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        ueml = firebaseAuth.getCurrentUser().getEmail();
 
         setupNavigation();
+
+        header_textview_email.setText(ueml);
+
+
+            storageRef = FirebaseStorage.getInstance().getReference("images/"+ueml);
+            try
+            {
+                File localfile = File.createTempFile("tempfile",".jpg");
+                storageRef.getFile(localfile)
+                        .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
+                                headerImage.setImageBitmap(bitmap);
+                            }
+                        });
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+                Toast.makeText(this, "Failed to retrive image", Toast.LENGTH_SHORT).show();
+            }
 
 
     }
@@ -93,7 +135,12 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         navController = Navigation.findNavController(this, R.id.host_fragment_user);
+
+        headview = navigationView.getHeaderView(0);
+        headerImage = headview.findViewById(R.id.userHeadImage);
+        header_textview_email = headview.findViewById(R.id.txt_header_email);
     }
+
 
     @Override
     public void onBackPressed() {

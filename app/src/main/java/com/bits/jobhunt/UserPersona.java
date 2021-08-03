@@ -44,6 +44,7 @@ import com.google.firebase.storage.UploadTask;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.io.IOException;
 
 public class UserPersona extends AppCompatActivity {
     FirebaseFirestore db;
@@ -55,6 +56,9 @@ public class UserPersona extends AppCompatActivity {
     ImageView userPicture;
     String imgUrl;
     Toolbar toolbar;
+    StorageReference storageReference;
+    String uemail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,23 +87,33 @@ public class UserPersona extends AppCompatActivity {
 
         fauth=FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
-        user=fauth.getCurrentUser();
+        user = fauth.getCurrentUser();
+        uemail = user.getEmail();
+
+
+        storageReference = FirebaseStorage.getInstance().getReference("images/"+uemail);
+
+        try
+        {
+            File localfile = File.createTempFile("tempfile",".jpg");
+            storageReference.getFile(localfile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
+                            userPicture.setImageBitmap(bitmap);
+
+                        }
+                    });
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            Toast.makeText(this, "Failed to retrive image", Toast.LENGTH_SHORT).show();
+        }
+
 
         documentReference= db.collection("ProfileUpdate").document(user.getUid());
-
-        db.collection("Upload image").document(user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                if (task.getResult().exists())
-                {
-                    imgUrl = task.getResult().getString("imageurl");
-
-                       Glide.with(getApplicationContext())
-                            .load(imgUrl)
-                            .into(userPicture);
-                }
-            }
-        });
 
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
