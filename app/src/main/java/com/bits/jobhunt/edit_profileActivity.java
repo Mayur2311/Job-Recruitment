@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,6 +32,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +51,8 @@ public class edit_profileActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     FirebaseAuth fAuth=FirebaseAuth.getInstance();
     Toolbar toolbar;
+    String userEmail;
+    String imgUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,7 @@ public class edit_profileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         toolbar = findViewById(R.id.edit_profile_toolbar);
-//        toolbar.setTitle("Edit Profile");
+//      toolbar.setTitle("Edit Profile");
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -84,27 +89,43 @@ public class edit_profileActivity extends AppCompatActivity {
         submit_PDF.setEnabled(false);
 
         user=fAuth.getCurrentUser();
-        // String currentuid=user.getUid();
+        userEmail = user.getEmail();
+
+
+        db.collection("Upload image").document(userEmail).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    DocumentSnapshot doc = task.getResult();
+                    imgUrl = (String) doc.get("imageurl");
+                }
+            }
+        });
+
         documentReference= db.collection("ProfileUpdate").document(user.getUid());
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.getResult().exists()){
+
                     String firstnameResult=task.getResult().getString("firstName");
                     String lastnameResult=task.getResult().getString("lastName");
                     String mobilenumber=task.getResult().getString("mobilenumber");
                     String city=task.getResult().getString("City");
+
                     et_firstname.setText(firstnameResult);
                     et_lastname.setText(lastnameResult);
                     edt_mobile.setText(mobilenumber);
                     edt_city.setText(city);
-                }else{
+
+                }
+                else
+                    {
                     Toast.makeText(edit_profileActivity.this,"No Profile",Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
+
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,6 +175,7 @@ public class edit_profileActivity extends AppCompatActivity {
         String e2=edt_education2.getText().toString();
         String e3=edt_education3.getText().toString();
         user=fAuth.getCurrentUser();
+
         Map<String, Object> updateData = new HashMap<>();
 
         updateData.put("firstName",finame);
@@ -169,20 +191,18 @@ public class edit_profileActivity extends AppCompatActivity {
         updateData.put("Other Education", e3);
 
 
-                db.collection("ProfileUpdate").document(user.getUid()).set(updateData)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(edit_profileActivity.this,"",Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
+        db.collection("ProfileUpdate").document(user.getUid()).set(updateData)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(edit_profileActivity.this,"",Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(edit_profileActivity.this,"failed",Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
     }
 
     private void choosePicture() {
@@ -203,7 +223,9 @@ public class edit_profileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1&& resultCode==RESULT_OK &&data.getData()!=null){
+
+        if(requestCode==1 && resultCode==RESULT_OK &&data.getData()!=null){
+
             imageUri=data.getData();
             profilePic.setImageURI(imageUri);
             uploadPicture(data.getData());
@@ -228,8 +250,9 @@ public class edit_profileActivity extends AppCompatActivity {
         user=FirebaseAuth.getInstance().getCurrentUser();
         pd.setTitle("Uploading Image....");
         pd.show();
-        String randomKey= user.getEmail().toString();
+        String randomKey= user.getEmail();
         StorageReference imagesRef = storageReference.child("images/"+randomKey);
+
         imagesRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -237,12 +260,12 @@ public class edit_profileActivity extends AppCompatActivity {
                 while (!uriTask.isComplete()) ;
                 Uri uri = uriTask.getResult();
                 Model model = new Model( imageUri.toString());
+
                 db.collection("Upload image").document(user.getEmail()).set(model).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         pd.dismiss();
                         Toast.makeText(edit_profileActivity.this, "Image Upload", Toast.LENGTH_LONG).show();
-
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -260,13 +283,7 @@ public class edit_profileActivity extends AppCompatActivity {
                 pd.setMessage("Percentage:"+(int)progressPercent+"%");
             }
         });
-
-
-        }
-
-
-
-
+    }
 
     private void uploadPDFFileFirebase(Uri data)
     {
