@@ -46,11 +46,14 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.dash) {
             navController.navigate(R.id.dashboardFragment);
-        }else if (id == R.id.job_post){}
+        }
+        else if (id == R.id.job_post){}
        else if (id == R.id.savedpost){
            navController.navigate(R.id.saved_JobFragment);
         }
-       else if (id == R.id.postadded){}
+       else if (id == R.id.postadded){
+            navController.navigate(R.id.addedPost);
+        }
        else if(id==R.id.addnewjobpost){
            navController.navigate(R.id.add_postFragment);
         }

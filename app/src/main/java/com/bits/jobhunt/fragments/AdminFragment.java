@@ -56,7 +56,6 @@ public class AdminFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-
     }
 
     @Override
