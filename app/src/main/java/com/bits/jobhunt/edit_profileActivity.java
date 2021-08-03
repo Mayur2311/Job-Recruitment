@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -28,6 +30,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Transaction;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -35,11 +38,14 @@ import com.google.firebase.storage.UploadTask;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class edit_profileActivity extends AppCompatActivity {
+
     EditText et_firstname, et_lastname, edt_mobile,edt_city,edt_select_PDF, edt_aboutme, edt_education1, edt_education2, edt_education3, edt_experience1, edt_experience2, edt_experience3;
     Button submit_PDF,btn_save;
     StorageReference storageReference;
@@ -53,6 +59,7 @@ public class edit_profileActivity extends AppCompatActivity {
     Toolbar toolbar;
     String userEmail;
     String imgUrl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +98,33 @@ public class edit_profileActivity extends AppCompatActivity {
         user=fAuth.getCurrentUser();
         userEmail = user.getEmail();
 
+        //------------Getting and Setting image on the image view-------------//
+
+
+        storageReference = FirebaseStorage.getInstance().getReference("images/"+userEmail);
+
+        try
+        {
+            File localfile = File.createTempFile("tempfile",".jpg");
+            storageReference.getFile(localfile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
+                            profilePic.setImageBitmap(bitmap);
+
+                        }
+                    });
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            Toast.makeText(this, "Failed to retrive image", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+        //----------------------------------------------------------------------------------------------------//
 
         db.collection("Upload image").document(userEmail).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -119,8 +153,7 @@ public class edit_profileActivity extends AppCompatActivity {
                     edt_city.setText(city);
 
                 }
-                else
-                    {
+                else {
                     Toast.makeText(edit_profileActivity.this,"No Profile",Toast.LENGTH_SHORT).show();
                 }
             }
