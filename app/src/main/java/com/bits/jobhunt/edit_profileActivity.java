@@ -106,8 +106,8 @@ public class edit_profileActivity extends AppCompatActivity {
         try
         {
             File localfile = File.createTempFile("tempfile",".jpg");
-            storageReference.getFile(localfile)
-                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+             storageReference.getFile(localfile)
+                     .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                             Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
@@ -130,8 +130,8 @@ public class edit_profileActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()){
-                    DocumentSnapshot doc = task.getResult();
-                    imgUrl = (String) doc.get("imageurl");
+                     DocumentSnapshot doc = task.getResult();
+                     imgUrl = (String) doc.get("imageurl");
                 }
             }
         });

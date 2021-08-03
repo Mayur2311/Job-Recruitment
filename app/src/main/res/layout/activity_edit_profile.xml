@@ -7,8 +7,8 @@
     tools:context=".edit_profileActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/edit_profile_toolbar"
-        android:layout_width="match_parent"
+         android:id="@+id/edit_profile_toolbar"
+         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/mainapp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
