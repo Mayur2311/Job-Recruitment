@@ -101,7 +101,7 @@ public class edit_profileActivity extends AppCompatActivity {
         //------------Getting and Setting image on the image view-------------//
 
 
-        storageReference = FirebaseStorage.getInstance().getReference("images/"+userEmail);
+        storageReference = FirebaseStorage.getInstance().getReference("images/"+userEmail+"/images/"+userEmail);
 
         try
         {
