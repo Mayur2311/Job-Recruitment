@@ -6,45 +6,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.user_listFragment">
 
-    <RelativeLayout
-        android:id="@+id/relative_layout"
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:weightSum="2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
 
         <EditText
-            android:id="@+id/user_list_searchbar"
-            android:layout_width="match_parent"
+            android:id="@+id/userlist_searchbar"
+            android:layout_width="275dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="25dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:cursorVisible="true"
-            android:drawableLeft="@drawable/search"
             android:background="@drawable/round_corner"
+            android:drawableLeft="@drawable/search"
+            android:drawableRight="@drawable/filter"
             android:drawablePadding="10dp"
             android:ems="10"
-            android:padding="15dp"
-            android:hint="Search"/>
-
-        <Button
-            android:id="@+id/user_list_find"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:hint="Search"
+            android:padding="15dp" />
+        <Spinner
+            android:id="@+id/user_spinner_filter"
+            android:textAlignment="center"
+            android:layout_width="150dp"
+            android:layout_weight="1"
+            android:layout_height="58dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
             android:layout_marginRight="10dp"
-            android:layout_below="@+id/user_list_searchbar"
-            android:text="Find"
-            android:backgroundTint="@color/mainapp"/>
+            android:layout_marginBottom="20dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
 
-    </RelativeLayout>
 
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,7 +57,7 @@
         android:layout_marginRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/relative_layout">
+        app:layout_constraintTop_toBottomOf="@id/linear_layout">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

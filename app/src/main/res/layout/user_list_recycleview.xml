@@ -30,7 +30,7 @@
             android:paddingBottom="10dp">
 
             <TextView
-                android:id="@+id/user_list_name"
+                android:id="@+id/user_list_firstname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -42,15 +42,33 @@
                 android:paddingBottom="5dp"
                 android:backgroundTint="#E3E9EA"
                 android:background="@drawable/round_corner"
-                android:text="Name"
+                android:text="Firstname"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/user_list_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/user_list_firstname"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:backgroundTint="#E3E9EA"
+                android:background="@drawable/round_corner"
+                android:text="Lastname"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
+
             <TextView
-                android:id="@+id/user_list_email"
+                android:id="@+id/user_list_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/user_list_name"
+                android:layout_below="@+id/user_list_lastname"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
@@ -61,7 +79,7 @@
                 android:paddingBottom="5dp"
                 android:backgroundTint="#E3E9EA"
                 android:background="@drawable/round_corner"
-                android:text="Email"
+                android:text="City"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -69,7 +87,7 @@
                 android:id="@+id/user_list_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/user_list_email"
+                android:layout_below="@+id/user_list_city"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
@@ -83,6 +101,32 @@
                 android:text="Mobile"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/deletepost"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="9dp"
+                android:layout_below="@+id/user_list_mobile"
+                android:backgroundTint="@color/mainapp"
+                android:text="Delete"
+                android:textSize="15dp" />
+
+          <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingactionbutton"
+                constraintHorizontal_bias="0.884"
+                constraintVertical_bias="0.945"
+                app:srcCompact="@drawable/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_list_mobile"
+                android:layout_alignParentEnd="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />-->
+
 
         </RelativeLayout>
 
