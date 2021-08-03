@@ -21,34 +21,33 @@
 
     <ScrollView
         android:id="@+id/scroll_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_toolbar"
+        android:layout_width="410dp"
+        android:layout_height="665dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_toolbar">
 
         <RelativeLayout
             android:id="@+id/relative_layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:background="@drawable/round_corner"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:background="@drawable/round_corner">
+            android:orientation="vertical">
 
 
             <TextView
                 android:id="@+id/personal_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:text="Personal Info"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
-
 
             <ImageView
                 android:id="@+id/profilePic"
@@ -59,17 +58,18 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="123dp"
                 android:layout_marginRight="50dp"
-                android:background="@drawable/addprofile" />
+                android:background="@drawable/addprofile"/>
+
             <TextView
+                android:id="@+id/change_profile_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/change_profile_btn"
                 android:layout_below="@+id/profilePic"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="Change Profile"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
             <EditText
@@ -120,26 +120,25 @@
                 android:textSize="20sp" />
 
             <RelativeLayout
+                android:id="@+id/r"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/city"
                 android:layout_alignParentStart="true"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/r"
-                android:layout_below="@+id/city">
+                android:layout_alignParentLeft="true"
+                android:layout_centerHorizontal="true">
 
                 <com.hbb20.CountryCodePicker
                     android:id="@+id/ccp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_alignParentLeft="true"
-                    android:textSize="30sp"
-                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/round_corner"
                     android:text="User"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
 
                 <EditText
                     android:id="@+id/mobile"
@@ -162,8 +161,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/r"
-                android:layout_marginTop="30dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
                 android:padding="3dp"
                 android:text="About"
@@ -176,14 +175,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/about"
-                android:background="@drawable/round_corner"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
+                android:background="@drawable/round_corner"
                 android:hint="Write something about you"
+                android:paddingLeft="15dp"
+                android:paddingTop="3dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="3dp"
                 android:textSize="20sp" />
 
             <TextView
@@ -236,15 +235,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edt_experience2"
-                android:background="@drawable/round_corner"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/round_corner"
                 android:hint="Experience"
+                android:paddingLeft="15dp"
+                android:paddingTop="3dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="3dp"
                 android:textSize="20sp" />
 
             <TextView
@@ -252,28 +251,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edt_experience3"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="3dp"
                 android:text="Education"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edt_education1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/education"
-                android:background="@drawable/round_corner"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
+                android:background="@drawable/round_corner"
                 android:hint="Education"
+                android:paddingLeft="15dp"
+                android:paddingTop="3dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="3dp"
                 android:textSize="20sp" />
 
             <EditText
@@ -297,16 +296,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edt_education2"
-                android:background="@drawable/round_corner"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/round_corner"
                 android:hint="Education"
+                android:paddingLeft="15dp"
+                android:paddingTop="3dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="3dp"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -314,12 +313,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/edt_education3"
-                android:orientation="horizontal"
-                android:background="@drawable/round_corner"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
+                android:background="@drawable/round_corner"
+                android:orientation="horizontal"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp">
 
@@ -327,17 +326,17 @@
                     android:id="@+id/edt_select_PDF"
                     android:layout_width="220dp"
                     android:layout_height="35dp"
-                    android:background="@drawable/round_corner"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="3dp"
+                    android:background="@drawable/round_corner"
                     android:hint="Select PDF"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="3dp"
                     android:textColor="#0000FF"
                     android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/submit_PDF"
