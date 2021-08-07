@@ -46,7 +46,7 @@ public class AddedPostAdapter extends RecyclerView.Adapter<AddedPostAdapter.adde
                 intent.putExtra("Qualifications",addeddatalist.get(position).getQualifications());
                 intent.putExtra("Salary",addeddatalist.get(position).getSalary());
                 intent.putExtra("numberOFHires",addeddatalist.get(position).getNumberOFHires());
-                //   intent.putExtra("Position",addeddatalist.get(position).getUid());
+                intent.putExtra("Email",addeddatalist.get(position).getEmail());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.user_addedjob_job_title.getContext().startActivity(intent);
 
