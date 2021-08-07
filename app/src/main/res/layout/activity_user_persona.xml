@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schema
+    s.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/mainapp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:title="Profile"
+        app:title="personal_info"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +43,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:text="Personal Info"
+                android:text="@string/personal_info"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -70,7 +71,7 @@
                 android:drawableLeft="@drawable/name"
                 android:drawablePadding="15dp"
                 android:padding="3dp"
-                android:hint="First name"
+                android:hint="@string/first_name"
                 android:textSize="20sp" />
 
             <TextView
@@ -85,10 +86,8 @@
                 android:drawableLeft="@drawable/name"
                 android:drawablePadding="15dp"
                 android:padding="3dp"
-                android:hint="Last name"
+                android:hint="@string/last_name"
                 android:textSize="20sp" />
-
-
 
             <TextView
                 android:id="@+id/mobile"
@@ -102,7 +101,7 @@
                 android:drawableLeft="@drawable/mobile"
                 android:drawablePadding="15dp"
                 android:padding="3dp"
-                android:hint="Mobile"
+                android:hint="@string/Mobile_No"
                 android:textSize="20sp" />
             <TextView
                 android:id="@+id/city"
@@ -117,7 +116,7 @@
                 android:drawableTint="@color/black"
                 android:drawablePadding="15dp"
                 android:padding="3dp"
-                android:hint="city"
+                android:hint="@string/city"
                 android:textSize="20sp" />
 
             <TextView
@@ -129,7 +128,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="3dp"
-                android:text="About"
+                android:text="@string/About"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -142,7 +141,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
-                android:hint="About you"
+                android:hint="@string/About"
                 android:paddingLeft="15dp"
                 android:paddingTop="3dp"
                 android:paddingRight="10dp"
@@ -175,7 +174,7 @@
                 android:paddingRight="10dp"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
-                android:hint="Experience"
+                android:hint="@string/Experience"
                 android:textSize="20sp" />
 
             <TextView
@@ -191,7 +190,7 @@
                 android:paddingRight="10dp"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
-                android:hint="Experience"
+                android:hint="@string/Experience"
                 android:textSize="20sp" />
 
             <TextView
@@ -207,7 +206,7 @@
                 android:paddingRight="10dp"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
-                android:hint="Experience"
+                android:hint="@string/Experience"
                 android:textSize="20sp" />
 
             <TextView
@@ -219,7 +218,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="3dp"
-                android:text="Education"
+                android:text="@string/Education"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold"/>
@@ -236,7 +235,7 @@
                 android:paddingRight="10dp"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
-                android:hint="Education"
+                android:hint="@string/Education"
                 android:textSize="20sp" />
 
             <TextView
@@ -252,7 +251,7 @@
                 android:paddingRight="10dp"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
-                android:hint="Education"
+                android:hint="@string/Education"
                 android:textSize="20sp" />
 
             <TextView
@@ -269,7 +268,7 @@
                 android:paddingRight="10dp"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
-                android:hint="Education"
+                android:hint="@string/Education"
                 android:textSize="20sp" />
 
 <!--            <Button-->

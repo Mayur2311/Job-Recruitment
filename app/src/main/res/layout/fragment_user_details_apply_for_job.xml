@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="Personal Info"
+            android:text="@string/personal_info"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -41,7 +41,7 @@
             android:drawableLeft="@drawable/name"
             android:drawablePadding="15dp"
             android:padding="3dp"
-            android:text="Full name"
+            android:text="@string/Fullname"
             android:textSize="20sp" />
 
         <TextView
@@ -55,7 +55,7 @@
             android:drawableLeft="@drawable/mail"
             android:drawablePadding="15dp"
             android:padding="3dp"
-            android:text="Email"
+            android:text="@string/email"
             android:textSize="20sp" />
 
         <TextView
@@ -69,7 +69,7 @@
             android:drawableLeft="@drawable/mobile"
             android:drawablePadding="15dp"
             android:padding="3dp"
-            android:text="Mobile"
+            android:text="@string/Mobile_No"
             android:textSize="20sp" />
 
     </RelativeLayout>
@@ -98,7 +98,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:padding="3dp"
-            android:text="About"
+            android:text="@string/About"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -123,7 +123,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:padding="3dp"
-            android:text="Experience"
+            android:text="@string/Experience"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold"/>
@@ -170,7 +170,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:padding="3dp"
-            android:text="Education"
+            android:text="@string/Education"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold"/>

@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:text="Add new job"
+            android:text="@string/Add_new_job"
             android:textColor="@color/black"
             android:textSize="37dp"
             android:textStyle="bold" />
@@ -39,7 +39,7 @@
             android:background="@drawable/round_corner"
             android:drawableLeft="@drawable/job_title"
             android:drawablePadding="15dp"
-            android:hint="Job Title"
+            android:hint="@string/Job_details_job_title"
             android:padding="10dp"/>
 
         <EditText
@@ -54,7 +54,7 @@
             android:background="@drawable/round_corner"
             android:drawableLeft="@drawable/company_name"
             android:drawablePadding="15dp"
-            android:hint="Company Name"
+            android:hint="@string/company_name"
             android:padding="10dp"/>
         <LinearLayout
             android:id="@+id/linear_layout4"
@@ -76,7 +76,7 @@
             android:background="@drawable/round_corner"
             android:drawableLeft="@drawable/location"
             android:drawablePadding="15dp"
-            android:hint="Location"
+            android:hint="@string/company_location"
             android:padding="10dp"
             android:inputType="none"/>
         <Spinner
@@ -109,7 +109,7 @@
                 android:drawableLeft="@drawable/salary"
                 android:drawablePadding="15dp"
                 android:inputType="phone"
-                android:hint=" Salary"
+                android:hint="@string/Salary"
                 android:padding="10dp" />
 
 
@@ -122,7 +122,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/round_corner"
                 android:drawablePadding="15dp"
-                android:hint=" Salary"
+                android:hint="@string/Salary"
                 android:padding="10dp" />
 
             <Spinner
@@ -174,7 +174,7 @@
                 android:background="@drawable/round_corner"
                 android:drawableLeft="@drawable/job_type"
                 android:drawablePadding="15dp"
-                android:hint=" Job type"
+                android:hint="@string/job_type"
                 android:textSize="18sp"
                 android:padding="10dp"/>
 
@@ -198,7 +198,7 @@
             android:background="@drawable/round_corner"
             android:drawableLeft="@drawable/job_category"
             android:drawablePadding="15dp"
-            android:hint=" Job category"
+            android:hint="@string/Job_Category"
             android:padding="10dp"/>
 
         <LinearLayout
@@ -218,7 +218,7 @@
                 android:background="@drawable/round_corner"
                 android:drawableLeft="@drawable/number_of_hires"
                 android:drawablePadding="15dp"
-                android:hint="Number of hires"
+                android:hint="@string/Number_of_hires_for_this_role"
                 android:textSize="18sp"
                 android:padding="10dp"/>
 
@@ -243,7 +243,7 @@
             android:background="@drawable/round_corner"
             android:drawableLeft="@drawable/qualification"
             android:drawablePadding="15dp"
-            android:hint=" Qualification"
+            android:hint="@string/Qualifications"
             android:padding="10dp"/>
 
 
@@ -259,7 +259,7 @@
             android:background="@drawable/round_corner"
             android:drawableLeft="@drawable/description"
             android:drawablePadding="15dp"
-            android:hint=" Description"
+            android:hint="@string/Description"
             android:padding="10dp"/>
 
 
@@ -273,7 +273,7 @@
             android:layout_marginRight="20dp"
             android:alpha="0.8"
             android:backgroundTint="@color/primaryDarkColor"
-            android:text="Add New"
+            android:text="@string/Add_new_btn"
             android:textColor="@color/white" />
 
 

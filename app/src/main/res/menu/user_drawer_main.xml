@@ -2,34 +2,35 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="single">
-        <item android:title="Job Posts"
+        <item android:title="@string/JobPost"
             android:icon="@drawable/dash"
             android:id="@+id/dash"/>
-        <item android:title="Add New Job Post"
+
+        <item android:title="@string/Add_new_job"
             android:icon="@drawable/addnewjobpost"
             android:id="@+id/addnewjobpost"/>
 
-        <item android:title="Applied Posts"
+        <item android:title="@string/AppliedPosts"
             android:icon="@drawable/applied_post"
             android:id="@+id/appliedpost"/>
 
-        <item android:title="Saved Posts"
+        <item android:title="@string/savedposts"
             android:icon="@drawable/saved_post"
             android:id="@+id/savedpost"/>
 
-        <item android:title="Added Posts"
+        <item android:title="@string/addedpost"
             android:icon="@drawable/add_post"
             android:id="@+id/postadded"/>
 
-        <item android:title="Update Profile"
+        <item android:title="@string/updateprofile"
             android:icon="@drawable/update_profile"
             android:id="@+id/updateprofile"/>
 
-        <item android:title="User Persona"
+        <item android:title="@string/userpersona"
             android:icon="@drawable/user_persona"
             android:id="@+id/userpersona"/>
 
-        <item android:title="Logout"
+        <item android:title="@string/logout"
             android:icon="@drawable/logout"
             android:id="@+id/logout"/>
     </group>

@@ -110,7 +110,7 @@
                 android:layout_marginTop="9dp"
                 android:layout_below="@+id/user_list_mobile"
                 android:backgroundTint="@color/mainapp"
-                android:text="Delete"
+                android:text="@string/delete"
                 android:textSize="15dp" />
 
           <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -24,7 +24,7 @@
                 android:id="@+id/user_added_job_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Job Title"
+                android:text="@string/Job_details_job_title"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:textColor="@color/black"
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_added_job_title"
-                android:text="Company Name"
+                android:text="@string/company_name"
                 android:textSize="19sp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -54,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_added_company"
-                android:text="Company Location"
+                android:text="@string/company_location"
                 android:textSize="19sp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -76,7 +76,7 @@
                 android:paddingLeft="10dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:text="Salary"
+                android:text="@string/Salary"
                 android:textSize="20sp" />
 
         </RelativeLayout>
