@@ -39,7 +39,7 @@
                 android:id="@+id/user_savedjobdetails_job_title"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="Job Title"
+                android:text="@string/Job_details_job_title"
                 android:textStyle="bold"
                 android:textSize="35sp"
                 android:textColor="@color/black"
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@id/user_savedjobdetails_job_title"
-                android:text="Company Name"
+                android:text="@string/company_name"
                 android:textSize="25sp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@id/user_savedjobdetails_company_name"
-                android:text="Company Location"
+                android:text="@string/company_location"
                 android:textSize="25sp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -85,7 +85,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="10dp"
-                android:text="Job Details"
+                android:text="@string/Job_details"
                 android:textSize="28sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
@@ -99,7 +99,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:text="Salary"
+                android:text="@string/Salary"
                 android:textSize="23sp"
                 android:textColor="@color/medium_black"/>
 
@@ -124,7 +124,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
                 android:paddingLeft="10dp"
-                android:text="Job Type"
+                android:text="@string/job_type"
                 android:textSize="23sp"
                 android:textColor="@color/medium_black"/>
 
@@ -149,7 +149,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
                 android:paddingLeft="10dp"
-                android:text="Number of hires for this role"
+                android:text="@string/Number_of_hires_for_this_role"
                 android:textSize="23sp"
                 android:textColor="@color/medium_black"/>
 
@@ -174,7 +174,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="10dp"
-                android:text="Qualifications"
+                android:text="@string/Qualifications"
                 android:textSize="28sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
@@ -200,7 +200,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="10dp"
-                android:text="Full job description"
+                android:text="@string/Description"
                 android:textSize="28sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
@@ -237,7 +237,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="115dp"
             android:backgroundTint="@color/mainapp"
-            android:text="Apply"
+            android:text="@string/apply_btn"
             android:textSize="25sp"/>
 
     </LinearLayout>

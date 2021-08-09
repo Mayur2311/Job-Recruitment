@@ -23,7 +23,7 @@
             android:layout_height="45dp"
             android:background="@color/mainapp"
             android:gravity="center"
-            android:text="Job Details"
+            android:text="@string/Job_details"
             android:textColor="@color/white"
             android:textSize="30dp"
             android:textStyle="bold"
@@ -61,7 +61,7 @@
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="5dp"
-                android:text="Job Title"
+                android:text="@string/Job_details_job_title"
                 android:textColor="@color/black"
                 android:textSize="35sp"
                 android:textStyle="bold" />
@@ -75,7 +75,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:text="Company Name"
+                android:text="@string/company_name"
                 android:textSize="25sp" />
 
             <TextView
@@ -87,7 +87,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:text="Company Location"
+                android:text="@string/company_location"
                 android:textSize="25sp" />
 
             <TextView
@@ -99,7 +99,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:text="Job Details"
+                android:text="@string/Job_details"
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -113,7 +113,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:text="Salary"
+                android:text="@string/Salary"
                 android:textColor="@color/medium_black"
                 android:textSize="23sp" />
 
@@ -138,7 +138,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:text="Job Type"
+                android:text="@string/job_type"
                 android:textColor="@color/medium_black"
                 android:textSize="23sp" />
 
@@ -163,7 +163,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:text="Number of hires for this role"
+                android:text="@string/vacancy"
                 android:textColor="@color/medium_black"
                 android:textSize="23sp" />
 
@@ -188,7 +188,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:text="Qualifications"
+                android:text="@string/Qualifications"
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -214,7 +214,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:text="Full job description"
+                android:text="@string/Full_job_discription"
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 android:textStyle="bold" />

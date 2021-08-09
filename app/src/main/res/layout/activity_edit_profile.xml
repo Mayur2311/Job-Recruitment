@@ -7,8 +7,8 @@
     tools:context=".edit_profileActivity">
 
     <androidx.appcompat.widget.Toolbar
-         android:id="@+id/edit_profile_toolbar"
-         android:layout_width="match_parent"
+        android:id="@+id/edit_profile_toolbar"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/mainapp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
@@ -36,7 +36,6 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
-
             <TextView
                 android:id="@+id/personal_info"
                 android:layout_width="match_parent"
@@ -44,7 +43,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:text="Personal Info"
+                android:text="@string/personal_info"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -68,7 +67,7 @@
                 android:layout_below="@+id/profilePic"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="Change Profile"
+                android:text="@string/change_profile"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -84,7 +83,7 @@
                 android:background="@drawable/round_corner"
                 android:drawableLeft="@drawable/name"
                 android:drawablePadding="15dp"
-                android:hint="First name"
+                android:hint="@string/first_name"
                 android:padding="3dp"
                 android:textSize="20sp" />
 
@@ -99,7 +98,7 @@
                 android:background="@drawable/round_corner"
                 android:drawableLeft="@drawable/name"
                 android:drawablePadding="15dp"
-                android:hint="Last name"
+                android:hint="@string/last_name"
                 android:padding="3dp"
                 android:textSize="20sp" />
 
@@ -116,7 +115,7 @@
                 android:drawableLeft="@drawable/city"
                 android:drawablePadding="15dp"
                 android:drawableTint="@color/black"
-                android:hint="City"
+                android:hint="@string/city"
                 android:padding="3dp"
                 android:textSize="20sp" />
 
@@ -151,7 +150,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_toEndOf="@+id/ccp"
                     android:background="@drawable/round_corner"
-                    android:hint=" Mobile No."
+                    android:hint="@string/Mobile_No"
                     android:inputType="phone"
                     android:padding="8dp" />
             </RelativeLayout>
@@ -166,7 +165,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
                 android:padding="3dp"
-                android:text="About"
+                android:text="@string/About"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -179,7 +178,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
-                android:hint="Write something about you"
+                android:hint="@string/Write_something_about_you"
                 android:paddingLeft="15dp"
                 android:paddingTop="3dp"
                 android:paddingRight="10dp"
@@ -195,7 +194,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="3dp"
-                android:text="Experience"
+                android:text="@string/Experience"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -208,7 +207,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
-                android:hint="Experience"
+                android:hint="@string/Experience"
                 android:paddingLeft="15dp"
                 android:paddingTop="3dp"
                 android:paddingRight="10dp"
@@ -224,7 +223,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
-                android:hint="Experience"
+                android:hint="@string/Experience"
                 android:paddingLeft="15dp"
                 android:paddingTop="3dp"
                 android:paddingRight="10dp"
@@ -240,7 +239,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
-                android:hint="Experience"
+                android:hint="@string/Experience"
                 android:paddingLeft="15dp"
                 android:paddingTop="3dp"
                 android:paddingRight="10dp"
@@ -256,7 +255,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="3dp"
-                android:text="Education"
+                android:text="@string/Education"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -269,7 +268,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
-                android:hint="Education"
+                android:hint="@string/Education"
                 android:paddingLeft="15dp"
                 android:paddingTop="3dp"
                 android:paddingRight="10dp"
@@ -285,7 +284,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
-                android:hint="Education"
+                android:hint="@string/Education"
                 android:paddingLeft="15dp"
                 android:paddingTop="3dp"
                 android:paddingRight="10dp"
@@ -302,7 +301,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/round_corner"
-                android:hint="Education"
+                android:hint="@string/Education"
                 android:paddingLeft="15dp"
                 android:paddingTop="3dp"
                 android:paddingRight="10dp"
@@ -345,7 +344,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/edt_select_PDF"
                     android:backgroundTint="@color/mainapp"
-                    android:text="Submit"
+                    android:text="@string/Submit"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -357,7 +356,7 @@
                 android:layout_below="@id/linear_layout"
                 android:layout_centerHorizontal="true"
                 android:backgroundTint="@color/primaryDarkColor"
-                android:text="SAVE"
+                android:text="@string/Save"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

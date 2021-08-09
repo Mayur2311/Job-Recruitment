@@ -3,6 +3,85 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="drawer_open">Open Navigation Drawer</string>
-
     <string name="drawer_close">Close Navigation Drawer</string>
+
+    <!-- Strings of Activiy_Added_job_details -->
+    <string name="Job_details_head">Job Details</string>
+    <string name="Job_details_job_title">Job Title</string>
+    <string name="company_name">Company Name</string>
+    <string name="company_location">Company location</string>
+    <string name="Job_details">Job Detials</string>
+    <string name="Salary">Salary</string>
+    <string name="job_type">Job type</string>
+    <string name="Qualifications">Qualification</string>
+    <string name="Full_job_discription">Description</string>
+    <string name="vacancy">Number of Hires</string>
+
+
+    <!-- Strings of Activity_Admin -->
+    <string name="Job_hunt">JobHunt</string>
+
+    <!-- Strings of Activity_Admin_job_details -->
+    <string name="delete_post_button">Delete Post</string>
+
+    <!-- Strings of activity_edit_profile  -->
+    <string name="personal_info">Personal Info</string>
+    <string name="change_profile">Change Profile</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="city">City</string>
+    <string name="Mobile_No">Mobile No</string>
+    <string name="About">About</string>
+    <string name="Write_something_about_you">Write something about you</string>
+    <string name="Experience">Experience</string>
+    <string name="Education">Education</string>
+    <string name="Submit">Submit</string>
+    <string name="Save">SAVE</string>
+
+    <!-- Strings  of actiity_job_details -->
+    <string name="apply_btn">Apply</string>
+    <string name="save_btn">Save</string>
+
+    <!-- Strings of pending_post_details_activity -->
+    <string name="Pending_Post_Details">Pending Post Details</string>
+    <string name="email">Email</string>
+    <string name="Description">Description</string>
+    <string name="Job_Category">Job Category</string>
+    <string name="Number_of_hires_for_this_role">Number of hires for this role</string>
+    <string name="Approve">Approve</string>
+    <string name="Disapprove">Disapprove</string>
+
+    <!-- String of fragment_add_post -->
+    <string name="Add_new_job">Add new job</string>
+    <string name="Add_new_btn">Add New</string>
+
+    <!-- Strings of Fragment_admin -->
+    <string name="user_btn">User</string>
+    <string name="admin_btn">Admin</string>
+    <string name="Enter_Your_Email">Enter Your Email</string>
+    <string name="Enter_Your_Password">Enter Your Password</string>
+    <string name="Login_btn">Login</string>
+
+    <!-- Strings of fragment_login -->
+    <string name="forgotpass">Forgot password?</string>
+    <string name="Dont_have_an_account">Dont have an account?</string>
+    <string name="SignUp">SignUp</string>
+    <string name="password">Password</string>
+    <string name="cpassword">Confirm Password</string>
+    <string name="Dob">Date of birth</string>
+    <string name="Fullname">Full Name</string>
+    <string name="delete">Delete</string>
+
+
+    <string name="JobPost">Job post</string>
+    <string name="userlist">User List</string>
+    <string name="pendingpost">Pending post</string>
+    <string name="logout">Log Out</string>
+    <string name="AppliedPosts">Applied Post</string>
+    <string name="savedposts">Saved Post</string>
+    <string name="addedpost">Added Post</string>
+    <string name="updateprofile">Update Profile</string>
+    <string name="userpersona">User Persona</string>
+
+
 </resources>

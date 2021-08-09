@@ -18,7 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/mainapp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            app:title="Job Hunt"/>
+            app:title="@string/Job_hunt"/>
 
         <fragment
             android:layout_width="match_parent"

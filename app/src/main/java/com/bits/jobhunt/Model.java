@@ -3,7 +3,7 @@ package com.bits.jobhunt;
 public class Model {
 
 
-    String firstName,lastName,mobilenumber,City,CompanyName,Description,JobName,JobType,Location,Qualifications,Salary,numberOFHires,Uid,name,url,CompanyLocation,JobTitle,Vacancy,Qualification,imageurl,jobcategory,email,mobile;
+    String firstName,lastName,mobilenumber,City,CompanyName,Description,JobName,JobType,Location,Qualifications,Salary,numberOFHires,Uid,name,url,CompanyLocation,JobTitle,Vacancy,Qualification,imageurl,jobcategory,Email,mobile;
     public String getFirstName() {
         return firstName;
     }
@@ -65,11 +65,11 @@ public class Model {
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
     public String getJobcategory() {

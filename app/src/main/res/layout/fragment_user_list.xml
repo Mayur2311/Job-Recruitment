@@ -33,7 +33,7 @@
             android:drawableRight="@drawable/filter"
             android:drawablePadding="10dp"
             android:ems="10"
-            android:hint="Search"
+            android:hint="@string/search_hint"
             android:padding="15dp" />
         <Spinner
             android:id="@+id/user_spinner_filter"
