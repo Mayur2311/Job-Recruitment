@@ -1,5 +1,7 @@
 package com.bits.jobhunt.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,15 +17,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
+import com.bits.jobhunt.adminJob_Details;
 import com.bits.jobhunt.myadapter;
 import com.bits.jobhunt.userAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,6 +55,8 @@ public class user_listFragment extends Fragment  implements AdapterView.OnItemSe
     userAdapter uadapter;
     Spinner userfilterSpinner;
     ArrayAdapter userType_arrayAdapter;
+    Button deleteuser;
+    FirebaseUser firebaseUser;
 
     //-------------------------------------
     ArrayList<Model> filtereduserList =  new ArrayList<>();
@@ -84,13 +93,14 @@ public class user_listFragment extends Fragment  implements AdapterView.OnItemSe
         userlist_city = view.findViewById(R.id.user_list_city);
         userlist_mobile = view.findViewById(R.id.user_list_mobile);
         recview=view.findViewById(R.id.user_list_recycleView);
+        deleteuser=view.findViewById(R.id.deleteuser);
         userfilterSpinner = view.findViewById(R.id.user_spinner_filter);
         userfilterSpinner.setOnItemSelectedListener(this);
         recview.setLayoutManager(new LinearLayoutManager(view.getContext()));
         userlist=new ArrayList<>();
         uadapter=new userAdapter(userlist);
         recview.setAdapter(uadapter);
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+         firebaseUser = firebaseAuth.getCurrentUser();
 
         userType_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, searchuserCategory);
         userType_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -140,7 +150,45 @@ public class user_listFragment extends Fragment  implements AdapterView.OnItemSe
         }
     });
 
-}
+deleteuser.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
+        builder.setTitle("Are you sure");
+        builder.setMessage("Deletion is permanent");
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getActivity(),"ACCOUNT DELETED",Toast.LENGTH_LONG).show();
+
+                        }else{
+                            Toast.makeText(getActivity(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        AlertDialog ad=builder.create();
+        ad.show();
+
+
+    }
+});
+
+    }
+
+
 
     private void filter(String text) {
 
