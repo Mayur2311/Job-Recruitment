@@ -61,4 +61,5 @@
     <string name="addedpost">Article ajouté</string>
     <string name="updateprofile">Mettre à jour le profil</string>
     <string name="userpersona">Persona de l’utilisateur</string>
+    <string name="user_details">Détails de l\'utilisateur</string>
 </resources>

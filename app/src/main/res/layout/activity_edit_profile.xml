@@ -12,7 +12,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/mainapp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:title="Edit Profile"
+        app:title="Profile Update"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,28 +36,18 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/personal_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:text="@string/personal_info"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
 
 
             <ImageView
                 android:id="@+id/profilePic"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/personal_info"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="123dp"
                 android:layout_marginRight="50dp"
+                android:scaleType="centerCrop"
                 android:background="@drawable/addprofile" />
 
             <TextView

@@ -21,7 +21,7 @@ tools:context=".AddedJobsDetails_activity">
     <RelativeLayout
         android:id="@+id/relative_layout"
         android:layout_width="407dp"
-        android:layout_height="144dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,31 +62,47 @@ tools:context=".AddedJobsDetails_activity">
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="40dp"
             android:paddingLeft="10dp"
             android:text="@string/company_location"
             android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/jobapplicants"
+            android:layout_width="397dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_addedjobdetails_company_location"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:text="JOB APPLICANTS"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="409dp"
-        android:layout_height="495dp"
+        android:layout_height="450dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/relative_layout">
+        app:layout_constraintTop_toBottomOf="@id/relative_layout"
+        >
 
         <LinearLayout
             android:layout_width="395dp"
-            android:layout_height="508dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/userList_addedPost"
-                android:layout_width="411dp"
-                android:layout_height="523dp"
-                android:layout_marginTop="5dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </ScrollView>

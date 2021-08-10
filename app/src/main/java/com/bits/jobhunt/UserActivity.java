@@ -139,6 +139,14 @@ import java.io.IOException;
         headview = navigationView.getHeaderView(0);
         headerImage = headview.findViewById(R.id.userHeadImage);
         header_textview_email = headview.findViewById(R.id.txt_header_email);
+
+        headerImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplication(),edit_profileActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 

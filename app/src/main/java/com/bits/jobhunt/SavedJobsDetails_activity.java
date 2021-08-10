@@ -106,6 +106,7 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
         profileData.put("Description", description);
         profileData.put("Email",email);
         profileData.put("Status",status);
+        profileData.put("ApplicationStatus","Pending");
         fuser = firebaseAuth.getCurrentUser().getEmail();
         db.collection("AppliedJob").document().set(profileData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

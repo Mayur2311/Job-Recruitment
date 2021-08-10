@@ -55,7 +55,6 @@ public class user_listFragment extends Fragment  implements AdapterView.OnItemSe
     userAdapter uadapter;
     Spinner userfilterSpinner;
     ArrayAdapter userType_arrayAdapter;
-    Button deleteuser;
     FirebaseUser firebaseUser;
 
     //-------------------------------------
@@ -93,7 +92,6 @@ public class user_listFragment extends Fragment  implements AdapterView.OnItemSe
         userlist_city = view.findViewById(R.id.user_list_city);
         userlist_mobile = view.findViewById(R.id.user_list_mobile);
         recview=view.findViewById(R.id.user_list_recycleView);
-        deleteuser=view.findViewById(R.id.deleteuser);
         userfilterSpinner = view.findViewById(R.id.user_spinner_filter);
         userfilterSpinner.setOnItemSelectedListener(this);
         recview.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -150,42 +148,6 @@ public class user_listFragment extends Fragment  implements AdapterView.OnItemSe
         }
     });
 
-deleteuser.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
-        builder.setTitle("Are you sure");
-        builder.setMessage("Deletion is permanent");
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity(),"ACCOUNT DELETED",Toast.LENGTH_LONG).show();
-
-                        }else{
-                            Toast.makeText(getActivity(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
-
-                        }
-                    }
-                });
-            }
-        });
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        AlertDialog ad=builder.create();
-        ad.show();
-
-
-    }
-});
-
     }
 
 
@@ -218,7 +180,6 @@ deleteuser.setOnClickListener(new View.OnClickListener() {
                     filtereduserList.add(model);
                 }
             }
-
 
             recview.setAdapter(new userAdapter(filtereduserList));
             uadapter.notifyDataSetChanged();

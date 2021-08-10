@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JobHunt"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AddedJobsDetails_activity"></activity>
+        <activity android:name=".AddedJobs_userListDetails"></activity>
+        <activity android:name=".AddedJobsDetails_activity" />
         <activity android:name=".PendingPost_JobDetails" />
         <activity android:name=".edit_profileActivity" />
         <activity android:name=".UserPersona" />

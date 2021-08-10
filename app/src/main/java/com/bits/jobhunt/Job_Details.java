@@ -125,6 +125,7 @@ public class Job_Details extends AppCompatActivity {
         profileData.put("Description", description);
         profileData.put("Status", Status);
         profileData.put("Email", email);
+        profileData.put("ApplicationStatus","Pending");
 
 
         db.collection("AppliedJob").document().set(profileData)

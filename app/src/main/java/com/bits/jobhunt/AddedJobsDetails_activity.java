@@ -73,7 +73,7 @@ public class AddedJobsDetails_activity extends AppCompatActivity {
 
         jobTitle = getIntent().getStringExtra("JobName");
 
-        firestore.collection("AppliedJob").whereEqualTo("JobTitle",jobTitle ).get()
+        firestore.collection("AppliedJob").whereEqualTo("JobTitle",jobTitle ).whereEqualTo("ApplicationStatus","Pending").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

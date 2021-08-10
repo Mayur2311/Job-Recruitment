@@ -58,8 +58,9 @@ public class edit_profileActivity extends AppCompatActivity {
     FirebaseAuth fAuth=FirebaseAuth.getInstance();
     Toolbar toolbar;
     String userEmail;
-    String imgUrl;
+    String fuser;
     StorageReference stref;
+
 
 
     @Override
@@ -200,6 +201,7 @@ public class edit_profileActivity extends AppCompatActivity {
         String e2=edt_education2.getText().toString();
         String e3=edt_education3.getText().toString();
         user=fAuth.getCurrentUser();
+        fuser=user.getEmail();
 
         Map<String, Object> updateData = new HashMap<>();
 
@@ -214,7 +216,7 @@ public class edit_profileActivity extends AppCompatActivity {
         updateData.put("Secondary Education", e1);
         updateData.put("Intermediate", e2);
         updateData.put("Other Education", e3);
-
+        updateData.put("Email",fuser);
 
         db.collection("ProfileUpdate").document(user.getUid()).set(updateData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

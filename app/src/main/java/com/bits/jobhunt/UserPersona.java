@@ -67,9 +67,11 @@ public class UserPersona extends AppCompatActivity {
 
         toolbar = findViewById(R.id.user_persona_toolbar);
         setSupportActionBar(toolbar);
+       // toolbar.setTitle("Mayur");
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
         t_firstname =findViewById(R.id.firstName);
