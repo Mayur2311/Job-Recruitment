@@ -1,12 +1,14 @@
 package com.bits.jobhunt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,11 +32,12 @@ import java.util.Map;
 
 public class Job_Details extends AppCompatActivity {
     TextView user_jobdetails_job_title, user_jobdetails_company_name, user_jobdetails_company_location, user_jobdetails_salaryinnumber, user_jobdetails_jobtype1, user_jobdetails_vacancynumber, user_jobdetails_qualificationdetail1, user_jobdetails_company_details;
-    Button user_jobdetails_apply, user_jobdetails_save,backArrow;
+    Button user_jobdetails_apply, user_jobdetails_save;
     FirebaseFirestore db;
     String name;
     FirebaseAuth firebaseAuth;
     String fuser, status, docEmail, doctitle;
+    Toolbar toolbar;
 
 
     @Override
@@ -42,7 +45,12 @@ public class Job_Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job__details);
 
-        backArrow = findViewById(R.id.backArrow_JobDetails);
+
+        toolbar = findViewById(R.id.job_details_toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         user_jobdetails_job_title = findViewById(R.id.user_jobdetails_job_title);
         user_jobdetails_company_name = findViewById(R.id.user_jobdetails_company_name);
@@ -72,15 +80,6 @@ public class Job_Details extends AppCompatActivity {
         checkIfDataIsAvailableForSaved();
         checkIfDataIsAvailableForApplied();
 
-
-        backArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),UserActivity.class);
-                startActivity(intent);
-            }
-        });
-
         user_jobdetails_apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,6 +107,16 @@ public class Job_Details extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home)
+        {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void insertAppliedData(String jobtitle, String company_name, String company_location, String salary, String jobtype, String vacancy, String qualification, String description, String Status, String email) {

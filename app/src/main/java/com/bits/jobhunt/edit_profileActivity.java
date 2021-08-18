@@ -222,7 +222,8 @@ public class edit_profileActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(edit_profileActivity.this,"",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(edit_profileActivity.this,"Your profile is updated.",Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
