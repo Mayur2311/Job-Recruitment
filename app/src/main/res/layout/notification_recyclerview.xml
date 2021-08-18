@@ -7,13 +7,13 @@
     android:layout_marginBottom="10dp"
     android:backgroundTint="#302F2F"
     android:background="@color/gray"
-    android:padding="3dp"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         android:scrollbars="vertical"
@@ -27,6 +27,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/round_corner"
             android:backgroundTint="#E3E9EA"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
             android:orientation="vertical">
 
             <TextView
@@ -45,7 +47,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/pending_company_name"
+                android:id="@+id/notification_applicationstatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/notification_job_title"
@@ -54,38 +56,21 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="10dp"
-                android:text="Company Name"
+                android:text="Application Status"
                 android:textSize="19sp" />
-
             <TextView
-                android:id="@+id/pending_company_location"
+                android:id="@+id/notification_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/pending_company_name"
+                android:layout_below="@id/notification_applicationstatus"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="10dp"
-                android:text="Company Location"
+                android:text="Status"
                 android:textSize="19sp" />
 
-            <TextView
-                android:id="@+id/pending_salary"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/pending_company_location"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:backgroundTint="#E3E9EA"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:text="Salary"
-                android:textColor="#676464"
-                android:textSize="20sp" />
 
 
         </RelativeLayout>

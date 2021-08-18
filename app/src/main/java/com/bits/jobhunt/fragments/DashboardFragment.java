@@ -160,6 +160,7 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
             resendCode.setVisibility(View.VISIBLE);
             verifyMsg.setVisibility(View.VISIBLE);
             recview.setVisibility(View.INVISIBLE);
+            filterSpinner.setVisibility(View.INVISIBLE);
 
             resendCode.setOnClickListener(new View.OnClickListener() {
                 @Override

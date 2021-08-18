@@ -66,7 +66,7 @@ public class Pending_PostAdapter extends RecyclerView.Adapter<Pending_PostAdapte
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
-            pending_job_title = itemView.findViewById(R.id.pending_job_title);
+            pending_job_title = itemView.findViewById(R.id.notification_job_title);
             pending_company_name = itemView.findViewById(R.id.pending_company_name);
             pending_company_location = itemView.findViewById(R.id.pending_company_location);
             pending_salary = itemView.findViewById(R.id.pending_salary);

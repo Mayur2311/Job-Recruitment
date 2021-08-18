@@ -106,6 +106,9 @@ import java.io.IOException;
            Intent intent= new Intent(this,edit_profileActivity.class);
            startActivity(intent);
         }
+        else if (id == R.id.notification){
+           navController.navigate(R.id.notification);
+        }
        else if (id == R.id.userpersona){
            Intent intent= new Intent(this,UserPersona.class);
            startActivity(intent);

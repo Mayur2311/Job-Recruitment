@@ -1,11 +1,9 @@
 package com.bits.jobhunt;
 
-import android.content.DialogInterface;
-import android.content.Intent;
+
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,6 +12,7 @@ public class AppliedJobsDetails extends AppCompatActivity {
 
     TextView user_appliedjobdetails_job_title, user_appliedjobdetails_company_name, user_appliedjobdetails_company_location, user_appliedjobdetails_salaryinnumber, user_appliedjobdetails_jobtype1, user_appliedjobdetails_vacancynumber, user_appliedjobdetails_qualificationdetail1, user_appliedjobdetails_company_details;
     Model objModel = new Model();
+    String checkAppstatus;
 
 
     FragmentTransaction fragmentTransaction;
@@ -44,7 +43,17 @@ public class AppliedJobsDetails extends AppCompatActivity {
         user_appliedjobdetails_qualificationdetail1.setText(getIntent().getStringExtra("Qualification").toString());
         user_appliedjobdetails_company_details.setText(getIntent().getStringExtra("Description").toString());
 
+         checkAppstatus=getIntent().getStringExtra("ApplicationStatus");
 
+         if(checkAppstatus.equals("Approved")){
+             Toast.makeText(this, "Your application has been approved further notice would be updated", Toast.LENGTH_LONG).show();
+         }
+         else if(checkAppstatus.equals("Disapproved")){
+             Toast.makeText(this, "Sorry better luck next time . Your profile doesn't satisfy for our job requirement", Toast.LENGTH_LONG).show();
+         }
+         else{
+             Toast.makeText(this, "The employer havn't yet viewed your application yet please come back later", Toast.LENGTH_LONG).show();
+         }
 
     }
 

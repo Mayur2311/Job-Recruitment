@@ -46,6 +46,7 @@ public class AppliedJobs_Adapter extends RecyclerView.Adapter<AppliedJobs_Adapte
                 intent.putExtra("Qualification",appliedDataList.get(position).getQualification());
                 intent.putExtra("Salary",appliedDataList.get(position).getSalary());
                 intent.putExtra("Vacancy",appliedDataList.get(position).getVacancy());
+                intent.putExtra("ApplicationStatus",appliedDataList.get(position).getApplicationStatus());
                 //intent.putExtra("Position",saveddataList.get(position).getUid());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.user_appliedjob_job_title.getContext().startActivity(intent);

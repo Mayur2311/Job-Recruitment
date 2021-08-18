@@ -104,6 +104,45 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.myview
                     }
                 });
 
+
+                /*Notification collection*/
+                Map<String, Object> notificationData = new HashMap<>();
+
+                String jobtitle= datalist.get(position).JobTitle;
+                String company_name= datalist.get(position).CompanyName;
+                String company_location=datalist.get(position).CompanyLocation;
+                String salary= datalist.get(position).Salary;
+                String jobtype=datalist.get(position).JobType;
+                String vacancy=datalist.get(position).Vacancy;
+                String qualification=datalist.get(position).Qualification;
+                String description=datalist.get(position).Description;
+                String Email=datalist.get(position).Email;
+                notificationData.put("JobName", jobtitle);
+                notificationData.put("CompanyName", company_name);
+                notificationData.put("Location", company_location);
+                notificationData.put("Salary", salary);
+                notificationData.put("JobType", jobtype);
+                notificationData.put("numberOFHires", vacancy);
+                notificationData.put("Qualifications", qualification);
+                notificationData.put("Description", description);
+                notificationData.put("ApplicationStatus",status);
+                notificationData.put("Email", Email);
+
+                db.collection("Notification").document().set(notificationData)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                                Toast.makeText(holder.approve.getContext(), "", Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(holder.approve.getContext(), "Error adding data" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
             }
 
 
@@ -157,10 +196,46 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.myview
                         }
                     }
                 });
+                /*Notification collection*/
+                Map<String, Object> notificationData = new HashMap<>();
+
+                String jobtitle= datalist.get(position).JobTitle;
+                String company_name= datalist.get(position).CompanyName;
+                String company_location=datalist.get(position).CompanyLocation;
+                String salary= datalist.get(position).Salary;
+                String jobtype=datalist.get(position).JobType;
+                String vacancy=datalist.get(position).Vacancy;
+                String qualification=datalist.get(position).Qualification;
+                String description=datalist.get(position).Description;
+                String Email=datalist.get(position).Email;
+                String status="Disapproved";
+                notificationData.put("JobName", jobtitle);
+                notificationData.put("CompanyName", company_name);
+                notificationData.put("Location", company_location);
+                notificationData.put("Salary", salary);
+                notificationData.put("JobType", jobtype);
+                notificationData.put("numberOFHires", vacancy);
+                notificationData.put("Qualifications", qualification);
+                notificationData.put("Description", description);
+                notificationData.put("ApplicationStatus",status);
+                notificationData.put("Email", Email);
+
+                db.collection("Notification").document().set(notificationData)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                                Toast.makeText(holder.approve.getContext(), "", Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(holder.approve.getContext(), "Error adding data" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
 
             }
-
-
             private void updateData(List<String> list) {
                 WriteBatch batch = db.batch();
                 // Iterate through the list

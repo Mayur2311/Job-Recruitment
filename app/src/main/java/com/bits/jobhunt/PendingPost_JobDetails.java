@@ -28,17 +28,17 @@ import java.util.List;
 import java.util.Map;
 
 public class PendingPost_JobDetails extends AppCompatActivity {
-    TextView pending_job_title, pending_company_name, pending_company_location, pending_salaryinnumber, pending_jobtype1, pending_vacancynumber, pending_qualificationdetail1, pending_company_details,pending_jobcategory;
+    TextView email,pending_job_title, pending_company_name, pending_company_location, pending_salaryinnumber, pending_jobtype1, pending_vacancynumber, pending_qualificationdetail1, pending_company_details,pending_jobcategory;
     Button approve, disapprove;
     FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
-    String  status,doctitle,email,jobname,docEmail;
+    String  status,doctitle,jobname,docEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pending_post_job_details);
 
-        pending_job_title = findViewById(R.id.pending_job_title);
+        pending_job_title = findViewById(R.id.notification_job_title);
         pending_company_name = findViewById(R.id.pending_company_name);
         pending_company_location = findViewById(R.id.pending_company_location);
         pending_salaryinnumber = findViewById(R.id.pending_salaryinnumber);
@@ -47,7 +47,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
         pending_vacancynumber = findViewById(R.id.pending_vacancynumber);
         pending_qualificationdetail1 = findViewById(R.id.pending_qualificationdetail1);
         pending_company_details = findViewById(R.id.pending_company_details);
-        //  email=findViewById(R.id.email);
+          email=findViewById(R.id.Pen_email);
         approve = findViewById(R.id.approve);
         disapprove = findViewById(R.id.disapprove);
         //Onclick Data
@@ -60,7 +60,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
         pending_qualificationdetail1.setText(getIntent().getStringExtra("Qualifications").toString());
         pending_company_details.setText(getIntent().getStringExtra("Description").toString());
         pending_jobcategory.setText(getIntent().getStringExtra("jobcategory").toString());
-        //email.setText(getIntent().getStringExtra("Email").toString());
+        email.setText(getIntent().getStringExtra("Email").toString());
         //For Applied Job
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -73,7 +73,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                 jobname=getIntent().getStringExtra("JobName").toString();
                 status = "Approved";
                 Toast.makeText(getApplicationContext(), "Job Post is approved", Toast.LENGTH_SHORT).show();
-                insertApprovedData(getIntent().getStringExtra("JobName").toString(), getIntent().getStringExtra("CompanyName").toString(), getIntent().getStringExtra("Location").toString(), getIntent().getStringExtra("Salary").toString(), getIntent().getStringExtra("JobType").toString(), getIntent().getStringExtra("numberOFHires").toString(), getIntent().getStringExtra("Qualifications").toString(), getIntent().getStringExtra("jobcategory").toString(), getIntent().getStringExtra("Description").toString(), status);
+                insertApprovedData(getIntent().getStringExtra("JobName").toString(), getIntent().getStringExtra("CompanyName").toString(), getIntent().getStringExtra("Location").toString(), getIntent().getStringExtra("Salary").toString(), getIntent().getStringExtra("JobType").toString(), getIntent().getStringExtra("numberOFHires").toString(), getIntent().getStringExtra("Qualifications").toString(), getIntent().getStringExtra("jobcategory").toString(), getIntent().getStringExtra("Description").toString(),getIntent().getStringExtra("Email"), status);
                 Intent intent = new Intent(getApplication(), AdminActivity.class);
                 startActivity(intent);
             }
@@ -98,7 +98,48 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                         }
                     }
                 });
-              //  Toast.makeText(getApplicationContext(), "Job Post is disapproved", Toast.LENGTH_SHORT).show();
+
+
+                /*Notification collection*/
+                Map<String, Object> pendingData = new HashMap<>();
+                String jobtitle= getIntent().getStringExtra("JobName").toString();
+                String company_name=getIntent().getStringExtra("CompanyName").toString();
+                String company_location=getIntent().getStringExtra("Location").toString();
+                String salary=getIntent().getStringExtra("Salary").toString();
+                String jobtype=getIntent().getStringExtra("JobType").toString();
+                String vacancy=getIntent().getStringExtra("numberOFHires").toString();
+                String qualification=getIntent().getStringExtra("Qualifications").toString();
+                String description=getIntent().getStringExtra("jobcategory").toString();
+                String jobcategory=getIntent().getStringExtra("Description").toString();
+                String Email=getIntent().getStringExtra("Email");
+                String Status="Disapproved";
+                pendingData.put("JobName", jobtitle);
+                pendingData.put("CompanyName", company_name);
+                pendingData.put("Location", company_location);
+                pendingData.put("Salary", salary);
+                pendingData.put("JobType", jobtype);
+                pendingData.put("numberOFHires", vacancy);
+                pendingData.put("Qualifications", qualification);
+                pendingData.put("Description", description);
+                pendingData.put("jobcategory",jobcategory);
+                pendingData.put("Status", Status);
+                pendingData.put("Email", Email);
+
+                db.collection("Notification").document().set(pendingData)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                                Toast.makeText(getApplication(), "", Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplication(), "Error adding data" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                //  Toast.makeText(getApplicationContext(), "Job Post is disapproved", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplication(), AdminActivity.class);
                 startActivity(intent);
             }
@@ -130,7 +171,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
 
 
 
-    public void insertApprovedData(String jobtitle, String company_name, String company_location, String salary, String jobtype, String vacancy, String qualification,String jobcategory, String description, String Status) {
+    public void insertApprovedData(String jobtitle, String company_name, String company_location, String salary, String jobtype, String vacancy, String qualification,String jobcategory, String description,String Email, String Status) {
 
 
             Map<String, Object> pendingData = new HashMap<>();
@@ -145,7 +186,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
             pendingData.put("Description", description);
             pendingData.put("jobcategory",jobcategory);
             pendingData.put("Status", Status);
-        //    pendingData.put("Email", email);
+            pendingData.put("Email", Email);
 
 
             db.collection("Jobs").document().set(pendingData)
@@ -178,7 +219,24 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                 }
             });
 
-        }
+
+        db.collection("Notification").document().set(pendingData)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        Toast.makeText(getApplication(), "", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplication(), "Error adding data" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+    }
 
         private void updateData(List<String> list) {
             WriteBatch batch = db.batch();

@@ -26,6 +26,10 @@
             android:icon="@drawable/update_profile"
             android:id="@+id/updateprofile"/>
 
+        <item android:title="@string/Notification"
+            android:icon="@drawable/notifications"
+            android:id="@+id/notification"/>
+
         <item android:title="@string/userpersona"
             android:icon="@drawable/user_persona"
             android:id="@+id/userpersona"/>

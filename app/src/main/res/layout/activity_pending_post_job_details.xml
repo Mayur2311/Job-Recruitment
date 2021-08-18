@@ -51,7 +51,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/pending_job_title"
+                android:id="@+id/notification_job_title"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="@string/Job_details_job_title"
@@ -66,10 +66,10 @@
                 />
 
             <TextView
-                android:id="@+id/email"
+                android:id="@+id/Pen_email"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/pending_job_title"
+                android:layout_below="@id/notification_job_title"
                 android:text="@string/email"
                 android:textSize="25sp"
                 android:layout_marginLeft="10dp"
@@ -83,7 +83,7 @@
                 android:id="@+id/pending_company_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/email"
+                android:layout_below="@id/Pen_email"
                 android:text="@string/company_name"
                 android:textSize="25sp"
                 android:layout_marginLeft="10dp"

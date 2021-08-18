@@ -30,5 +30,11 @@
         android:name="com.bits.jobhunt.fragments.AddedPost"
         android:label="fragment_added_post2"
         tools:layout="@layout/fragment_added_post2" />
+    <fragment
+        android:id="@+id/notification"
+        android:name="com.bits.jobhunt.fragments.Notification"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
+
 
 </navigation>
