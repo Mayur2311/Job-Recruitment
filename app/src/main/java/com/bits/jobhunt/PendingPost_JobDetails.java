@@ -2,7 +2,11 @@ package com.bits.jobhunt;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +36,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
     Button approve, disapprove;
     FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
-    String  status,doctitle,jobname,docEmail;
+    String  status,doctitle,jobname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +80,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                 insertApprovedData(getIntent().getStringExtra("JobName").toString(), getIntent().getStringExtra("CompanyName").toString(), getIntent().getStringExtra("Location").toString(), getIntent().getStringExtra("Salary").toString(), getIntent().getStringExtra("JobType").toString(), getIntent().getStringExtra("numberOFHires").toString(), getIntent().getStringExtra("Qualifications").toString(), getIntent().getStringExtra("jobcategory").toString(), getIntent().getStringExtra("Description").toString(),getIntent().getStringExtra("Email"), status);
                 Intent intent = new Intent(getApplication(), AdminActivity.class);
                 startActivity(intent);
+                appnotification();
             }
         });
 
@@ -142,8 +147,29 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                 //  Toast.makeText(getApplicationContext(), "Job Post is disapproved", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplication(), AdminActivity.class);
                 startActivity(intent);
+
             }
         });
+    }
+
+
+    public void appnotification(){
+         String message="Your Post has been approved by the admin";
+        NotificationCompat.Builder builder =new NotificationCompat.Builder(PendingPost_JobDetails.this)
+                .setSmallIcon(R.id.icon)
+                .setContentTitle("New Notification")
+                .setContentText(message)
+                .setAutoCancel(true);
+
+        Intent intent = new Intent(PendingPost_JobDetails.this,AddedJobsDetails_activity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("message",message);
+
+        PendingIntent pendingIntent= PendingIntent.getActivity(PendingPost_JobDetails.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager =(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0, builder.build());
     }
 
 

@@ -4,11 +4,12 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
     android:elevation="4dp"
+    android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
     android:backgroundTint="#302F2F"
-    android:background="@color/gray"
-
+    android:background="#7B8C8D"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_corner"
-            android:backgroundTint="#E3E9EA"
+            android:backgroundTint="#93152C"
             android:paddingBottom="10dp"
             android:paddingTop="5dp"
             android:orientation="vertical">
@@ -42,34 +43,83 @@
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
                 android:text="Job Title"
-                android:textColor="@color/black"
+                android:textColor="#FBFAFA"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/notification_applicationstatus"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/linearLayouttemp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_below="@id/notification_job_title"
+                >
+
+                <TextView
+                    android:id="@+id/title_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:visibility="visible"
+                    android:textColor="@color/primaryTextColor"
+                    android:text="Application Status:"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:id="@+id/notification_applicationstatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="No Data Available"
+                    android:textColor="@color/primaryTextColor"
+                    android:layout_toEndOf="@id/title_temp"
+                    android:textSize="19sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayouttemp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/linearLayouttemp"
+                >
+
+            <TextView
+                android:id="@+id/title_temp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="10dp"
-                android:text="Application Status"
+                android:textColor="@color/primaryTextColor"
+                android:text="Job Post Status:"
                 android:textSize="19sp" />
+
             <TextView
                 android:id="@+id/notification_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/notification_applicationstatus"
+                android:layout_below="@id/linearLayouttemp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="10dp"
-                android:text="Status"
+                android:text="No Data Available"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="19sp" />
+
+            </LinearLayout>
 
 
 

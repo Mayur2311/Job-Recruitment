@@ -79,7 +79,6 @@ public class AddedPost extends Fragment {
         addedadapter = new AddedPostAdapter(addeddatalist);
         recyclerView.setAdapter(addedadapter);
 
-
         fireStore.collection("AddPostData").whereEqualTo("Email",fuser ).whereEqualTo("Status", "Approved").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

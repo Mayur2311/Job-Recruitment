@@ -18,13 +18,12 @@ public class AddedPostAdapter extends RecyclerView.Adapter<AddedPostAdapter.adde
     public AddedPostAdapter(ArrayList<Model> saveddata) {
         this.addeddatalist = saveddata;
     }
-    @NonNull
 
+    @NonNull
     @Override
     public addedviewholder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_added_jobs_recycleview, parent, false);
         return new addedviewholder(view);
-
     }
 
     @Override

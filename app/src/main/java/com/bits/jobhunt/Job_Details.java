@@ -77,6 +77,7 @@ public class Job_Details extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         fuser = firebaseAuth.getCurrentUser().getEmail();
 
+        checkIfPostAddedByUser();
         checkIfDataIsAvailableForSaved();
         checkIfDataIsAvailableForApplied();
 
@@ -263,4 +264,29 @@ public class Job_Details extends AppCompatActivity {
         });
 
     }
+
+    public void checkIfPostAddedByUser()
+    {
+        db.collection("AddPostData").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                        docEmail = document.getData().get("Email").toString();
+                        doctitle = document.getData().get("JobName").toString();
+
+                        if (user_jobdetails_job_title.getText().toString().equals(doctitle) && fuser.equals(docEmail)) {
+
+                            Toast.makeText(Job_Details.this, "You can not apply to this job.", Toast.LENGTH_SHORT).show();
+                            user_jobdetails_apply.setVisibility(View.INVISIBLE);
+                            user_jobdetails_save.setVisibility(View.INVISIBLE);
+                        }
+
+                    }
+                }
+            }
+        });
+    }
+
 }

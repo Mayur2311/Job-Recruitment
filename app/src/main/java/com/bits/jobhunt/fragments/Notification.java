@@ -7,10 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bits.jobhunt.AddedPostAdapter;
 import com.bits.jobhunt.Model;
@@ -35,6 +37,7 @@ public class Notification extends Fragment {
     RecyclerView recyclerView;
     ArrayList<Model> notificationdatalist;
     NotificationAdapter notificationadapter;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public Notification() {
         // Required empty public constructor
@@ -67,8 +70,28 @@ public class Notification extends Fragment {
         notificationdatalist = new ArrayList<>();
         notificationadapter = new NotificationAdapter(notificationdatalist);
         recyclerView.setAdapter(notificationadapter);
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
 
+        dataCalling();
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                notificationdatalist.clear();
+
+                dataCalling();
+
+                Toast.makeText(getActivity(), "Notifications Updated!", Toast.LENGTH_SHORT).show();
+
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+    }
+
+    public void dataCalling()
+    {
         fireStore.collection("Notification").whereEqualTo("Email", fuser).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

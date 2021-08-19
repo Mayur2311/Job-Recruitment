@@ -30,7 +30,6 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/round_corner"
             android:drawableLeft="@drawable/search"
-            android:drawableRight="@drawable/filter"
             android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/search_hint"

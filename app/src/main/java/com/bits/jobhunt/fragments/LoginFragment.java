@@ -139,6 +139,7 @@ public class LoginFragment extends Fragment {
         btn_login.setOnClickListener(view2 ->{
             if (!checkEmptyFields())
             {
+
                 fAuth.signInWithEmailAndPassword(et_email.getText().toString(),et_password.getText().toString())
                         .addOnCompleteListener(getActivity(), task -> {
 

@@ -18,6 +18,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
 import com.bits.jobhunt.adminjobAdapter;
@@ -87,6 +89,7 @@ public class Admin_dashboardFragment extends Fragment implements AdapterView.OnI
         admin_jobType_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         filterSpinner.setAdapter(admin_jobType_arrayAdapter);
 
+
         fireStore.collection("Jobs").whereEqualTo("Status","Approved").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -101,6 +104,8 @@ public class Admin_dashboardFragment extends Fragment implements AdapterView.OnI
 
                     }
                 });
+
+
 
         search_bar.addTextChangedListener(new TextWatcher() {
             @Override
