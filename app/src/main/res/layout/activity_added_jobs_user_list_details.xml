@@ -258,6 +258,33 @@
                 android:textColor="@color/medium_black"
                 android:textSize="23sp" />
 
+            <TextView
+                android:id="@+id/resume_title"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@id/Education_text3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="10dp"
+                android:text="@string/Resume"
+                android:textStyle="bold"
+                android:textColor="@color/medium_black"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/resume_file"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/resume_title"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="10dp"
+                android:text="@string/Resume"
+                android:textColor="@color/medium_black"
+                android:textSize="23sp" />
+
         </RelativeLayout>
     </ScrollView>
 
