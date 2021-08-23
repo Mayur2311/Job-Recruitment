@@ -3,10 +3,12 @@ package com.bits.jobhunt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,8 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,10 +41,10 @@ public class AddedJobs_userListDetails extends AppCompatActivity {
     FirebaseFirestore db;
     String email;
     FirebaseUser user;
-    String check;
+    String pdfUrl;
     ImageView userProfilePic;
     StorageReference storageReference;
-    TextView firstname, lastname, City, mobile_no, about_text, experience_text1, experience_text2, experience_text3, Education_text1, Education_text2, Education_text3;
+    TextView firstname, lastname, City, mobile_no, about_text, experience_text1, experience_text2, experience_text3, Education_text1, Education_text2, Education_text3,resume_title, resume_file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +63,8 @@ public class AddedJobs_userListDetails extends AppCompatActivity {
         Education_text1 = findViewById(R.id.Education_text1);
         Education_text2 = findViewById(R.id.Education_text2);
         Education_text3 = findViewById(R.id.Education_text3);
-
-
+        resume_title = findViewById(R.id.resume_title);
+        resume_file = findViewById(R.id.resume_file);
 
         email = getIntent().getStringExtra("Email");
         user=FirebaseAuth.getInstance().getCurrentUser();
@@ -86,8 +90,55 @@ public class AddedJobs_userListDetails extends AppCompatActivity {
             Toast.makeText(this, "Failed to retrive image", Toast.LENGTH_SHORT).show();
         }
 
+        //--------------------------
+        storageReference = FirebaseStorage.getInstance().getReference("uploadPDF/"+email+"/.pdf");
+
+        try
+        {
+            File localfile = File.createTempFile("Resume",".pdf");
+
+            storageReference.getFile(localfile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            String name = localfile.getName();
+                            resume_file.setText(name);
+                        }
+                    });
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            Toast.makeText(this, "Failed to retrive image", Toast.LENGTH_SHORT).show();
+        }
+
+        //-----------------------  fetching url  ----------------------------------//
+
+        resume_file.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                db.collection("Upload pdf").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                        if(task.getResult().exists())
+                        {
+                            pdfUrl = task.getResult().getString("url");
+
+                            Intent intent = new Intent(getApplicationContext(), PdfViewer.class);
+                            intent.putExtra("url", pdfUrl);
+                            startActivity(intent);
+                        }
+                    }
+                });
 
 
+            }
+        });
+
+        //---------------------------------------------------------------------------------//
+
+        //---------------------------------//
         db.collection("ProfileUpdate").whereEqualTo("Email",email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
