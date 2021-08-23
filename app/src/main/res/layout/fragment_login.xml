@@ -18,7 +18,7 @@
             android:layout_marginTop="20dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/logo"
+            android:src="@drawable/ic_logo"
             />
 
         <RelativeLayout
@@ -106,7 +106,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:textColor="@color/white"
-            android:backgroundTint="@color/primaryDarkColor"
+            android:backgroundTint="@color/mainapp"
             android:text="@string/Login_btn"
             />
 
