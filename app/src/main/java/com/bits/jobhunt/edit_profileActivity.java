@@ -158,6 +158,7 @@ public class edit_profileActivity extends AppCompatActivity {
                 choosePicture();
             }
         });
+
         edt_select_PDF.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -166,6 +167,7 @@ public class edit_profileActivity extends AppCompatActivity {
                 selectPDF();
             }
         });
+
 
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -318,7 +320,10 @@ public class edit_profileActivity extends AppCompatActivity {
         final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setTitle("file is loading");
         progressDialog.show();
-        StorageReference reference=storageReference.child("uploadPDF" + System.currentTimeMillis()+".pdf");
+        String rkey= user.getEmail();
+        StorageReference reference=storageReference.child("uploadPDF/"+ rkey +"/.pdf");
+
+
         reference.putFile(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
                     @Override

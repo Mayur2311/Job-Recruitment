@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.annotation.GlideExtension;
+import com.github.barteksc.pdfviewer.PDFView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,6 +34,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
@@ -45,6 +47,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class UserPersona extends AppCompatActivity {
     FirebaseFirestore db;
@@ -54,11 +57,12 @@ public class UserPersona extends AppCompatActivity {
     DocumentReference documentReference;
     FirebaseUser user;
     ImageView userPicture;
-    String imgUrl;
     Toolbar toolbar;
     StorageReference storageReference;
     String uemail;
 
+    String pdfFile;
+    String pdfUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +90,14 @@ public class UserPersona extends AppCompatActivity {
         t_experience2=findViewById(R.id.txt_experience2);
         t_experience3=findViewById(R.id.txt_experience3);
         userPicture = findViewById(R.id.fetchimages);
+        t_select_PDF = findViewById(R.id.resume_et);
 
         fauth=FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
         user = fauth.getCurrentUser();
         uemail = user.getEmail();
 
+        //-----------------profile picture getting and setting --------------------------------//
 
         storageReference = FirebaseStorage.getInstance().getReference("images/"+uemail);
 
@@ -111,9 +117,62 @@ public class UserPersona extends AppCompatActivity {
         catch (IOException e)
         {
             e.printStackTrace();
+            Toast.makeText(this, "Failed to retrive pdf.", Toast.LENGTH_SHORT).show();
+        }
+
+
+        //--------------------------- PDF file fetching and setting ----------------------//
+
+
+        storageReference = FirebaseStorage.getInstance().getReference("uploadPDF/"+uemail+"/.pdf");
+
+        try
+        {
+            File localfile = File.createTempFile("Resume",".pdf");
+
+            storageReference.getFile(localfile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            String name = localfile.getName();
+
+                            t_select_PDF.setText(name);
+
+                            pdfFile = localfile.getAbsolutePath();
+                        }
+                    });
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
             Toast.makeText(this, "Failed to retrive image", Toast.LENGTH_SHORT).show();
         }
 
+        //-----------------------  fetching url  ----------------------------------//
+
+        t_select_PDF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                db.collection("Upload pdf").document(uemail).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                        if(task.getResult().exists())
+                        {
+                            pdfUrl = task.getResult().getString("url");
+
+                            Intent intent = new Intent(getApplicationContext(), PdfViewer.class);
+                            intent.putExtra("url", pdfUrl);
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+
+            }
+        });
+
+        //---------------------------------------------------------------------------------//
 
         documentReference= db.collection("ProfileUpdate").document(user.getUid());
 
