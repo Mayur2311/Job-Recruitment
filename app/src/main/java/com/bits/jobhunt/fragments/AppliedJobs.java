@@ -1,9 +1,12 @@
 package com.bits.jobhunt.fragments;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,11 +17,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.bits.jobhunt.AppliedJobs_Adapter;
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.R;
 import com.bits.jobhunt.Savedadapter;
+import com.bits.jobhunt.UserActivity;
 import com.bits.jobhunt.myadapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -38,6 +43,7 @@ public class AppliedJobs extends Fragment {
     RecyclerView recyclerView;
     ArrayList<Model> appliedDataList;
     AppliedJobs_Adapter appliedJobs_adapter;
+    AlertDialog.Builder builder;
 
 
     public AppliedJobs() {
@@ -85,6 +91,30 @@ public class AppliedJobs extends Fragment {
                             appliedDataList.add(obj);
                         }
                         appliedJobs_adapter.notifyDataSetChanged();
+
+                        if(appliedDataList.isEmpty())
+                        {
+                            builder = new AlertDialog.Builder(getActivity());
+
+                            //Setting message manually and performing action on button click
+                            builder.setMessage("Currently, You have not applied any job !")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                            Toast.makeText(getActivity(), "You are redirected to the Home screen.",
+                                                    Toast.LENGTH_SHORT).show();
+                                            Intent i= new Intent(getContext(), UserActivity.class);
+                                            startActivity(i);
+                                        }
+                                    });
+
+                            //Creating dialog box
+                            AlertDialog alert = builder.create();
+                            //Setting the title manually
+                            alert.setTitle("Applied Jobs");
+                            alert.show();
+                        }
                     }
                 });
 
