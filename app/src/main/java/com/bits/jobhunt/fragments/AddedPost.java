@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.bits.jobhunt.AddedPostAdapter;
 import com.bits.jobhunt.Job_Details;
@@ -43,6 +44,7 @@ public class AddedPost extends Fragment {
     RecyclerView recyclerView;
     ArrayList<Model> addeddatalist;
     AddedPostAdapter addedadapter;
+    AlertDialog.Builder builder;
 
 
     public AddedPost() {
@@ -104,25 +106,32 @@ public class AddedPost extends Fragment {
                         Log.d("", document.getId());
                         list.add(document.getId());
 
+                    }
+                    if(list.isEmpty())
+                    {
+                        builder = new AlertDialog.Builder(getActivity());
 
+                        //Setting message manually and performing action on button click
+                        builder.setMessage("Currently, You have not added any job !")
+                                .setCancelable(false)
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                        Toast.makeText(getActivity(), "You are redirected to the Home screen.",
+                                                Toast.LENGTH_SHORT).show();
+                                        Intent i= new Intent(getContext(), UserActivity.class);
+                                        startActivity(i);
+                                    }
+                                });
+
+                        //Creating dialog box
+                        AlertDialog alert = builder.create();
+                        //Setting the title manually
+                        alert.setTitle("Added Jobs");
+                        alert.show();
                     }
                 }
-                else{
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage("You haven't added any jobs yet, Press 'OK' to go back to Home")
-                            .setCancelable(false)
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-
-                                    Intent i=new Intent(getContext(), UserActivity.class);
-                                    startActivity(i);
-
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                }
             }
         });
     }
