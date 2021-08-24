@@ -1,9 +1,12 @@
 package com.bits.jobhunt.fragments;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,10 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.bits.jobhunt.AdminActivity;
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.Pending_PostAdapter;
 import com.bits.jobhunt.R;
+import com.bits.jobhunt.UserActivity;
 import com.bits.jobhunt.adminjobAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -36,6 +42,7 @@ public class Pending_PostFragment extends Fragment {
     Pending_PostAdapter pendingAdapter;
     RecyclerView recycleview;
     ArrayList<Model> datalist;
+    AlertDialog.Builder builder;
 
 
     public Pending_PostFragment() {
@@ -79,7 +86,31 @@ public class Pending_PostFragment extends Fragment {
                         for (DocumentSnapshot d : list) {
                             Model obj = d.toObject(Model.class);
                             datalist.add(obj);
-                            pendingAdapter.notifyDataSetChanged();
+                        }
+                        pendingAdapter.notifyDataSetChanged();
+
+                        if(datalist.isEmpty())
+                        {
+                            builder = new AlertDialog.Builder(getActivity());
+
+                            //Setting message manually and performing action on button click
+                            builder.setMessage("Currently, there is no jobs added.")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                            Toast.makeText(getActivity(), "You are redirected to the Home screen.",
+                                                    Toast.LENGTH_SHORT).show();
+                                            Intent i= new Intent(getContext(), AdminActivity.class);
+                                            startActivity(i);
+                                        }
+                                    });
+
+                            //Creating dialog box
+                            AlertDialog alert = builder.create();
+                            //Setting the title manually
+                            alert.setTitle("Pending Posts");
+                            alert.show();
                         }
 
                     }

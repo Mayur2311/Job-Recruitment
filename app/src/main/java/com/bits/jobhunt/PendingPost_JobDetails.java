@@ -95,7 +95,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                 insertApprovedData(getIntent().getStringExtra("JobName").toString(), getIntent().getStringExtra("CompanyName").toString(), getIntent().getStringExtra("Location").toString(), getIntent().getStringExtra("Salary").toString(), getIntent().getStringExtra("JobType").toString(), getIntent().getStringExtra("numberOFHires").toString(), getIntent().getStringExtra("Qualifications").toString(), getIntent().getStringExtra("jobcategory").toString(), getIntent().getStringExtra("Description").toString(),getIntent().getStringExtra("Email"), status);
                 Intent intent = new Intent(getApplication(), AdminActivity.class);
                 startActivity(intent);
-                appnotification();
+                //appnotification();
             }
         });
 
@@ -195,7 +195,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
             // Update each list item
             DocumentReference ref = db.collection("AddPostData").document(list.get(k));
             batch.update(ref,"Status","Disapproved" );
-            Toast.makeText(getApplicationContext(), "tfgfg", Toast.LENGTH_SHORT).show();
+
         }
 
 
@@ -236,8 +236,6 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-
-                            Toast.makeText(getApplication(), "", Toast.LENGTH_LONG).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -267,8 +265,6 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-
-                        Toast.makeText(getApplication(), "", Toast.LENGTH_LONG).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

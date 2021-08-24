@@ -112,18 +112,26 @@ public class LoginFragment extends Fragment {
                 forgotpassword.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
-                        String mail=resetmail.getText().toString();
-                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(getActivity(),"Reset Link Sent To Your Email.",Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getActivity(),"Error: Reset Link is Not Sent."+e.getMessage(),Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        String mail = resetmail.getText().toString();
+
+                        if (TextUtils.isEmpty(resetmail.getText().toString())) {
+                            resetmail.setError("Email cannot be empty!");
+                            resetmail.requestFocus();
+                            Toast.makeText(getContext(), "Please enter your email !", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(getActivity(), "Reset Link Sent To Your Email.", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getActivity(), "Error: Reset Link is Not Sent." + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
                     }
                 });
                 forgotpassword.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -134,6 +142,7 @@ public class LoginFragment extends Fragment {
                 });
                 forgotpassword.create().show();
             }
+
         });
 
         btn_login.setOnClickListener(view2 ->{
@@ -166,9 +175,6 @@ public class LoginFragment extends Fragment {
     }
 
 
-
-
-
     public boolean checkEmptyFields()
     {
         if(TextUtils.isEmpty(et_email.getText().toString()))
@@ -184,6 +190,7 @@ public class LoginFragment extends Fragment {
         }
         return false;
     }
+
 
 
 }
