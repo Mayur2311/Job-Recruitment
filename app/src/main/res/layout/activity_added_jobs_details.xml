@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="#D6E8DB"
+android:id="@+id/AddedJobDetailsLayout"
 tools:context=".AddedJobsDetails_activity">
 
-    <Toolbar
-        android:id="@+id/toolbar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/mainapp"
-        android:title="@string/Job_details_head"
-        android:titleTextColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Added Job Details"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <RelativeLayout
         android:id="@+id/relative_layout"
@@ -26,7 +29,7 @@ tools:context=".AddedJobsDetails_activity">
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
 
         <TextView
             android:id="@+id/user_addedjobdetails_job_title"

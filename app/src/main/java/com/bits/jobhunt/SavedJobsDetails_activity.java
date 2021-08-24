@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -43,7 +42,6 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
     String name;
     FirebaseAuth firebaseAuth;
     String fuser,status;
-
     Model objModel = new Model();
 
     @Override
@@ -106,7 +104,6 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
         profileData.put("Description", description);
         profileData.put("Email",email);
         profileData.put("Status",status);
-        profileData.put("ApplicationStatus","Pending");
         fuser = firebaseAuth.getCurrentUser().getEmail();
         db.collection("AppliedJob").document().set(profileData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -122,7 +119,7 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
             }
         });
 
-        db.collection("SavedJob").whereEqualTo("Email",fuser).whereEqualTo("Status", "Saved").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("SavedJob").whereEqualTo("Email",fuser).whereEqualTo("JobTitle",jobtitle).whereEqualTo("Status", "Saved").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {

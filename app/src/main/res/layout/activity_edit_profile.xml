@@ -41,7 +41,7 @@
                 android:id="@+id/profilePic"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_below="@+id/personal_info"
+
 
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/addprofile"
@@ -106,48 +106,30 @@
                 android:padding="3dp"
                 android:textSize="20sp" />
 
-            <RelativeLayout
-                android:id="@+id/r"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/city"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_centerHorizontal="true">
 
-                <com.hbb20.CountryCodePicker
-                    android:id="@+id/ccp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_corner"
-                    android:text="User"
-                    android:textColor="@color/black"
-                    android:textSize="30sp" />
 
                 <EditText
                     android:id="@+id/mobile"
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:drawableLeft="@drawable/mobile"
+                    android:drawablePadding="15dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
-                    android:layout_toEndOf="@+id/ccp"
+                    android:layout_below="@id/city"
                     android:background="@drawable/round_corner"
                     android:hint="@string/Mobile_No"
                     android:inputType="phone"
-                    android:padding="8dp" />
-            </RelativeLayout>
+                    android:padding="3dp" />
+
 
 
             <TextView
                 android:id="@+id/about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/r"
+                android:layout_below="@+id/mobile"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"

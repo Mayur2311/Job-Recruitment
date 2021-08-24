@@ -34,7 +34,7 @@ public class Savedadapter extends RecyclerView.Adapter<Savedadapter.savedviewhol
         holder.user_savedjob_company_location.setText(saveddataList.get(position).getCompanyLocation());
         holder.user_savedjob_salary.setText(saveddataList.get(position).getSalary());
 
-       holder.user_savedjob_job_title.setOnClickListener(new View.OnClickListener() {
+        holder.user_savedjob_job_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(holder.user_savedjob_job_title.getContext(), SavedJobsDetails_activity.class);
@@ -46,7 +46,7 @@ public class Savedadapter extends RecyclerView.Adapter<Savedadapter.savedviewhol
                 intent.putExtra("Qualification",saveddataList.get(position).getQualification());
                 intent.putExtra("Salary",saveddataList.get(position).getSalary());
                 intent.putExtra("Vacancy",saveddataList.get(position).getVacancy());
-             //   intent.putExtra("Position",saveddataList.get(position).getUid());
+                //   intent.putExtra("Position",saveddataList.get(position).getUid());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.user_savedjob_job_title.getContext().startActivity(intent);
 

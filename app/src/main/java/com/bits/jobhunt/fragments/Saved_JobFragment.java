@@ -25,7 +25,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -82,7 +81,6 @@ public class Saved_JobFragment extends Fragment {
         recyclerView.setAdapter(savedadapter);
 
 
-
         fireStore.collection("SavedJob").whereEqualTo("Email",fuser ).whereEqualTo("Status", "Saved").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -94,6 +92,30 @@ public class Saved_JobFragment extends Fragment {
                             saveddatalist.add(obj);
                         }
                         savedadapter.notifyDataSetChanged();
+
+                        if(saveddatalist.isEmpty())
+                        {
+                            builder = new AlertDialog.Builder(getActivity());
+
+                            //Setting message manually and performing action on button click
+                            builder.setMessage("Currently, You have not saved any job !")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                            Toast.makeText(getActivity(), "You are redirected to the Home screen.",
+                                                    Toast.LENGTH_SHORT).show();
+                                            Intent i= new Intent(getContext(), UserActivity.class);
+                                            startActivity(i);
+                                        }
+                                    });
+
+                            //Creating dialog box
+                            AlertDialog alert = builder.create();
+                            //Setting the title manually
+                            alert.setTitle("Saved Jobs");
+                            alert.show();
+                        }
 
                     }
                 });
@@ -110,35 +132,9 @@ public class Saved_JobFragment extends Fragment {
 
 
                     }
-
-                    if (list.isEmpty())
-                    {
-                        builder = new AlertDialog.Builder(getActivity());
-
-                        //Setting message manually and performing action on button click
-                        builder.setMessage("Currently, You don't have any saved job.")
-                                .setCancelable(false)
-                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-
-                                        Toast.makeText(getActivity(), "You are redirected to Home screen.",
-                                                Toast.LENGTH_SHORT).show();
-                                        Intent i= new Intent(getContext(),UserActivity.class);
-                                        startActivity(i);
-                                    }
-                                });
-
-                        //Creating dialog box
-                        AlertDialog alert = builder.create();
-                        //Setting the title manually
-                        alert.setTitle("Saved Jobs");
-                        alert.show();
-                    }
-
                 }
+
             }
-            });
-        }
+        });
+    }
 }
-
-
