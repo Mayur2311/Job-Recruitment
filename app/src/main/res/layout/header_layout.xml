@@ -12,6 +12,8 @@
         android:layout_height="80dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
+        android:backgroundTint="@color/black"
+        android:background = "@drawable/account"
         />
 
     <TextView

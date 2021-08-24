@@ -143,14 +143,13 @@ public class LoginFragment extends Fragment {
                 fAuth.signInWithEmailAndPassword(et_email.getText().toString(),et_password.getText().toString())
                         .addOnCompleteListener(getActivity(), task -> {
 
-                            if (task.isSuccessful())
-                            {
-                                Toast.makeText(getActivity().getApplicationContext(),"Login Success!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity().getApplicationContext(), UserActivity.class);
-                                startActivity(intent);
-                            }else {
-                                Toast.makeText(getActivity().getApplicationContext(),"Authenticate Failed!", Toast.LENGTH_SHORT).show();
-                            }
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getActivity().getApplicationContext(), "Login Success!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getActivity().getApplicationContext(), UserActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(getActivity().getApplicationContext(), "Authenticate Failed!" + task.getException().getMessage()   , Toast.LENGTH_SHORT).show();
+                                }
 
                         });
             }

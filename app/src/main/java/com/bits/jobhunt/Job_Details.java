@@ -143,7 +143,6 @@ public class Job_Details extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
 
-                        Toast.makeText(getApplication(), "", Toast.LENGTH_LONG).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -153,7 +152,7 @@ public class Job_Details extends AppCompatActivity {
             }
         });
 
-        db.collection("SavedJob").whereEqualTo("Email",fuser).whereEqualTo("Status", "Saved").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("SavedJob").whereEqualTo("Email",fuser).whereEqualTo("JobTitle",jobtitle).whereEqualTo("Status", "Saved").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -208,7 +207,6 @@ public class Job_Details extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(getApplication(), "", Toast.LENGTH_LONG).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

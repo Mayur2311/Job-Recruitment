@@ -117,6 +117,8 @@ public class SignupFragment extends Fragment {
 
         btn_signup.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
+                String firstName = et_firstname.getText().toString().trim();
+                String lastName = et_lastname.getText().toString().trim();
                 String Email= et_email.getText().toString().trim();
                 String Password= et_password.getText().toString().trim();
                 String conpassword= et_cpassword.getText().toString().trim();
@@ -124,6 +126,16 @@ public class SignupFragment extends Fragment {
                 String C= et_city.getText().toString().trim();
                 String date= et_dob.getText().toString().trim();
 
+                if(TextUtils.isEmpty(firstName))
+                {
+                    et_firstname.setError("First name is required");
+                    return;
+                }
+                if(TextUtils.isEmpty(lastName))
+                {
+                    et_lastname.setError("Last name is required");
+                    return;
+                }
                 if(TextUtils.isEmpty(Email)){
                     et_email.setError("Email is required.");
                     return;

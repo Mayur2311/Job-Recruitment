@@ -238,7 +238,7 @@ String[] Location={"Toronto\t-\tOntario",
                             @Override
                             public void onSuccess(Void aVoid) {
 
-                                Toast.makeText(getContext().getApplicationContext(), "post data inserted successfully", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext().getApplicationContext(), "Your Job Post is successfully sent to admin", Toast.LENGTH_LONG).show();
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {

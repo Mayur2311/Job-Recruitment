@@ -1,9 +1,12 @@
 package com.bits.jobhunt.fragments;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +21,7 @@ import com.bits.jobhunt.AddedPostAdapter;
 import com.bits.jobhunt.Model;
 import com.bits.jobhunt.NotificationAdapter;
 import com.bits.jobhunt.R;
+import com.bits.jobhunt.UserActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +42,7 @@ public class Notification extends Fragment {
     ArrayList<Model> notificationdatalist;
     NotificationAdapter notificationadapter;
     SwipeRefreshLayout swipeRefreshLayout;
+    AlertDialog.Builder builder;
 
     public Notification() {
         // Required empty public constructor
@@ -102,6 +107,29 @@ public class Notification extends Fragment {
                             notificationdatalist.add(obj);
                         }
                         notificationadapter.notifyDataSetChanged();
+                        if(notificationdatalist.isEmpty())
+                        {
+                            builder = new AlertDialog.Builder(getActivity());
+
+                            //Setting message manually and performing action on button click
+                            builder.setMessage("Currently, You have no notifications yet !")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                            Toast.makeText(getActivity(), "You are redirected to the Home screen.",
+                                                    Toast.LENGTH_SHORT).show();
+                                            Intent i= new Intent(getContext(), UserActivity.class);
+                                            startActivity(i);
+                                        }
+                                    });
+
+                            //Creating dialog box
+                            AlertDialog alert = builder.create();
+                            //Setting the title manually
+                            alert.setTitle("Notifications");
+                            alert.show();
+                        }
 
                     }
                 });

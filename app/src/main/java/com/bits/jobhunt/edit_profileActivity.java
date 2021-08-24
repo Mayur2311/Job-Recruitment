@@ -69,11 +69,11 @@ public class edit_profileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         toolbar = findViewById(R.id.edit_profile_toolbar);
-//      toolbar.setTitle("Edit Profile");
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
         profilePic=findViewById(R.id.profilePic);
