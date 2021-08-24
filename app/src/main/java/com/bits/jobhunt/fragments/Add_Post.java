@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -141,6 +142,8 @@ String[] Location={"Toronto\t-\tOntario",
         ArrayAdapter Location_arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, Location);
         Location_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_locationtype.setAdapter(Location_arrayAdapter);
+
+
 
         add_new.setOnClickListener(new View.OnClickListener() {
             @Override

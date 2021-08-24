@@ -3,7 +3,7 @@ package com.bits.jobhunt;
 public class Model {
 
 
-    String firstName,lastName,mobilenumber,City,CompanyName,Description,JobName,JobType,Location,Qualifications,Salary,numberOFHires,Uid,name,url,CompanyLocation,JobTitle,Vacancy,Qualification,imageurl,jobcategory,Email,mobile,ApplicationStatus,Status;
+    String firstName,lastName,mobilenumber,City,CompanyName,Description,JobName,JobType,Location,Qualifications,Salary,numberOFHires,Uid,name,url,CompanyLocation,JobTitle,Vacancy,Qualification,imageurl,jobcategory,Email,mobile,ApplicationStatus,Status,ApprovedDate;
     public String getFirstName() {
         return firstName;
     }
@@ -14,6 +14,14 @@ public class Model {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getApprovedDate() {
+        return ApprovedDate;
+    }
+
+    public void setApprovedDate(String approvedDate) {
+        ApprovedDate = approvedDate;
     }
 
     public String getStatus() {

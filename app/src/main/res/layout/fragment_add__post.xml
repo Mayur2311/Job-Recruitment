@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#E6ECE4"
+    android:background="@drawable/backgroundlogo"
     tools:context=".fragments.Add_Post">
 
     <RelativeLayout
@@ -23,7 +23,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:text="@string/Add_new_job"
-            android:textColor="@color/orange"
+            android:textColor="@color/black"
             android:textSize="37dp"
             android:textStyle="bold" />
 

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/backgroundlogo"
     android:layout_height="wrap_content"
     tools:context=".edit_profileActivity">
 
@@ -31,7 +32,6 @@
             android:id="@+id/relative_layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_corner"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:orientation="vertical">
@@ -41,8 +41,6 @@
                 android:id="@+id/profilePic"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-
-
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/addprofile"
                 android:scaleType="centerCrop" />

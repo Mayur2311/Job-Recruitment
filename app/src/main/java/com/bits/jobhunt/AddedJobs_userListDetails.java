@@ -2,12 +2,14 @@ package com.bits.jobhunt;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,6 +45,7 @@ public class AddedJobs_userListDetails extends AppCompatActivity {
     FirebaseUser user;
     String pdfUrl;
     ImageView userProfilePic;
+    Toolbar toolbar;
     StorageReference storageReference;
     TextView firstname, lastname, City, mobile_no, about_text, experience_text1, experience_text2, experience_text3, Education_text1, Education_text2, Education_text3,resume_title, resume_file;
 
@@ -50,6 +53,12 @@ public class AddedJobs_userListDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_added_jobs_user_list_details);
+
+        toolbar = findViewById(R.id.toolbar3);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         userProfilePic = findViewById(R.id.userProfilePic);
         firstname = findViewById(R.id.firstName_addedJob_userList);
@@ -168,9 +177,16 @@ public class AddedJobs_userListDetails extends AppCompatActivity {
             }
             });
 
-
-
-
 }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home)
+        {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
 

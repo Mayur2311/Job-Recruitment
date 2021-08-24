@@ -3,12 +3,14 @@ package com.bits.jobhunt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
@@ -37,6 +39,7 @@ public class adminJob_Details extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     Button backArrow,delete;
     String status,jobname;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,13 @@ public class adminJob_Details extends AppCompatActivity {
         admin_jobdetails_qualificationdetail1 = findViewById(R.id.admin_jobdetails_qualificationdetail1);
         admin_jobdetails_company_details = findViewById(R.id.admin_jobdetails_company_details);
 
+        toolbar = findViewById(R.id.toolbar5);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         //Onclick Data
         admin_jobdetails_job_title.setText(getIntent().getStringExtra("JobName").toString());
         admin_jobdetails_company_name.setText(getIntent().getStringExtra("CompanyName").toString());
@@ -60,20 +70,13 @@ public class adminJob_Details extends AppCompatActivity {
         admin_jobdetails_vacancynumber.setText(getIntent().getStringExtra("numberOFHires").toString());
         admin_jobdetails_qualificationdetail1.setText(getIntent().getStringExtra("Qualifications").toString());
         admin_jobdetails_company_details.setText(getIntent().getStringExtra("Description").toString());
-        backArrow = findViewById(R.id.backArrow_adminJobDetails);
+
 
         //For Applied Job
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         delete = findViewById(R.id.deletepost);
 
-        backArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), AdminActivity.class);
-                startActivity(intent);
-            }
-        });
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,6 +120,17 @@ public class adminJob_Details extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home)
+        {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 

@@ -2,6 +2,7 @@ package com.bits.jobhunt;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 
 import android.app.NotificationManager;
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +28,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,10 +41,20 @@ public class PendingPost_JobDetails extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
     String  status,doctitle,jobname;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pending_post_job_details);
+
+
+        toolbar = findViewById(R.id.toolbar4);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         pending_job_title = findViewById(R.id.notification_job_title);
         pending_company_name = findViewById(R.id.pending_company_name);
@@ -51,7 +65,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
         pending_vacancynumber = findViewById(R.id.pending_vacancynumber);
         pending_qualificationdetail1 = findViewById(R.id.pending_qualificationdetail1);
         pending_company_details = findViewById(R.id.pending_company_details);
-          email=findViewById(R.id.Pen_email);
+        email=findViewById(R.id.Pen_email);
         approve = findViewById(R.id.approve);
         disapprove = findViewById(R.id.disapprove);
         //Onclick Data
@@ -68,6 +82,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
         //For Applied Job
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
 
 
         approve.setOnClickListener(new View.OnClickListener() {
@@ -104,8 +119,8 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                     }
                 });
 
-
                 /*Notification collection*/
+
                 Map<String, Object> pendingData = new HashMap<>();
                 String jobtitle= getIntent().getStringExtra("JobName").toString();
                 String company_name=getIntent().getStringExtra("CompanyName").toString();
@@ -135,7 +150,6 @@ public class PendingPost_JobDetails extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
 
-                                Toast.makeText(getApplication(), "", Toast.LENGTH_LONG).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -199,6 +213,8 @@ public class PendingPost_JobDetails extends AppCompatActivity {
 
     public void insertApprovedData(String jobtitle, String company_name, String company_location, String salary, String jobtype, String vacancy, String qualification,String jobcategory, String description,String Email, String Status) {
 
+        Calendar calendar= Calendar.getInstance();
+        String currentdate= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
 
             Map<String, Object> pendingData = new HashMap<>();
 
@@ -213,6 +229,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
             pendingData.put("jobcategory",jobcategory);
             pendingData.put("Status", Status);
             pendingData.put("Email", Email);
+            pendingData.put("ApprovedDate",currentdate );
 
 
             db.collection("Jobs").document().set(pendingData)
@@ -282,6 +299,17 @@ public class PendingPost_JobDetails extends AppCompatActivity {
             });
 
         }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home)
+        {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 
 

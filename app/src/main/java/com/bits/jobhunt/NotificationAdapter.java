@@ -1,5 +1,6 @@
 package com.bits.jobhunt;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         a = NotificationDataList.get(position).getApplicationStatus();
         b = NotificationDataList.get(position).getStatus();
+
 
 
         if (a == null)

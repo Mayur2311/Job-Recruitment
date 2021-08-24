@@ -70,6 +70,7 @@ public class AdminFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         user_btn = view.findViewById(R.id.btn_user);
         navController = Navigation.findNavController(view);
         btn_adminLogIn = view.findViewById(R.id.btn_adminlogin);
@@ -102,7 +103,7 @@ public class AdminFragment extends Fragment {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull @NotNull Exception e) {
-
+                            Toast.makeText(getActivity(), "Authentication Failed! "+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

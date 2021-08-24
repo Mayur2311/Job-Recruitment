@@ -3,45 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundlogo"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AddedJobs_userListDetails">
 
-    <RelativeLayout
-        android:id="@+id/relative_layout_header"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/mainapp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Applicant Details"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        >
-
-
-        <TextView
-            android:id="@+id/header_button"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/mainapp"
-            android:text="@string/user_details"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            android:paddingLeft="5dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </RelativeLayout>
+        />
 
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="663dp"
-        app:layout_constraintTop_toBottomOf="@+id/relative_layout_header"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:backgroundTint="#CDE3E3"
             android:layout_marginTop="5dp"
             android:layout_marginRight="3dp"
             android:layout_marginLeft="3dp"

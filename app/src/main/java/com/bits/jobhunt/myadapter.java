@@ -38,7 +38,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
         holder.user_dashboard_company_name.setText(datalist.get(position).getCompanyName());
         holder.user_dashboard_company_location.setText(datalist.get(position).getLocation());
         holder.user_dashboard_salary.setText(datalist.get(position).getSalary());
-
+        holder.user_dashboard_post_life.setText(datalist.get(position).getApprovedDate());
         holder.user_dashboard_job_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +68,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
 
 
     class myviewholder extends RecyclerView.ViewHolder  {
-        TextView user_dashboard_job_title, user_dashboard_company_name, user_dashboard_company_location, user_dashboard_salary;
+        TextView user_dashboard_job_title, user_dashboard_company_name, user_dashboard_company_location, user_dashboard_salary, user_dashboard_post_life;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +76,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>  {
             user_dashboard_company_name = itemView.findViewById(R.id.user_dashboard_company_name);
             user_dashboard_company_location = itemView.findViewById(R.id.user_dashboard_company_location);
             user_dashboard_salary = itemView.findViewById(R.id.user_dashboard_salary);
+            user_dashboard_post_life= itemView.findViewById(R.id.user_dashboard_post_life);
         }
 
 

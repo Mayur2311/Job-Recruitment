@@ -91,14 +91,14 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        currentUser = fAuth.getCurrentUser();
+      /*  currentUser = fAuth.getCurrentUser();
         if (currentUser != null) {
             Toast.makeText(getActivity().getApplicationContext(), "User Already Signing", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getActivity(), UserActivity.class);
             startActivity(intent);
           //  updateUI(currentUser);
 
-        }
+        }*/
 
         txt_forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override

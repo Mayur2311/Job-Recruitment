@@ -112,7 +112,7 @@ public class DashboardFragment extends Fragment implements AdapterView.OnItemSel
         filterSpinner.setOnItemSelectedListener(this);
 
 
-        recview=view.findViewById(R.id.pendingpost_recycleView);
+        recview=view.findViewById(R.id.dashboard_recycleView);
         recview.setLayoutManager(new LinearLayoutManager(view.getContext()));
         datalist=new ArrayList<>();
         adapter=new myadapter(datalist);

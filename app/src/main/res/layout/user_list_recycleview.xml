@@ -26,7 +26,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/img">
 
             <TextView
                 android:id="@+id/user_list_lastname"
@@ -36,6 +37,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/account"
+                android:drawablePadding="15dp"
+                android:drawableTint="@color/black"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
                 android:backgroundTint="#E3E9EA"
@@ -52,6 +56,9 @@
                 android:id="@+id/user_list_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/city"
+                android:drawablePadding="15dp"
+                android:drawableTint="@color/black"
                 android:layout_below="@+id/user_list_lastname"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
@@ -69,6 +76,8 @@
 
             <TextView
                 android:id="@+id/user_list_mobile"
+                android:drawableLeft="@drawable/mobile"
+                android:drawablePadding="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/user_list_city"
@@ -96,6 +105,9 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
+                android:drawableLeft="@drawable/email"
+                android:drawablePadding="15dp"
+                android:drawableTint="@color/black"
                 android:backgroundTint="#E3E9EA"
                 android:paddingLeft="10dp"
                 android:paddingTop="5dp"
@@ -110,8 +122,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:drawableLeft="@drawable/account"
+                android:drawablePadding="15dp"
+                android:drawableTint="@color/black"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/round_corner"
                 android:backgroundTint="#E3E9EA"

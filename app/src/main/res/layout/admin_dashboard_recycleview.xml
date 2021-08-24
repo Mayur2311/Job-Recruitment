@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_corner"
-            android:backgroundTint="#E3E9EA"
+            android:backgroundTint="@color/mainapp"
             android:orientation="vertical">
 
             <TextView
@@ -40,7 +40,7 @@
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
                 android:text="Job Title"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -50,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/admin_dashboard_job_title"
                 android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
@@ -63,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/admin_dashboard_company_name"
                 android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
@@ -79,12 +81,12 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/round_corner"
-                android:backgroundTint="#E3E9EA"
+                android:backgroundTint="@color/mainapp"
                 android:paddingBottom="5dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="5dp"
                 android:text="Salary"
-                android:textColor="#676464"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
 
