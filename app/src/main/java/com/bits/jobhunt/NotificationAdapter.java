@@ -41,6 +41,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
 
 
+
         if (a == null)
         {
             holder.title1.setVisibility(View.INVISIBLE);

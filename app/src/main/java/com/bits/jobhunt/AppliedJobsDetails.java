@@ -2,10 +2,13 @@ package com.bits.jobhunt;
 
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
 public class AppliedJobsDetails extends AppCompatActivity {
@@ -13,6 +16,7 @@ public class AppliedJobsDetails extends AppCompatActivity {
     TextView user_appliedjobdetails_job_title, user_appliedjobdetails_company_name, user_appliedjobdetails_company_location, user_appliedjobdetails_salaryinnumber, user_appliedjobdetails_jobtype1, user_appliedjobdetails_vacancynumber, user_appliedjobdetails_qualificationdetail1, user_appliedjobdetails_company_details;
     Model objModel = new Model();
     String checkAppstatus;
+    Toolbar toolbar;
 
 
     FragmentTransaction fragmentTransaction;
@@ -21,6 +25,12 @@ public class AppliedJobsDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_applied_jobs_details);
+
+        toolbar = findViewById(R.id.applied_toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
@@ -55,7 +65,19 @@ public class AppliedJobsDetails extends AppCompatActivity {
 //             Toast.makeText(this, "The employer havn't yet viewed your application yet please come back later", Toast.LENGTH_LONG).show();
 //         }
 //
+
      }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home)
+        {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 
 }
