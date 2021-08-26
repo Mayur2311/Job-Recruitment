@@ -157,7 +157,6 @@ public class AddedJobs_userListDetails extends AppCompatActivity {
 
                         Log.d("", document.getId());
                         list.add(document.getId());
-                        Toast.makeText(AddedJobs_userListDetails.this, document.getId(), Toast.LENGTH_SHORT).show();
 
                         firstname.setText(document.get("firstName").toString());
                         lastname.setText(document.get("lastName").toString());

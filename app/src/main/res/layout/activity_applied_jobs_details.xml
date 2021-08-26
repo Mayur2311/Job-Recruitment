@@ -17,20 +17,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         >
 
-        <TextView
-            android:id="@+id/header_button"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/appliedJobdetails_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/mainapp"
-            android:gravity="center"
-            android:text="@string/Job_details"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:title="Job Details"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
     </RelativeLayout>
 
