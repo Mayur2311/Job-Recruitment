@@ -203,6 +203,7 @@ public class Job_Details extends AppCompatActivity {
         profileData.put("Email", email);
 
 
+
         db.collection("SavedJob").document().set(profileData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

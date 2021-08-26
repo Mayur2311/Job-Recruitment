@@ -3,11 +3,13 @@ package com.bits.jobhunt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,6 +40,7 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
     TextView user_savedjobdetails_job_title, user_savedjobdetails_company_name, user_savedjobdetails_company_location, user_savedjobdetails_salaryinnumber, user_savedjobdetails_jobtype1, user_savedjobdetails_vacancynumber, user_savedjobdetails_qualificationdetail1, user_savedjobdetails_company_details;
     Button user_savedjobdetails_apply;
     DocumentReference documentReference;
+    Toolbar toolbar;
     FirebaseFirestore db;
     String name;
     FirebaseAuth firebaseAuth;
@@ -48,6 +51,13 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_jobs_details);
+
+
+        toolbar = findViewById(R.id.toolbar_saved);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         user_savedjobdetails_job_title = findViewById(R.id.user_savedjobdetails_job_title);
         user_savedjobdetails_company_name = findViewById(R.id.user_savedjobdetails_company_name);
@@ -104,6 +114,7 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
         profileData.put("Description", description);
         profileData.put("Email",email);
         profileData.put("Status",status);
+        profileData.put("ApplicationStatus","Pending");
         fuser = firebaseAuth.getCurrentUser().getEmail();
         db.collection("AppliedJob").document().set(profileData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -153,6 +164,16 @@ public class SavedJobsDetails_activity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home)
+        {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
