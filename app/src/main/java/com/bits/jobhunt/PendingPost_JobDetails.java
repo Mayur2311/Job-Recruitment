@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bits.jobhunt.fragments.Notification;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,6 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class PendingPost_JobDetails extends AppCompatActivity {
     TextView email,pending_job_title, pending_company_name, pending_company_location, pending_salaryinnumber, pending_jobtype1, pending_vacancynumber, pending_qualificationdetail1, pending_company_details,pending_jobcategory;
     Button approve, disapprove;
@@ -50,7 +53,6 @@ public class PendingPost_JobDetails extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar4);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -275,6 +277,8 @@ public class PendingPost_JobDetails extends AppCompatActivity {
         });
 
 
+
+
     }
 
         private void updateData(List<String> list) {
@@ -295,6 +299,7 @@ public class PendingPost_JobDetails extends AppCompatActivity {
             });
 
         }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

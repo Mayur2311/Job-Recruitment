@@ -1,8 +1,10 @@
 package com.bits.jobhunt;
 
+
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,22 +16,21 @@ public class AppliedJobsDetails extends AppCompatActivity {
     TextView user_appliedjobdetails_job_title, user_appliedjobdetails_company_name, user_appliedjobdetails_company_location, user_appliedjobdetails_salaryinnumber, user_appliedjobdetails_jobtype1, user_appliedjobdetails_vacancynumber, user_appliedjobdetails_qualificationdetail1, user_appliedjobdetails_company_details;
     Model objModel = new Model();
     String checkAppstatus;
-    FragmentTransaction fragmentTransaction;
     Toolbar toolbar;
 
+
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_applied_jobs_details);
 
-        toolbar = findViewById(R.id.appliedJobdetails_toolbar);
+        toolbar = findViewById(R.id.applied_toolbar);
         setSupportActionBar(toolbar);
-        // toolbar.setTitle("Mayur");
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
@@ -52,8 +53,8 @@ public class AppliedJobsDetails extends AppCompatActivity {
         user_appliedjobdetails_qualificationdetail1.setText(getIntent().getStringExtra("Qualification").toString());
         user_appliedjobdetails_company_details.setText(getIntent().getStringExtra("Description").toString());
 
-         checkAppstatus=getIntent().getStringExtra("ApplicationStatus");
-
+//         checkAppstatus=getIntent().getStringExtra("ApplicationStatus");
+//
 //         if(checkAppstatus.equals("Approved")){
 //             Toast.makeText(this, "Your application has been approved further notice would be updated", Toast.LENGTH_LONG).show();
 //         }
@@ -63,6 +64,7 @@ public class AppliedJobsDetails extends AppCompatActivity {
 //         else{
 //             Toast.makeText(this, "The employer havn't yet viewed your application yet please come back later", Toast.LENGTH_LONG).show();
 //         }
+//
 
      }
 
@@ -73,7 +75,9 @@ public class AppliedJobsDetails extends AppCompatActivity {
         {
             finish();
         }
+
         return super.onOptionsItemSelected(item);
     }
+
 
 }
